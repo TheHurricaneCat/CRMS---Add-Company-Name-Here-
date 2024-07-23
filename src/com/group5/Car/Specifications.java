@@ -8,6 +8,7 @@ public class Specifications {
     private double towingCapacity;
     private double seatingCapacity;
     private String color;
+    private String bodyType;
     
     private String wheelDriveType;
     private double finalDriveRatio;
