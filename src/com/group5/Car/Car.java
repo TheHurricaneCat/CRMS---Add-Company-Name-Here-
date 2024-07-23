@@ -13,5 +13,13 @@ public class Car {
     public String getName() {
         return make.getName() + " " + model.getName();
     }
+
+    public Car (int carID, Make make, Model model, Specifications specs, ArrayList<Part> part) {
+        this.carID = carID;
+        this.make = make;
+        this.model = model;
+        this.specs = specs;
+        this.part = part;
+    }
     
 }
