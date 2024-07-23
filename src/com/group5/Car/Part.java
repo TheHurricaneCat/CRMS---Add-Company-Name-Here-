@@ -1,16 +1,12 @@
 package com.group5.Car;
 
-public class Part {
+public abstract class Part {
     
-    private String name;
-    private String material;
+    protected String name;
+    protected String material;
 
-    void setName (String name) {
-        this.name = name;
-    }
+    abstract public Part setName (String name);
 
-    void setMaterial (String material) {
-        this.material = material;
-    }
+    abstract public Part setMaterial (String material);
     
 }
