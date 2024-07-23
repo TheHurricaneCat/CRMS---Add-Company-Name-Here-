@@ -1,16 +1,14 @@
 package com.group5.Car;
 
-import com.group5.Car.Parts.Body;
-import com.group5.Car.Parts.Drivetrain;
-import com.group5.Car.Parts.Engine;
-import com.group5.Car.Parts.Transmission;
 
-
-
-public class PartFactory {
+public interface PartFactory {
     
 
-    static public Engine createEngine (String name, String material, double engineDisplacement, int horsepower, int torque, String fuelType, double cityFuelEconomy, double highwayFuelEconomy, String pistonConfiguration) {
+    public Part create ();
+
+
+    /*
+    public Engine initialize (String name, String material, double engineDisplacement, int horsepower, int torque, String fuelType, double cityFuelEconomy, double highwayFuelEconomy, String pistonConfiguration) {
 
         return new Engine()
             .setName(name)
@@ -25,20 +23,7 @@ public class PartFactory {
         
     }
 
-
-    static public Transmission createTransmission (String name, String material, String transmissionType, int gearCount, Boolean torqueConverter) {
-        
-        return new Transmission()
-            .setName(name)
-            .setMaterial(material)
-            .setTransmissionType(transmissionType)
-            .setGearCount(gearCount)
-            .setTorqueConverter(torqueConverter);
-
-    }
-
-
-    static public Drivetrain createDrivetrain (String name, String material, String wheelDriveType, double finalDriveRatio, double differentialRatio) {
+    static public Drivetrain create (String name, String material, String wheelDriveType, double finalDriveRatio, double differentialRatio) {
         
         return new Drivetrain()
             .setName(name)
@@ -50,8 +35,7 @@ public class PartFactory {
 
     }
 
-
-    static public Body createBody (String name, String material, double grossWeight, double curbWeight, double cargoCapacity, double towingCapacity, double seatingCapacity, String color, double fuelCapacity) {
+    static public Body create (String name, String material, double grossWeight, double curbWeight, double cargoCapacity, double towingCapacity, double seatingCapacity, String color, double fuelCapacity) {
 
         return new Body()
             .setName(name)
@@ -66,5 +50,16 @@ public class PartFactory {
 
     }
 
+    static public Transmission create (String name, String material, String transmissionType, int gearCount, Boolean torqueConverter) {
+        
+        return new Transmission()
+            .setName(name)
+            .setMaterial(material)
+            .setTransmissionType(transmissionType)
+            .setGearCount(gearCount)
+            .setTorqueConverter(torqueConverter);
+
+    }
+    */
 
 }
