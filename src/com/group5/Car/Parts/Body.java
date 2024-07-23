@@ -1,6 +1,8 @@
 package com.group5.Car.Parts;
 
-public class Body {
+import com.group5.Car.Part;
+
+public class Body extends Part{
     
     private double grossWeight;
     private double curbWeight;
@@ -10,7 +12,16 @@ public class Body {
     private String color;
     private double fuelCapacity;
 
+    public Body setName (String name) {
+        this.name = name;
+        return this;
+    }
 
+    public Body setMaterial (String material) {
+        this.material = material;
+        return this;
+    }
+    
     public Body setGrossWeight(double grossWeight) {
         this.grossWeight = grossWeight;
         return this;

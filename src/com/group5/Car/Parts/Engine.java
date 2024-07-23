@@ -1,6 +1,8 @@
 package com.group5.Car.Parts;
 
-public class Engine {
+import com.group5.Car.Part;
+
+public class Engine extends Part {
     
     private double engineDisplacement;
     private int horsepower;
@@ -11,6 +13,16 @@ public class Engine {
     private String pistonConfiguration;
 
 
+    public Engine setName (String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Engine setMaterial (String material) {
+        this.material = material;
+        return this;
+    }
+    
     public Engine setEngineDisplacement(double engineDisplacement) {
         this.engineDisplacement = engineDisplacement;
         return this;

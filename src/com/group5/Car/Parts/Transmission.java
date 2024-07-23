@@ -1,12 +1,24 @@
 package com.group5.Car.Parts;
 
-public class Transmission {
+import com.group5.Car.Part;
+
+public class Transmission extends Part {
     
     private String transmissionType;
     private int gearCount;
     private Boolean torqueConverter;
 
 
+    public Transmission setName (String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Transmission setMaterial (String material) {
+        this.material = material;
+        return this;
+    }
+    
     public Transmission setTransmissionType(String transmissionType) {
         this.transmissionType = transmissionType;
         return this;
