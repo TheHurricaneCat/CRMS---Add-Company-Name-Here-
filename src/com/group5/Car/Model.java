@@ -6,5 +6,9 @@ public class Model {
     private Make manufacturer;
     private int modelYear;
     private String bodyType;
+
+    public String getName() {
+        return name;
+    }
     
 }

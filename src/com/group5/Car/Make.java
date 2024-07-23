@@ -8,4 +8,8 @@ public class Make {
     private String country;
     private ArrayList<Model> modelList = new ArrayList<>();
     
+    public String getName() {
+        return name;
+    }
+    
 }
