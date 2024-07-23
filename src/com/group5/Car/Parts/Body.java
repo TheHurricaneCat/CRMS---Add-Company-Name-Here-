@@ -8,5 +8,6 @@ public class Body {
     private double towingCapacity;
     private double seatingCapacity;
     private String color;
+    private double fuelCapacity;
     
 }
