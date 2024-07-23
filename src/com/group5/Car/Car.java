@@ -8,18 +8,20 @@ public class Car {
     private Make make;
     private Model model;
     private Specifications specs;
-    private ArrayList<Part> part = new ArrayList<>();
+    private ArrayList<Part> parts = new ArrayList<>();
 
-    public String getName() {
-        return make.getName() + " " + model.getName();
-    }
 
-    public Car (int carID, Make make, Model model, Specifications specs, ArrayList<Part> part) {
+    public Car (int carID, Make make, Model model, Specifications specs, ArrayList<Part> parts) {
         this.carID = carID;
         this.make = make;
         this.model = model;
         this.specs = specs;
-        this.part = part;
+        this.parts = parts;
+    }
+
+
+    public String getName() {
+        return make.getName() + " " + model.getName();
     }
     
 }
