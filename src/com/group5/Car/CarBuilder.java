@@ -2,7 +2,7 @@ package com.group5.Car;
 
 import java.util.ArrayList;
 
-class CarBuilder {
+public class CarBuilder {
 
     private int carID;
     private Make make;
