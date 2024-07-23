@@ -6,7 +6,6 @@ public abstract class Part {
     protected String material;
 
     abstract public Part setName (String name);
-
     abstract public Part setMaterial (String material);
     
 }

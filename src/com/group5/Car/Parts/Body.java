@@ -56,5 +56,5 @@ public class Body extends Part{
         this.fuelCapacity = fuelCapacity;
         return this;
     }
-    
+
 }
