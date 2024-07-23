@@ -20,7 +20,7 @@ public class Specifications {
     private double fuelCapacity;
     
     private double engineDisplacement;
-    private int hoursepower;
+    private int horsepower;
     private int torque;
     private String fuelType;
     private double cityFuelEconomy;
