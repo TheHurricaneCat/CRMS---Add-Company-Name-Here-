@@ -7,7 +7,6 @@ public class CarBuilder {
     private int carID;
     private Make make;
     private Model model;
-    private Specifications specs;
     private ArrayList<Part> part = new ArrayList<>();
 
     public CarBuilder setCarID (int carID) {
@@ -25,18 +24,13 @@ public class CarBuilder {
         return this;
     }
 
-    public CarBuilder setSpecs (Specifications specs) {
-        this.specs = specs;
-        return this;
-    }
-
     public CarBuilder addPart (Part part) {
         this.part.add(part);
         return this;
     }
 
     public Car build () {
-        return new Car(carID, make, model, specs, part);
+        return new Car(carID, make, model, part);
     }
 
 }
