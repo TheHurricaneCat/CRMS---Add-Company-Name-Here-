@@ -24,7 +24,7 @@ public class Drivetrain extends Part{
         return this;
     }
 
-    public Drivetrain setFinalWheelDrive(double finalDriveRatio) {
+    public Drivetrain setFinalDriveRatio(double finalDriveRatio) {
         this.finalDriveRatio = finalDriveRatio;
         return this;
     }

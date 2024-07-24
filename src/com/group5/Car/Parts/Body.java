@@ -11,6 +11,7 @@ public class Body extends Part{
     private double seatingCapacity;
     private String color;
     private double fuelCapacity;
+    private String bodyType;
 
     public Body setName (String name) {
         this.name = name;
@@ -54,6 +55,11 @@ public class Body extends Part{
 
     public Body setFuelCapacity(double fuelCapacity) {
         this.fuelCapacity = fuelCapacity;
+        return this;
+    }
+
+    public Body setBodyType(String bodyType) {
+        this.bodyType = bodyType;
         return this;
     }
 

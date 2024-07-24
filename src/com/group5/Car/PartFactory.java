@@ -35,7 +35,7 @@ public interface PartFactory {
 
     }
 
-    static public Body create (String name, String material, double grossWeight, double curbWeight, double cargoCapacity, double towingCapacity, double seatingCapacity, String color, double fuelCapacity) {
+    static public Body create (String name, String material, double grossWeight, double curbWeight, double cargoCapacity, double towingCapacity, double seatingCapacity, String color, double fuelCapacity, String bodyType) {
 
         return new Body()
             .setName(name)
@@ -46,7 +46,8 @@ public interface PartFactory {
             .setTowingCapacity(towingCapacity)
             .setSeatingCapacity(seatingCapacity)
             .setColor(color)
-            .setFuelCapacity(fuelCapacity);
+            .setFuelCapacity(fuelCapacity)
+            .setBodyType(bodyType);
 
     }
 
