@@ -51,8 +51,7 @@ public class Main {
             )
             .setMake(Honda)
             .setModel(new Model("Civic DX/EX", Honda, 1995))
-            .setCarID(0)
-            .setSpecs(null);
+            .setCarID(0);
 
 
         
