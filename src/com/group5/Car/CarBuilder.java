@@ -4,10 +4,16 @@ import java.util.ArrayList;
 
 public class CarBuilder {
 
+    private String name;
     private int carID;
     private Make make;
     private Model model;
     private ArrayList<Part> part = new ArrayList<>();
+
+    public CarBuilder setName (String name) {
+        this.name = name;
+        return this;
+    }
 
     public CarBuilder setCarID (int carID) {
         this.carID = carID;
@@ -30,7 +36,7 @@ public class CarBuilder {
     }
 
     public Car build () {
-        return new Car(carID, make, model, part);
+        return new Car(name, carID, make, model, part);
     }
 
 }
