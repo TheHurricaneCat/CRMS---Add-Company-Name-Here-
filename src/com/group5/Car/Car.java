@@ -17,9 +17,24 @@ public class Car {
         this.parts = parts;
     }
 
-
-    public String getName() {
+    public String getName () {
         return make.getName() + " " + model.getName();
+    }
+
+    public int getCarID () {
+        return carID;
+    }
+
+    public Make MakeCarID () {
+        return make;
+    }
+
+    public Model getModel () {
+        return model;
+    }
+
+    public ArrayList<Part> getParts () {
+        return parts;
     }
     
 }

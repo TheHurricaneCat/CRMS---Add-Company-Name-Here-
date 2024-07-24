@@ -13,6 +13,19 @@ public class Engine extends Part {
     private String pistonConfiguration;
 
 
+    @Override
+    public String[] getSpecs() {
+        return new String[] {
+            Double.toString(engineDisplacement),
+            Integer.toString(horsepower),
+            Integer.toString(torque),
+            fuelType,
+            Double.toString(cityFuelEconomy),
+            Double.toString(highwayFuelEconomy),
+            pistonConfiguration
+        };
+    }
+
     public Engine setName (String name) {
         this.name = name;
         return this;

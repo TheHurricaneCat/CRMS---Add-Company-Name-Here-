@@ -7,5 +7,6 @@ public abstract class Part {
 
     abstract public Part setName (String name);
     abstract public Part setMaterial (String material);
+    abstract public String[] getSpecs ();
     
 }

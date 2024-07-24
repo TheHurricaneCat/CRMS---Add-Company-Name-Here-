@@ -32,8 +32,8 @@ public class UserDBHandler {
     }
     
     public void addUser(User newUser) throws IOException {
-        try (FileWriter writer = new FileWriter(db)) {
-            writer.write(newUser.getDetails());
+        try (FileWriter writer = new FileWriter(db, true)) {
+            writer.write(newUser.getDetails() + "\n");
             System.out.println(newUser.toString() + " processed");
         } catch (IOException e) {
             e.printStackTrace();
@@ -54,5 +54,20 @@ public class UserDBHandler {
             e.printStackTrace();
         }
         return "0";
+    }
+    
+    public boolean userExists(String username) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(db))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] slice = line.split(":");
+                if (slice[0].equals(username)) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

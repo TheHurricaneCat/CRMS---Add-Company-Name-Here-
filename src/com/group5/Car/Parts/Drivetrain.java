@@ -9,6 +9,15 @@ public class Drivetrain extends Part{
     private double differentialRatio;
 
 
+    @Override
+    public String[] getSpecs() {
+        return new String[] {
+            wheelDriveType,
+            Double.toString(finalDriveRatio),
+            Double.toString(differentialRatio)
+        };
+    }
+
     public Drivetrain setName (String name) {
         this.name = name;
         return this;
@@ -33,5 +42,6 @@ public class Drivetrain extends Part{
         this.differentialRatio = differentialRatio;
         return this;
     }
+
     
 }

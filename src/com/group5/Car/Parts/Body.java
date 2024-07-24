@@ -8,10 +8,26 @@ public class Body extends Part{
     private double curbWeight;
     private double cargoCapacity;
     private double towingCapacity;
-    private double seatingCapacity;
+    private int seatingCapacity;
     private String color;
     private double fuelCapacity;
     private String bodyType;
+
+
+    @Override
+    public String[] getSpecs() {
+        return
+            new String[] {
+                Double.toString(grossWeight),
+                Double.toString(curbWeight),
+                Double.toString(cargoCapacity),
+                Double.toString(towingCapacity),
+                Integer.toString(seatingCapacity),
+                color,
+                Double.toString(fuelCapacity),
+                bodyType
+            };
+    }
 
     public Body setName (String name) {
         this.name = name;
@@ -43,7 +59,7 @@ public class Body extends Part{
         return this;
     }
 
-    public Body setSeatingCapacity(double seatingCapacity) {
+    public Body setSeatingCapacity(int seatingCapacity) {
         this.seatingCapacity = seatingCapacity;
         return this;
     }
@@ -62,5 +78,6 @@ public class Body extends Part{
         this.bodyType = bodyType;
         return this;
     }
+
 
 }
