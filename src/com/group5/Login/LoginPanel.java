@@ -238,8 +238,7 @@ public class LoginPanel extends javax.swing.JFrame {
         String[] output = handler.verifyUser(jTextField1.getText(), jPasswordField1.getPassword()).split(":");
         System.out.println(output);
         if ("1".equals(output[0])) {
-            User user = UserFactory.createUser(output[1], jTextField1.getText(), new String(jPasswordField1.getPassword()));
-            user.openGUI();
+            handler.loginUser(output[1], jTextField1.getText(), new String(jPasswordField1.getPassword()));
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Incorrect username/password... Please try again", "CRMS Login", JOptionPane.WARNING_MESSAGE);

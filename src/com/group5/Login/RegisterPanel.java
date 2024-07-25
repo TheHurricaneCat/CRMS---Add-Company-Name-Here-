@@ -215,7 +215,7 @@ public class RegisterPanel extends javax.swing.JFrame {
                 // todo: create a button or form for employees only?
                 User user = UserFactory.createUser("1", jTextField1.getText(), new String(jPasswordField1.getPassword()));
                 try {
-                    handler.addUser(user);
+                    handler.recordUser(user);
                 } catch (IOException ex) {
                     Logger.getLogger(RegisterPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }

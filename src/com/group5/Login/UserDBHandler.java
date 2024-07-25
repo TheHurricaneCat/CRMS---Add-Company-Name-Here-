@@ -5,12 +5,15 @@
 package com.group5.Login;
 
 import com.group5.User.User;
+import com.group5.User.UserFactory;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +22,8 @@ import javax.swing.JOptionPane;
  */
 public class UserDBHandler {
     private File db = new File("src/com/group5/Login/db.txt");
+    // maps (hash maps) are basically arrays but each element has 2 value slots
+    private /*final*/ Map<String, User> activeUsers = new HashMap<>();
     
     public void createDb() {
         try {
@@ -31,7 +36,22 @@ public class UserDBHandler {
         }
     }
     
-    public void addUser(User newUser) throws IOException {
+    // this function ensures that only one instance of a particular user is active in runtime
+    public void loginUser(String authority, String username, String password) {
+        User user = UserFactory.createUser(authority, username, password);
+        activeUsers.put(username, user);
+        user.openGUI();
+    }
+    
+    public void logoutUser(String username) {
+        User user = activeUsers.get(username);
+        if (user != null) {
+            //user.saveData(); implement later
+            activeUsers.remove(user);
+        }
+    }
+    
+    public void recordUser(User newUser) throws IOException {
         try (FileWriter writer = new FileWriter(db, true)) {
             writer.write(newUser.getDetails() + "\n");
             System.out.println(newUser.toString() + " processed");
