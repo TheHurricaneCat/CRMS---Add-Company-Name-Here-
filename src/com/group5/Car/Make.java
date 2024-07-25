@@ -13,8 +13,12 @@ public class Make {
         this.country = country;
     }
 
-    public String getName() {
+    public String getName () {
         return name;
+    }
+
+    public String getCOuntry () {
+        return country;
     }
     
 }
