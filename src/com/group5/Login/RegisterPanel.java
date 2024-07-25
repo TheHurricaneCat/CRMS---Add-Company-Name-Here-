@@ -208,7 +208,7 @@ public class RegisterPanel extends javax.swing.JFrame {
         String firstPass = new String(jPasswordField1.getPassword());
         String confirmPass = new String(jPasswordField2.getPassword());
         if (firstPass.equals(confirmPass)) {
-            UserDBHandler handler = new UserDBHandler();
+            UserDBHandler handler = UserDBHandler.getInstance();
             if (handler.userExists(jTextField1.getText())) {
                 JOptionPane.showMessageDialog(null, "User already exists... Try a different name.", "CRMS Registration", JOptionPane.WARNING_MESSAGE);
             } else {
