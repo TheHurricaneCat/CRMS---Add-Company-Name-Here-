@@ -13,9 +13,16 @@ public class Model {
         this.modelYear = modelYear;
     }
 
-
     public String getName() {
         return name;
+    }
+
+    public Make getManufacturer () {
+        return manufacturer;
+    }
+
+    public int getModelYear () {
+        return modelYear;
     }
     
 }
