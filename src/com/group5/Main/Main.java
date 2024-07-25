@@ -1,5 +1,8 @@
 package com.group5.Main;
 
+import javax.swing.JOptionPane;
+
+import com.group5.Car.Car;
 import com.group5.Car.CarBuilder;
 import com.group5.Car.Make;
 import com.group5.Car.Model;
@@ -19,6 +22,10 @@ public class Main {
         CarBuilder carbuilder = new CarBuilder();
 
         carbuilder
+            .setName("Honda Civic DX/EX")
+            .setMake(Honda)
+            .setModel(new Model("Civic", Honda, 1995))
+            .setCarID(0)
             .addPart(new EngineFactory().create()
                 .setName("D16Z6")
                 .setEngineDisplacement(1.6)
@@ -49,10 +56,25 @@ public class Main {
                 .setFuelCapacity(11.9)
                 .setBodyType("Sedan")
             )
-            .setMake(Honda)
-            .setModel(new Model("Civic DX/EX", Honda, 1995))
-            .setCarID(0);
+        ;
 
+        Car myCar = carbuilder.build();
+
+        String str = 
+            "Car ID: " + myCar.getCarID() + "\n" +
+            "Car Name: " + myCar.getName() + "\n" +
+            "Car Make: " + myCar.getMake().getName() + "\n" +
+            "Car Model: " + myCar.getModel().getName() + "\n" +
+            "Car Specs: " + "\n" +
+            "   "
+            
+        ;
+            
+        JOptionPane.showMessageDialog(null, str);
+        
+        
+        // Testing
+        
 
         
     }
