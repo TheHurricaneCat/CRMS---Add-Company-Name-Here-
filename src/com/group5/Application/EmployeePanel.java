@@ -4,6 +4,7 @@
  */
 package com.group5.Application;
 
+import com.group5.Login.UserDBHandler;
 import com.group5.User.Employee;
 
 /**
@@ -12,6 +13,10 @@ import com.group5.User.Employee;
  */
 public class EmployeePanel extends javax.swing.JFrame {
     private Employee employee;
+    private static EmployeePanel instance;
+    private UserDBHandler handler;
+
+    
     /**
      * Creates new form ApplicationPanel
      */
@@ -20,8 +25,17 @@ public class EmployeePanel extends javax.swing.JFrame {
     //sa login panel mag run not here
     public EmployeePanel(Employee employee) {
         this.employee = employee;
+        this.handler = UserDBHandler.getInstance();
         initComponents();
+        jLabel4.setText(handler.getActiveUser(employee.getUsername()).getUsername());
     };
+    
+    public static EmployeePanel getInstance(Employee employee) {
+        if (instance == null) {
+            instance = new EmployeePanel(employee);
+        }
+        return instance;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,6 +56,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -93,6 +108,8 @@ public class EmployeePanel extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("[Employee View]");
 
+        jLabel4.setText("ADMIN");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -113,7 +130,10 @@ public class EmployeePanel extends javax.swing.JFrame {
                                 .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(105, 105, 105)
-                        .addComponent(jLabel3)))
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(jLabel4)))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -133,7 +153,9 @@ public class EmployeePanel extends javax.swing.JFrame {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
         );
@@ -213,6 +235,7 @@ public class EmployeePanel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
