@@ -1,11 +1,15 @@
 package com.group5.Main;
 
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 
 import com.group5.Car.Car;
 import com.group5.Car.CarBuilder;
+import com.group5.Car.CarDBHandler;
 import com.group5.Car.Make;
 import com.group5.Car.Model;
+import com.group5.Car.Part;
 import com.group5.Car.PartFactory;
 import com.group5.Car.Parts.BodyFactory;
 import com.group5.Car.Parts.DrivetrainFactory;
@@ -14,7 +18,7 @@ import com.group5.Car.Parts.TransmissionFactory;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
         Make Honda = new Make("Honda", "Japan");
 
@@ -22,12 +26,11 @@ public class Main {
         CarBuilder carbuilder = new CarBuilder();
 
         carbuilder
-            .setName("Honda Civic DX/EX")
+            .setName("Honda Civic 1995")
+            .setCarID(0)
             .setMake(Honda)
             .setModel(new Model("Civic", Honda, 1995))
-            .setCarID(0)
             .addPart(new EngineFactory().create()
-                .setName("D16Z6")
                 .setEngineDisplacement(1.6)
                 .setHorsepower(125)
                 .setTorque(106)
@@ -39,7 +42,6 @@ public class Main {
             .addPart(new TransmissionFactory().create()
                 .setTransmissionType("Manual")
                 .setGearCount(5)
-                .setTorqueConverter(false)
             )
             .addPart(new DrivetrainFactory().create()
                 .setWheelDriveType("FWD")
@@ -60,18 +62,34 @@ public class Main {
 
         Car myCar = carbuilder.build();
 
-        String str = 
-            "Car ID: " + myCar.getCarID() + "\n" +
-            "Car Name: " + myCar.getName() + "\n" +
-            "Car Make: " + myCar.getMake().getName() + "\n" +
-            "Car Model: " + myCar.getModel().getName() + "\n" +
-            "Car Specs: " + "\n" +
-            "   "
-            
+        try {
+            CarDBHandler.insertCar(myCar);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        Car dbCar = CarDBHandler.getCar("Honda Civic 1995");
+
+        String carInfo;
+
+        carInfo =
+            dbCar.getCarID() + "\n" +
+            dbCar.getName() + "\n" +
+            dbCar.getMake().getName() + "\n" +
+            dbCar.getMake().getCountry() + "\n" +
+            dbCar.getModel().getName() + "\n" +
+            dbCar.getModel().getModelYear() + "\n";
         ;
-            
-        JOptionPane.showMessageDialog(null, str);
-        
+
+        for (Part part : dbCar.getParts()) {
+            for (String spec : part.getSpecs()) {
+                carInfo += spec + "\n";
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, carInfo);
+
     }
 
 }
