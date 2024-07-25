@@ -234,7 +234,7 @@ public class LoginPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordField1FocusLost
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        UserDBHandler handler = new UserDBHandler();
+        UserDBHandler handler = UserDBHandler.getInstance();
         String[] output = handler.verifyUser(jTextField1.getText(), jPasswordField1.getPassword()).split(":");
         System.out.println(output);
         if ("1".equals(output[0])) {
