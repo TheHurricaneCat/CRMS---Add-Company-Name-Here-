@@ -72,11 +72,6 @@ public class Main {
             
         JOptionPane.showMessageDialog(null, str);
         
-        
-        // Testing ye tagain
-        
-
-        
     }
 
 }

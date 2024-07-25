@@ -10,8 +10,3 @@ public abstract class Part {
     abstract public String[] getSpecs ();
     
 }
-
-
-// Testing git again h
-
-// Testing agian
