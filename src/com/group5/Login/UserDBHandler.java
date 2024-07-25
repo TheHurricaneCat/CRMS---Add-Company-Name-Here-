@@ -58,6 +58,10 @@ public class UserDBHandler {
         }
     }
     
+    public User getActiveUser(String username) {
+        return activeUsers.get(username);
+    }
+    
     public void recordUser(User newUser) throws IOException {
         try (FileWriter writer = new FileWriter(db, true)) {
             writer.write(newUser.getDetails() + "\n");
