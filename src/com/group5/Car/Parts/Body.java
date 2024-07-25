@@ -9,8 +9,8 @@ public class Body extends Part{
     private double cargoCapacity;
     private double towingCapacity;
     private int seatingCapacity;
-    private String color;
     private double fuelCapacity;
+    private String color;
     private String bodyType;
 
 
@@ -23,8 +23,8 @@ public class Body extends Part{
                 Double.toString(cargoCapacity),
                 Double.toString(towingCapacity),
                 Integer.toString(seatingCapacity),
-                color,
                 Double.toString(fuelCapacity),
+                color,
                 bodyType
             };
     }
