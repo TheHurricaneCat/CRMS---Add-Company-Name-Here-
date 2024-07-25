@@ -4,16 +4,22 @@
  */
 package com.group5.Application;
 
+import com.group5.User.Employee;
+
 /**
  *
  * @author Josefe Gillego
  */
 public class EmployeePanel extends javax.swing.JFrame {
-
+    private Employee employee;
     /**
      * Creates new form ApplicationPanel
      */
-    public EmployeePanel() {
+    
+    
+    //sa login panel mag run not here
+    public EmployeePanel(Employee employee) {
+        this.employee = employee;
         initComponents();
     };
 
@@ -196,12 +202,6 @@ public class EmployeePanel extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EmployeePanel().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

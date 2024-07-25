@@ -19,7 +19,7 @@ public class Customer extends User{
     
     @Override
     public void openGUI() {
-        CustomerPanel cPanel = new CustomerPanel();
+        CustomerPanel cPanel = new CustomerPanel(this);
         cPanel.setVisible(true);
     }
 }

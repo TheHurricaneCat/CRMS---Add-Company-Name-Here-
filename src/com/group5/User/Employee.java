@@ -19,7 +19,7 @@ public class Employee extends User{
    
     @Override
     public void openGUI() {
-        EmployeePanel ePanel = new EmployeePanel();
+        EmployeePanel ePanel = new EmployeePanel(this);
         ePanel.setVisible(true);
     }
 }
