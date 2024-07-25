@@ -17,7 +17,7 @@ public class Make {
         return name;
     }
 
-    public String getCOuntry () {
+    public String getCountry () {
         return country;
     }
     
