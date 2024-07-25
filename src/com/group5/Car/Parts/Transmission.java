@@ -6,15 +6,14 @@ public class Transmission extends Part {
     
     private String transmissionType;
     private int gearCount;
-    private Boolean torqueConverter;
+    //private Boolean torqueConverter;
 
 
     @Override
     public String[] getSpecs() {
         return new String[] {
             transmissionType,
-            Integer.toString(gearCount),
-            (torqueConverter)? "Yes" : "None"
+            Integer.toString(gearCount)
         };
     }
 
@@ -35,11 +34,6 @@ public class Transmission extends Part {
 
     public Transmission setGearCount(int gearCount) {
         this.gearCount = gearCount;
-        return this;
-    }
-
-    public Transmission setTorqueConverter(Boolean torqueConverter) {
-        this.torqueConverter = torqueConverter;
         return this;
     }
 
