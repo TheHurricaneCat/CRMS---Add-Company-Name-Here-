@@ -50,19 +50,18 @@ public class UserDBHandler {
     public void loginUser(String authority, String username, String password) {
         User user = UserFactory.createUser(authority, username, password);
         activeUsers.put(username, user);
-
-        if (user instanceof Customer) {
-            Customer customer = (Customer) user;
-            loadCarIDs(customer); // Load car IDs for this customer
+        
+        loadCarIDs(user); //load carID to users
+        
         try {
-            updateUser(customer); // Update the user's details in the file
+            updateUser(user); // Update the user's details in the file
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        user.openGUI();
     }
 
-    user.openGUI(); // Open GUI for the user
-    }
     
     public void logoutUser(String username) {
         User user = activeUsers.get(username);
@@ -98,14 +97,14 @@ public class UserDBHandler {
         writeLinesToFile(lines);
     }
     
-    private void loadCarIDs(Customer customer) {
+    public void loadCarIDs(User user) {
         try (BufferedReader reader = new BufferedReader(new FileReader(db))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(":");
-                if (parts[0].equals(customer.getUsername())) {
+                if (parts[0].equals(user.getUsername())) {
                     for (int i = 3; i < parts.length; i++) {
-                        customer.addCarID(Integer.parseInt(parts[i]));
+                        user.addCarID(Integer.parseInt(parts[i]));
                     }
                     break;
                 }

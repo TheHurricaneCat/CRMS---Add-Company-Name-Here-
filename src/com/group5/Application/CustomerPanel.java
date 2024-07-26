@@ -26,8 +26,6 @@ public class CustomerPanel extends javax.swing.JFrame {
         this.customer = customer;
         this.handler = UserDBHandler.getInstance();
         initComponents();
-        customer.removeCarID(0);
-        customer.removeCarID(2);
         jLabel6.setText(handler.getActiveUser(customer.getUsername()).getUsername());
         getContentPane().setBackground(new java.awt.Color(43, 38, 38)); 
         
