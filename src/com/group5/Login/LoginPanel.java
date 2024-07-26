@@ -10,6 +10,7 @@ import com.group5.User.Employee;
 import com.group5.User.User;
 import com.group5.User.UserFactory;
 import java.awt.Color;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -216,21 +217,20 @@ public class LoginPanel extends javax.swing.JFrame {
     private void jPasswordField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusGained
         String hint = "Password";
         char[] c_conv = hint.toCharArray();
-        if (jPasswordField1.getPassword() == c_conv) {
-            
+        if (Arrays.equals(jPasswordField1.getPassword(), c_conv)) {
             jPasswordField1.setText("");
-        }
-        jTextField1.setForeground(Color.black); 
+            jPasswordField1.setForeground(Color.black);
+            jPasswordField1.setEchoChar('*');
+        } 
     }//GEN-LAST:event_jPasswordField1FocusGained
 
     private void jPasswordField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusLost
-        String hint = "";
-        char[] c_conv = hint.toCharArray();
-        if (jPasswordField1.getPassword() == c_conv) {
+        char[] password = jPasswordField1.getPassword();
+        if (password.length == 0) {
+            jPasswordField1.setForeground(Color.gray);
             jPasswordField1.setText("Password");
-            jPasswordField1.setEchoChar('0');
+            jPasswordField1.setEchoChar((char) 0);
         }
-        jTextField1.setForeground(new Color(153, 153, 153));
     }//GEN-LAST:event_jPasswordField1FocusLost
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

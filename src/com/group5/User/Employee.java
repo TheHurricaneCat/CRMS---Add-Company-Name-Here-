@@ -14,7 +14,7 @@ import com.group5.Application.EmployeePanel;
 public class Employee extends User{
 
     public Employee(String username, String password) {
-        super(username, password);
+        super(username, password, 0);
     }
    
     @Override

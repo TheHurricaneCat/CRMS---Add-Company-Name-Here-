@@ -6,6 +6,7 @@ package com.group5.Application;
 
 import com.group5.Login.UserDBHandler;
 import com.group5.User.Customer;
+import java.io.IOException;
 
 /**
  *
@@ -25,9 +26,20 @@ public class CustomerPanel extends javax.swing.JFrame {
         this.customer = customer;
         this.handler = UserDBHandler.getInstance();
         initComponents();
+        customer.removeCarID(0);
+        customer.removeCarID(2);
         jLabel6.setText(handler.getActiveUser(customer.getUsername()).getUsername());
         getContentPane().setBackground(new java.awt.Color(43, 38, 38)); 
+        
+        try {
+            handler.updateUser(customer); // Update the user's details in the file
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -379,9 +391,7 @@ public class CustomerPanel extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(24, 24, 24)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))))

@@ -13,9 +13,10 @@ public class User implements IUser {
     private String password;
     private int authority; //0 - employee/admin, 1 - customer
 
-    public User(String username, String password) {
+    public User(String username, String password, int authority) {
         this.username = username;
         this.password = password;
+        this.authority = authority;
     }
 
     public String getUsername() {
