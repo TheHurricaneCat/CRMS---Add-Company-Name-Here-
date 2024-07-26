@@ -4,6 +4,7 @@
  */
 package com.group5.Application;
 
+import com.group5.Login.LoginPanel;
 import com.group5.Login.UserDBHandler;
 import com.group5.User.Employee;
 
@@ -177,7 +178,13 @@ public class EmployeePanel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        handler.logoutUser(employee.getUsername()); // Logout the user from the handler
+        dispose(); // Close the current CustomerPanel
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new LoginPanel().setVisible(true); // Open a new LoginPanel
+            }
+        });
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
