@@ -45,8 +45,11 @@ public class User implements IUser {
     }
     
     public void addCarID(int carID) {
-        carIDs.add(carID);
+        if (!carIDs.contains(carID)) {
+            carIDs.add(carID);
+        }
     }
+
 
     public void removeCarID(int carID) {
         carIDs.remove(Integer.valueOf(carID));
