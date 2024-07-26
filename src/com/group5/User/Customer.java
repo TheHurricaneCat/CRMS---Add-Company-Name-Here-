@@ -14,30 +14,9 @@ import java.util.ArrayList;
  */
 public class Customer extends User{
     
-    private ArrayList<Integer> carIDs;
     
     public Customer(String username, String password) {
         super(username, password, 1);
-        this.carIDs = new ArrayList<>();
-    }
-    
-    @Override
-    public String getDetails() {
-        StringBuilder details = new StringBuilder(super.getDetails());
-        for (int carID : carIDs) {
-            details.append(":").append(carID);
-        }
-        return details.toString();
-    }
-    
-    public void addCarID(int carID) {
-        if (!carIDs.contains(carID)) {
-            carIDs.add(carID);
-        }
-    }
-    
-    public void removeCarID(int carID) {
-        carIDs.remove(Integer.valueOf(carID));
     }
     
     @Override
