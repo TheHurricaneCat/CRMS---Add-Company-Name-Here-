@@ -17,8 +17,8 @@ public class Transmission extends Part {
         };
     }
 
-    public Transmission setName (String name) {
-        this.name = name;
+    public Transmission setType (String type) {
+        this.type = type;
         return this;
     }
 

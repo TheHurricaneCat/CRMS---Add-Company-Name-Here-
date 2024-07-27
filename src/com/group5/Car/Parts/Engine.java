@@ -26,8 +26,8 @@ public class Engine extends Part {
         };
     }
 
-    public Engine setName (String name) {
-        this.name = name;
+    public Engine setType (String type) {
+        this.type = type;
         return this;
     }
 

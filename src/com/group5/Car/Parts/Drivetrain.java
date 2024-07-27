@@ -18,8 +18,8 @@ public class Drivetrain extends Part{
         };
     }
 
-    public Drivetrain setName (String name) {
-        this.name = name;
+    public Drivetrain setType (String type) {
+        this.type = type;
         return this;
     }
 

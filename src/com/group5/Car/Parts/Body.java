@@ -29,8 +29,8 @@ public class Body extends Part{
             };
     }
 
-    public Body setName (String name) {
-        this.name = name;
+    public Body setType (String type) {
+        this.type = type;
         return this;
     }
 
