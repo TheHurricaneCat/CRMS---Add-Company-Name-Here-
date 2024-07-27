@@ -24,7 +24,7 @@ public class LoginPanel extends javax.swing.JFrame {
      */
     public LoginPanel() {
         initComponents();
-        getContentPane().setBackground(new java.awt.Color(172, 2, 2));
+        getContentPane().setBackground(new java.awt.Color(29, 34, 67));
     }
 
     /**
@@ -50,18 +50,19 @@ public class LoginPanel extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 203, 203));
+        jLabel1.setForeground(new java.awt.Color(242, 235, 235));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CRMS");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(246, 129, 117));
         jLabel2.setText("POWERED BY SIGMA CORP.");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 203, 203));
+        jLabel3.setForeground(new java.awt.Color(242, 235, 235));
         jLabel3.setText("Log in to Your Account");
 
-        jTextField1.setBackground(new java.awt.Color(225, 92, 87));
+        jTextField1.setBackground(new java.awt.Color(223, 74, 70));
         jTextField1.setForeground(new java.awt.Color(255, 203, 203));
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setToolTipText("");
@@ -88,7 +89,7 @@ public class LoginPanel extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField1.setBackground(new java.awt.Color(225, 92, 87));
+        jPasswordField1.setBackground(new java.awt.Color(223, 74, 70));
         jPasswordField1.setForeground(new java.awt.Color(255, 203, 203));
         jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPasswordField1.setBorder(null);
@@ -101,7 +102,7 @@ public class LoginPanel extends javax.swing.JFrame {
             }
         });
 
-        jRadioButton1.setForeground(new java.awt.Color(246, 129, 117));
+        jRadioButton1.setForeground(new java.awt.Color(242, 235, 235));
         jRadioButton1.setText("Show password");
         jRadioButton1.setBorder(null);
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +111,7 @@ public class LoginPanel extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setForeground(new java.awt.Color(255, 203, 203));
+        jButton2.setForeground(new java.awt.Color(246, 129, 117));
         jButton2.setText("Create an account");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
@@ -122,10 +123,10 @@ public class LoginPanel extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setForeground(new java.awt.Color(246, 129, 117));
+        jLabel4.setForeground(new java.awt.Color(242, 235, 235));
         jLabel4.setText("Don't have an account?");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Misc/crms2.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Misc/!!!!revisedcrms (250 x 250 px) (2).png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,9 +139,6 @@ public class LoginPanel extends javax.swing.JFrame {
                         .addComponent(jRadioButton1)
                         .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(93, 93, 93))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -156,7 +154,8 @@ public class LoginPanel extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel4)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton2)))
+                            .addComponent(jButton2))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(131, 131, 131))))
@@ -164,8 +163,8 @@ public class LoginPanel extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -184,7 +183,7 @@ public class LoginPanel extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jButton2))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();

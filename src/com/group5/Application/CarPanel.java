@@ -46,11 +46,15 @@ public class CarPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 102, 255));
 
+        jPanel1.setBackground(new java.awt.Color(54, 63, 125));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setMinimumSize(new java.awt.Dimension(150, 150));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Misc/!car.png"))); // NOI18N
 
+        jButton1.setBackground(new java.awt.Color(109, 118, 173));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(242, 235, 235));
         jButton1.setText("View Car");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,6 +62,7 @@ public class CarPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setForeground(new java.awt.Color(242, 235, 235));
         jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
