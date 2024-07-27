@@ -4,9 +4,12 @@
  */
 package com.group5.Application;
 
+import com.group5.Car.Car;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -15,13 +18,16 @@ import javax.swing.JPanel;
  */
 public class CarPanel extends javax.swing.JPanel {
     private JPanel parent;
+    private Car car;
     /**
      * Creates new form carPanel
      */
-    public CarPanel(JPanel parent) {
+    public CarPanel(JPanel parent, Car car) {
         this.parent = parent;
+        this.car = car;
         initComponents();
         this.setBackground(new Color(0, 0, 0, 0));
+        initializeCarDetails();
     }
 
     /**
@@ -36,6 +42,7 @@ public class CarPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 102, 255));
 
@@ -51,6 +58,8 @@ public class CarPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setText("jLabel2");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -62,13 +71,18 @@ public class CarPanel extends javax.swing.JPanel {
                         .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabel2)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jButton1)
@@ -90,6 +104,11 @@ public class CarPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void initializeCarDetails(){
+        jLabel2.setText(car.getName());
+    }
+
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         parent.remove(this);
         parent.revalidate();
@@ -100,6 +119,7 @@ public class CarPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

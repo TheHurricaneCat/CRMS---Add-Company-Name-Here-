@@ -4,6 +4,8 @@
  */
 package com.group5.Application;
 
+import com.group5.Car.Car;
+import com.group5.Car.CarDBHandler;
 import com.group5.Login.LoginPanel;
 import com.group5.Login.UserDBHandler;
 import com.group5.User.Employee;
@@ -13,6 +15,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -130,16 +133,38 @@ public class EmployeePanel extends javax.swing.JFrame {
 
     
     private void addSubpanel() {
-        //JPanel subPanel = createSubPanel();
-        CarPanel subPanel = new CarPanel(jPanel1);
+        // Show input dialog to get the car name
+        String carName = JOptionPane.showInputDialog(this, "Enter the name of the car:", "Input Car Name", JOptionPane.PLAIN_MESSAGE);
 
-        // Add the subpanel to the main panel
-        jPanel1.add(subPanel);
+        // Check if the user provided input
+        if (carName != null && !carName.trim().isEmpty()) {
+            try {
+                // Fetch the car details using the car name
+                Car car = CarDBHandler.getCar(carName.trim());
 
-        // Refresh the UI to reflect changes
-        jPanel1.revalidate();
-        jPanel1.repaint();
-    } 
+                if (car != null) {
+                    // Create the subpanel with the fetched car details
+                    CarPanel subPanel = new CarPanel(jPanel1, car);
+
+                    // Add the subpanel to the main panel
+                    jPanel1.add(subPanel);
+
+                    // Refresh the UI to reflect changes
+                    jPanel1.revalidate();
+                    jPanel1.repaint();
+                } else {
+                    // Show an error message if the car is not found
+                    JOptionPane.showMessageDialog(this, "Car not found.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (IOException e) {
+                // Show an error message if there was an issue fetching the car details
+                JOptionPane.showMessageDialog(this, "Error fetching car details: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            // Show an error message if the input is invalid
+            JOptionPane.showMessageDialog(this, "Please enter a valid car name.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
