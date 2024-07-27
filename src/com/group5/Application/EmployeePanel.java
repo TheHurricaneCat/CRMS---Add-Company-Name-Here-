@@ -351,7 +351,7 @@ public class EmployeePanel extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(242, 235, 235));
-        jLabel5.setText("View Car");
+        jLabel5.setText("VIEW CAR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
