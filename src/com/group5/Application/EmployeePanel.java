@@ -13,6 +13,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -31,7 +32,7 @@ public class EmployeePanel extends javax.swing.JFrame {
     private Employee employee;
     private static EmployeePanel instance;
     private UserDBHandler handler;
-
+    
     
     /**
      * Creates new form ApplicationPanel
@@ -60,6 +61,7 @@ public class EmployeePanel extends javax.swing.JFrame {
 
         // Initialize JScrollPane
         jScrollPane1.setViewportView(jPanel1);
+        
     }
     
     private JPanel createSubPanel() {
@@ -128,7 +130,8 @@ public class EmployeePanel extends javax.swing.JFrame {
 
     
     private void addSubpanel() {
-        JPanel subPanel = createSubPanel();
+        //JPanel subPanel = createSubPanel();
+        CarPanel subPanel = new CarPanel(jPanel1);
 
         // Add the subpanel to the main panel
         jPanel1.add(subPanel);
