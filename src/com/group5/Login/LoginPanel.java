@@ -219,7 +219,7 @@ public class LoginPanel extends javax.swing.JFrame {
         char[] c_conv = hint.toCharArray();
         if (Arrays.equals(jPasswordField1.getPassword(), c_conv)) {
             jPasswordField1.setText("");
-            jPasswordField1.setForeground(Color.black);
+            jPasswordField1.setForeground(Color.white);
             jPasswordField1.setEchoChar('*');
         } 
     }//GEN-LAST:event_jPasswordField1FocusGained
