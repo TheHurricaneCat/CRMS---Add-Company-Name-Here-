@@ -17,36 +17,33 @@ abstract public class CarDBHandler {
     
     static public void insertCar (Car car) throws IOException {
 
-        String dbPath = "./src/carDB/";
-        String fileName = car.getName() + ".txt";
-        FileWriter file = new FileWriter(dbPath + fileName);
+        FileWriter file = new FileWriter("CarDB.csv");
         BufferedWriter writer = new BufferedWriter(file);     
         String carInfo;
 
         carInfo =
-            car.getCarID() + "\n" +
-            car.getName() + "\n" +
-            car.getMake().getName() + "\n" +
-            car.getMake().getCountry() + "\n" +
-            car.getModel().getName() + "\n" +
-            car.getModel().getModelYear() + "\n";
+            "\n" + car.getCarID()
+            + "," + car.getName()
+            + "," + car.getMake().getName()
+            + "," + car.getMake().getCountry()
+            + "," + car.getModel().getName()
+            + "," + car.getModel().getModelYear();
         ;
 
         for (Part part : car.getParts()) {
             for (String spec : part.getSpecs()) {
-                carInfo += spec + "\n";
+                carInfo += "," + spec;
             }
         }
 
-        writer.write(carInfo);
+        writer.append(carInfo);
         writer.close();
 
     }
     
     static public Car getCar (String fileName) throws IOException {
         
-        String dbPath = "./src/carDB/";
-        FileReader file = new FileReader(dbPath + fileName + ".txt");
+        FileReader file = new FileReader(fileName + ".csv");
         BufferedReader reader = new BufferedReader(file);
 
         CarBuilder carbuilder = new CarBuilder();

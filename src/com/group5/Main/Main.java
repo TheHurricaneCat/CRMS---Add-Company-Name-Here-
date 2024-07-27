@@ -18,7 +18,7 @@ import com.group5.Car.Parts.TransmissionFactory;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         
         Make Honda = new Make("Honda", "Japan");
         Make Ford = new Make("Ford", "USA");
@@ -796,26 +796,7 @@ public class Main {
         }
 
 
-        Car dbCar = CarDBHandler.getCar("Honda Civic 1995");
-
-        String carInfo;
-
-        carInfo =
-            dbCar.getCarID() + "\n" +
-            dbCar.getName() + "\n" +
-            dbCar.getMake().getName() + "\n" +
-            dbCar.getMake().getCountry() + "\n" +
-            dbCar.getModel().getName() + "\n" +
-            dbCar.getModel().getModelYear() + "\n";
-        ;
-
-        for (Part part : dbCar.getParts()) {
-            for (String spec : part.getSpecs()) {
-                carInfo += spec + "\n";
-            }
-        }
-
-        JOptionPane.showMessageDialog(null, carInfo);
+        
 
     }
 
