@@ -40,7 +40,6 @@ public class Main {
         
         carbuilder
             .setName("Honda Civic 1995")
-            .setCarID(0)
             .setMake(Honda)
             .setModel(new Model("Civic", Honda, 1995))
             .addPart(new EngineFactory().create()
@@ -82,7 +81,6 @@ public class Main {
 
         carbuilder
             .setName("Ford Explorer 2021")
-            .setCarID(2)
             .setMake(Ford)
             .setModel(new Model("Explorer", Ford, 2021))
             .addPart(new EngineFactory().create()
@@ -124,7 +122,6 @@ public class Main {
 
         carbuilder
             .setName("Nissan Altima 2021")
-            .setCarID(3)
             .setMake(Nissan)
             .setModel(new Model("Altima", Nissan, 2021))
             .addPart(new EngineFactory().create()
@@ -166,7 +163,6 @@ public class Main {
 
         carbuilder
             .setName("Subaru Outback 2021")
-            .setCarID(4)
             .setMake(Subaru)
             .setModel(new Model("Outback", Subaru, 2021))
             .addPart(new EngineFactory().create()
@@ -208,7 +204,6 @@ public class Main {
 
         carbuilder
             .setName("Hyundai Elantra 2021")
-            .setCarID(5)
             .setMake(Hyundai)
             .setModel(new Model("Elantra", Hyundai, 2021))
             .addPart(new EngineFactory().create()
@@ -250,7 +245,6 @@ public class Main {
 
         carbuilder
             .setName("Volkswagen Jetta 2021")
-            .setCarID(8)
             .setMake(Volkswagen)
             .setModel(new Model("Jetta", Volkswagen, 2021))
             .addPart(new EngineFactory().create()
@@ -292,7 +286,6 @@ public class Main {
 
         carbuilder
             .setName("Mazda CX-5 2021")
-            .setCarID(9)
             .setMake(Mazda)
             .setModel(new Model("CX-5", Mazda, 2021))
             .addPart(new EngineFactory().create()
@@ -334,7 +327,6 @@ public class Main {
 
         carbuilder
             .setName("Mercedes-Benz C-Class 2021")
-            .setCarID(11)
             .setMake(Mercedes)
             .setModel(new Model("C-Class", Mercedes, 2021))
             .addPart(new EngineFactory().create()
@@ -377,7 +369,6 @@ public class Main {
 
         carbuilder
             .setName("Honda Accord 2014")
-            .setCarID(15)
             .setMake(Honda)
             .setModel(new Model("Accord", Honda, 2014))
             .addPart(new EngineFactory().create()
@@ -419,7 +410,6 @@ public class Main {
 
         carbuilder
             .setName("Chevrolet Malibu 2015")
-            .setCarID(17)
             .setMake(Chevrolet)
             .setModel(new Model("Malibu", Chevrolet, 2015))
             .addPart(new EngineFactory().create()
@@ -461,7 +451,6 @@ public class Main {
 
         carbuilder
             .setName("Subaru Outback 2014")
-            .setCarID(18)
             .setMake(Subaru)
             .setModel(new Model("Outback", Subaru, 2014))
             .addPart(new EngineFactory().create()
@@ -503,7 +492,6 @@ public class Main {
 
         carbuilder
             .setName("Kia Sorento 2015")
-            .setCarID(19)
             .setMake(Kia)
             .setModel(new Model("Sorento", Kia, 2015))
             .addPart(new EngineFactory().create()
@@ -545,7 +533,6 @@ public class Main {
 
         carbuilder
             .setName("Chevrolet Equinox 2014")
-            .setCarID(23)
             .setMake(Chevrolet)
             .setModel(new Model("Equinox", Chevrolet, 2014))
             .addPart(new EngineFactory().create()
@@ -587,7 +574,6 @@ public class Main {
 
         carbuilder
             .setName("Ford Fusion 2015")
-            .setCarID(22)
             .setMake(Ford)
             .setModel(new Model("Fusion", Ford, 2015))
             .addPart(new EngineFactory().create()
@@ -629,7 +615,6 @@ public class Main {
 
         carbuilder
             .setName("Chevrolet Silverado 2015")
-            .setCarID(28)
             .setMake(Chevrolet)
             .setModel(new Model("Silverado", Chevrolet, 2015))
             .addPart(new EngineFactory().create()
@@ -671,7 +656,6 @@ public class Main {
 
         carbuilder
             .setName("Dodge Charger 2015")
-            .setCarID(26)
             .setMake(Dodge)
             .setModel(new Model("Charger", Dodge, 2015))
             .addPart(new EngineFactory().create()
@@ -713,7 +697,6 @@ public class Main {
 
         carbuilder
             .setName("Hyundai Sonata 2011")
-            .setCarID(24)
             .setMake(Hyundai)
             .setModel(new Model("Sonata", Hyundai, 2011))
             .addPart(new EngineFactory().create()
@@ -755,7 +738,6 @@ public class Main {
 
         carbuilder
             .setName("Chrysler 300 2014")
-            .setCarID(29)
             .setMake(Chrysler)
             .setModel(new Model("300", Chrysler, 2014))
             .addPart(new EngineFactory().create()
@@ -794,9 +776,6 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        
 
     }
 

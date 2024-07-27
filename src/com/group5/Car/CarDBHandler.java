@@ -2,9 +2,11 @@ package com.group5.Car;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import com.group5.Car.Parts.BodyFactory;
 import com.group5.Car.Parts.DrivetrainFactory;
@@ -17,12 +19,15 @@ abstract public class CarDBHandler {
     
     static public void insertCar (Car car) throws IOException {
 
-        FileWriter file = new FileWriter("CarDB.csv");
-        BufferedWriter writer = new BufferedWriter(file);     
+       
+        FileWriter fw = new FileWriter("CarDB.csv", true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter writer = new PrintWriter(bw);
+
         String carInfo;
 
         carInfo =
-            "\n" + car.getCarID()
+            car.getCarID()
             + "," + car.getName()
             + "," + car.getMake().getName()
             + "," + car.getMake().getCountry()
@@ -36,7 +41,8 @@ abstract public class CarDBHandler {
             }
         }
 
-        writer.append(carInfo);
+        writer.println(carInfo);
+        writer.flush();
         writer.close();
 
     }
