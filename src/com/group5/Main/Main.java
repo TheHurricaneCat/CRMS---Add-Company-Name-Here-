@@ -164,6 +164,7 @@ public class Main {
             e.printStackTrace();
         }
 
+        
         carbuilder
             .setName("Subaru Outback 2021")
             .setCarID(4)
@@ -795,9 +796,11 @@ public class Main {
             e.printStackTrace();
         }
 
+        
+        Car dbCar = CarDBHandler.getCar(29);
+        //JOptionPane.showMessageDialog(null, dbCar.getName());
 
-        Car dbCar = CarDBHandler.getCar("Honda Civic 1995");
-
+        
         String carInfo;
 
         carInfo =
@@ -816,8 +819,7 @@ public class Main {
         }
 
         JOptionPane.showMessageDialog(null, carInfo);
-
+        
     }
 
 }
-// Test
