@@ -1,12 +1,11 @@
 package com.group5.Car;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Scanner;
 
 import com.group5.Car.Parts.BodyFactory;
 import com.group5.Car.Parts.DrivetrainFactory;
@@ -14,20 +13,15 @@ import com.group5.Car.Parts.EngineFactory;
 import com.group5.Car.Parts.TransmissionFactory;
 
 abstract public class CarDBHandler {
-
-    static int id;
     
-    static public void insertCar (Car car) throws IOException {
+    static public void addCar (Car car) throws IOException {
 
-       
-        FileWriter fw = new FileWriter("CarDB.csv", true);
-        BufferedWriter bw = new BufferedWriter(fw);
-        PrintWriter writer = new PrintWriter(bw);
+        PrintWriter writer = new PrintWriter(new FileWriter("CarDB.csv", true));
 
         String carInfo;
 
         carInfo =
-            car.getCarID()
+            ""+findNewID()
             + "," + car.getName()
             + "," + car.getMake().getName()
             + "," + car.getMake().getCountry()
@@ -44,56 +38,92 @@ abstract public class CarDBHandler {
         writer.println(carInfo);
         writer.flush();
         writer.close();
-
     }
+
+
     
-    static public Car getCar (String fileName) throws IOException {
+    static public Car getCar (int id) throws IOException {
         
-        FileReader file = new FileReader(fileName + ".csv");
-        BufferedReader reader = new BufferedReader(file);
+        Scanner reader = new Scanner(new File("CarDB.csv"));
+        reader.useDelimiter("[\n]");
+
+        while (reader.hasNext()) {
+            String[] info = reader.next().split(",");
+            if (Integer.parseInt(info[0]) == id) {
+                reader.close();
+                return parseData(info);
+            }
+        }
+
+        System.out.println("no car found");
+        reader.close();
+        return null;
+    } 
+
+
+
+    static private Car parseData (String[] info) {
 
         CarBuilder carbuilder = new CarBuilder();
+        
+        Make make = new Make(info[2],info[3]);
 
         carbuilder
-            .setCarID(Integer.parseInt(reader.readLine()))
-            .setName(reader.readLine())
-        ;
-        Make make = new Make(reader.readLine(), reader.readLine());
-        carbuilder
+            .setCarID(Integer.parseInt(info[0]))
+            .setName(info[1])
             .setMake(make)
-            .setModel(new Model(reader.readLine(), make, Integer.parseInt(reader.readLine())))
+            .setModel(new Model(info[4], make, Integer.parseInt(info[5])))
             .addPart(new EngineFactory().create()
-                .setEngineDisplacement(Double.parseDouble(reader.readLine()))
-                .setHorsepower(Integer.parseInt(reader.readLine()))
-                .setTorque(Integer.parseInt(reader.readLine()))
-                .setFuelType(reader.readLine())
-                .setCityFuelEconomy(Double.parseDouble(reader.readLine()))
-                .setHighwayFuelEconomy(Double.parseDouble(reader.readLine()))
-                .setPistonConfiguration(reader.readLine())
+                .setType("Engine")
+                .setEngineDisplacement(1.6)
+                .setHorsepower(125)
+                .setTorque(106)
+                .setFuelType("Gasoline")
+                .setCityFuelEconomy(28)
+                .setHighwayFuelEconomy(36)
+                .setPistonConfiguration("Inline-4")
             )
             .addPart(new TransmissionFactory().create()
-                .setTransmissionType(reader.readLine())
-                .setGearCount(Integer.parseInt(reader.readLine()))
+                .setType("Transmission")
+                .setTransmissionType("Manual")
+                .setGearCount(5)
             )
             .addPart(new DrivetrainFactory().create()
-                .setWheelDriveType(reader.readLine())
-                .setFinalDriveRatio(Double.parseDouble(reader.readLine()))
-                .setDifferentialRatio(Double.parseDouble(reader.readLine()))
+                .setType("Drivetrain")
+                .setWheelDriveType("FWD")
+                .setFinalDriveRatio(4.25)
+                .setDifferentialRatio(4.25)
             )
             .addPart(new BodyFactory().create()
-                .setGrossWeight(Double.parseDouble(reader.readLine()))
-                .setCurbWeight(Double.parseDouble(reader.readLine()))
-                .setCargoCapacity(Double.parseDouble(reader.readLine()))
-                .setTowingCapacity(Double.parseDouble(reader.readLine()))
-                .setSeatingCapacity(Integer.parseInt(reader.readLine()))
-                .setFuelCapacity(Double.parseDouble(reader.readLine()))
-                .setColor(reader.readLine())
-                .setBodyType(reader.readLine())
+                .setType("Body")
+                .setGrossWeight(1420)
+                .setCurbWeight(1036)
+                .setCargoCapacity(11.1)
+                .setTowingCapacity(0)
+                .setSeatingCapacity(5)
+                .setColor("Milano Red")
+                .setFuelCapacity(11.9)
+                .setBodyType("Sedan")
             )
         ;
-        
-        reader.close();
+
         return carbuilder.build();
-    } 
+    }
     
+
+
+    private static int findNewID () throws FileNotFoundException {
+
+        Scanner reader = new Scanner(new File("CarDB.csv"));
+        reader.useDelimiter("[\n]");
+        int newID = 0;
+
+        while (reader.hasNext()) {
+            reader.next();
+            newID++;
+        }
+
+        reader.close();
+        return newID;
+    }
 }
