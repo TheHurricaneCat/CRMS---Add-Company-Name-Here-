@@ -9,14 +9,16 @@ public class Car {
     private Make make;
     private Model model;
     private ArrayList<Part> parts = new ArrayList<>();
+    private Price price;
 
 
-    public Car (String name, int carID, Make make, Model model, ArrayList<Part> parts) {
+    public Car (String name, int carID, Make make, Model model, ArrayList<Part> parts, Price price) {
         this.name = name;
         this.carID = carID;
         this.make = make;
         this.model = model;
         this.parts = parts;
+        this.price = price;
     }
 
     public String getName () {
@@ -37,6 +39,10 @@ public class Car {
 
     public ArrayList<Part> getParts () {
         return parts;
+    }
+
+    public Price getPrice () {
+        return price;
     }
     
 }
