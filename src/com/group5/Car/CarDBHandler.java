@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 import com.group5.Car.Parts.BodyFactory;
 import com.group5.Car.Parts.DrivetrainFactory;
 import com.group5.Car.Parts.EngineFactory;
@@ -19,7 +21,6 @@ abstract public class CarDBHandler {
         PrintWriter writer = new PrintWriter(new FileWriter("CarDB.csv", true));
 
         String carInfo;
-
         carInfo =
             ""+findNewID()
             + "," + car.getName()
@@ -59,6 +60,85 @@ abstract public class CarDBHandler {
         reader.close();
         return null;
     } 
+
+
+
+    static public void editCar (int id, Car car) throws FileNotFoundException {
+
+        String newRecord = "";
+
+        Scanner reader = new Scanner(new File("CarDB.csv"));
+        reader.useDelimiter("[\n]");
+
+        while (reader.hasNext()) {
+            String line = reader.next();
+            int carID = 0;
+            try { 
+                carID = Integer.parseInt(line.split(",")[0]);
+            } catch (Exception e) {}
+            String carInfo = 
+                ""+id
+                + "," + car.getName()
+                + "," + car.getMake().getName()
+                + "," + car.getMake().getCountry()
+                + "," + car.getModel().getName()
+                + "," + car.getModel().getModelYear();
+            for (Part part : car.getParts()) {
+                for (String spec : part.getSpecs()) {
+                    carInfo += "," + spec;
+                }
+            }
+            //System.out.println(id + " == " + carID + " " + (id == carID));
+            newRecord += (id != carID)? line : carInfo;
+            newRecord += "\n";
+        }
+        reader.close();
+
+        try {
+            FileWriter fw = new FileWriter(new File("CarDB.csv"));
+            //System.out.println("Editing car record...");
+            //JOptionPane.showMessageDialog(null, newRecord);
+            fw.write(newRecord);
+            fw.flush();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+    static public void deleteCar (int id) throws FileNotFoundException {
+
+        String newRecord = "";
+
+        Scanner reader = new Scanner(new File("CarDB.csv"));
+        reader.useDelimiter("[\n]");
+
+        while (reader.hasNext()) {
+            String line = reader.next();
+            int carID = 0;
+            try { 
+                carID = Integer.parseInt(line.split(",")[0]);
+            } catch (Exception e) {}
+            newRecord += (id != carID)? line : "DELETED";
+            newRecord += "\n";
+        }
+        reader.close();
+
+        try {
+            FileWriter fw = new FileWriter(new File("CarDB.csv"));
+            //System.out.println("Editing car record...");
+            //JOptionPane.showMessageDialog(null, newRecord);
+            fw.write(newRecord);
+            fw.flush();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 

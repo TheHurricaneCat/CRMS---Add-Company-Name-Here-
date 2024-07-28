@@ -1,5 +1,6 @@
 package com.group5.Main;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
@@ -32,11 +33,87 @@ public class Main {
         Make Kia = new Make("Kia", "South Korea");
         Make Chrysler = new Make("Chrysler", "USA");
 
+        CarBuilder carBuilder = new CarBuilder();
+        carBuilder
+            .setName("Honda Civic 1995")
+            .setMake(Honda)
+            .setModel(new Model("Honda", Honda, 1995))
+            .addPart(new EngineFactory().create()
+                .setType("Engine")
+                .setEngineDisplacement(1.6)
+                .setHorsepower(125)
+                .setTorque(106)
+                .setFuelType("Gasoline")
+                .setCityFuelEconomy(28)
+                .setHighwayFuelEconomy(36)
+                .setPistonConfiguration("Inline-4")
+            )
+            .addPart(new TransmissionFactory().create()
+                .setType("Transmission")
+                .setTransmissionType("Manual")
+                .setGearCount(5)
+            )
+            .addPart(new DrivetrainFactory().create()
+                .setType("Drivetrain")
+                .setWheelDriveType("FWD")
+                .setFinalDriveRatio(4.25)
+                .setDifferentialRatio(4.25)
+            )
+            .addPart(new BodyFactory().create()
+                .setType("Body")
+                .setGrossWeight(1420)
+                .setCurbWeight(1036)
+                .setCargoCapacity(11.1)
+                .setTowingCapacity(0)
+                .setSeatingCapacity(5)
+                .setColor("Milano Red")
+                .setFuelCapacity(11.9)
+                .setBodyType("Sedan")
+            )
+        ;
+
+        Car car = carBuilder.build();
+
+
+        String carInfo =
+            car.getCarID()
+            + "," + car.getName()
+            + "," + car.getMake().getName()
+            + "," + car.getMake().getCountry()
+            + "," + car.getModel().getName()
+            + "," + car.getModel().getModelYear();
+        ;
+        for (Part part : car.getParts()) {
+            for (String spec : part.getSpecs()) {
+                carInfo += "," + spec;
+            }
+        }
+        //JOptionPane.showMessageDialog(null, carInfo);
+        
+        
+        try {
+            CarDBHandler.addCar(car);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         
+        carBuilder.setName("Honda City");
+        car = carBuilder.build();
+        try {
+            CarDBHandler.editCar(5, car);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        try {
+            CarDBHandler.deleteCar(12);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         
-        
-        
+
     }
 
 }

@@ -4,5 +4,5 @@ admin:0:0
 Josefe:1234567890:0
 Ralf:2021136736:1
 TestUser:12345:0
-Gab:54321:1
+Gab:54321:0
 ERIKA:10:1
