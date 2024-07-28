@@ -4,9 +4,13 @@
  */
 package com.group5.Application;
 
+import com.group5.Car.Car;
+import com.group5.Car.Part;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
@@ -15,62 +19,145 @@ import javax.swing.SwingConstants;
  * @author Josefe Gillego
  */
 public class CarViewPanel extends javax.swing.JFrame {
-
+    private Car carData;
     /**
      * Creates new form CarViewPanel
      */
-    public CarViewPanel() {
+    // auxillary constructor
+    
+    public CarViewPanel(Car carData) {
+         this.carData = carData;
         initComponents();
         jPanel3.setLayout(new GridLayout(0, 2, 10, 10));
+        jPanel6.setLayout(new GridLayout(0, 2, 10, 10));
         getContentPane().setBackground(new java.awt.Color(29, 34, 67)); 
-        // start and end are for marking categories
+        
+        renderBasicDetails();
+        renderAdvancedDetails();
+        
+        // ensure that only THIS panel closes when closed on the top right button
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+    
+    public void renderBasicDetails() {
+        ArrayList<String> basicInfo = new ArrayList<>();
+        basicInfo.add(Integer.toString(carData.getCarID()));
+        basicInfo.add(carData.getName());
+        basicInfo.add(carData.getMake().getName());
+        basicInfo.add(carData.getMake().getCountry());
+        basicInfo.add(carData.getModel().getName());
+        basicInfo.add(Integer.toString(carData.getModel().getModelYear()));
+        
         String[] attributes = {
             "start", "end",
-            "Gross Weight", "N/A",
-            "Curb Weight", "N/A",
+            "Car ID",
+            "Car Name",
             "start", "end",
-            "Cargo Capacity", "N/A",
-            "Towing Capacity", "N/A",
+            "Manufacturer",
+            "Country",
             "start", "end",
-            "Body Type", "N/A",
-            "Wheel Drive Type", "N/A",
-            "start", "end",
-            "Drive Ratio", "N/A",
-            "Transmission Type", "N/A",
-            "start", "end",
-            "Gear Count", "N/A",
-            "Torque Converter", "N/A",
-            "Piston Configuration", "N/A",
-            "Engine Displacement", "N/A",
-            "start", "end",
-            "Fuel Capacity", "N/A",
-            "Highway Fuel Eco", "N/A",
-            "City Fuel Eco", "N/A",
-            "Fuel, Type", "N/A",
-            "start", "end",
-            "Torque", "N/A",
-            "Horsepower", "N/A"
+            "Model name",
+            "Model year"
         };
         
         String[] categories = {
-            "Weight", "Capacity", "Component Type", "Drive Shaft", "Engine", "Fuel Economics", "Vehicle Power"
+            "Car Identification", "Manufacturer Details", "Model Details"
         };
         
         int catCnt = 0;
+        int atbCnt = 0;
         // loop through all attributes, order MATTERS when changing the attributes
         // it should always be "Attribute name", "Attribute value",
+        
         for (String data : attributes) {
             if (data == "start") {
                 JLabel categoryLabel = new JLabel(categories[catCnt]);
                 categoryLabel.setFont(new Font("Arial", Font.BOLD, 14));
+                categoryLabel.setForeground(Color.white);
+                jPanel6.add(categoryLabel);
+                catCnt++;
+                continue;
+            } else if (data == "end") {
+                jPanel6.add(new JLabel()); // filler
+                continue;
+            }
+            JLabel dataTitle = new JLabel(data);
+            JLabel dataValue = new JLabel(basicInfo.get(atbCnt));
+            dataTitle.setForeground(Color.white);
+            dataValue.setForeground(Color.white);
+            jPanel6.add(dataTitle);
+            jPanel6.add(dataValue);
+            atbCnt++;
+        }
+    }
+    
+    public void renderAdvancedDetails() {
+        ArrayList<ArrayList<String>> preProcess = new ArrayList<>();
+        
+        for (Part part : carData.getParts()) {
+            ArrayList<String> parts = new ArrayList<>();
+            for (String spec : part.getSpecs()) {
+                parts.add(spec);
+            }
+            preProcess.add(parts);
+        }
+        
+        String[] attributes = {
+            "start", "end",
+            "Engine Displacement",
+            "Horsepower", 
+            "Torque",
+            "Fuel Type",
+            "City Fuel Eco",
+            "Highway Fuel Eco",
+            "Piston Configuration",
+            "start", "end",
+            "Transmission Type",
+            "Gear Count",
+            "start", "end",
+            "Wheel Drive Type",
+            "Final Drive Ratio",
+            "Differential Ratio",
+            "start", "end",
+            "Gross Weight",
+            "Curb Weight",
+            "Cargo Capacity",
+            "Towing Capacity",
+            "Seating Capacity",
+            "Fuel Capacity",
+            "Color",
+            "Body Type",
+        };
+        
+        String[] categories = {
+            "Engine", "Transmission", "Drive Train", "Car Body"
+        };
+        
+        int catCnt = 0;
+        int atbCnt = 0;
+        // loop through all attributes, order MATTERS when changing the attributes
+        // it should always be "Attribute name", "Attribute value",
+        
+        for (String data : attributes) {
+            if (data == "start") {
+                JLabel categoryLabel = new JLabel(categories[catCnt]);
+                categoryLabel.setFont(new Font("Arial", Font.BOLD, 14));
+                categoryLabel.setForeground(Color.white);
                 jPanel3.add(categoryLabel);
                 catCnt++;
+                atbCnt = 0;
                 continue;
             } else if (data == "end") {
                 jPanel3.add(new JLabel()); // filler
                 continue;
             }
-            jPanel3.add(new JLabel(data));
+            JLabel dataTitle = new JLabel(data);
+            JLabel dataValue = new JLabel(preProcess.get(catCnt-1).get(atbCnt));
+            dataTitle.setForeground(Color.white);
+            dataValue.setForeground(Color.white);
+            jPanel3.add(dataTitle);
+            jPanel3.add(dataValue);
+            atbCnt++;
         }
     }
 
@@ -85,14 +172,8 @@ public class CarViewPanel extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jPanel6 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
@@ -116,73 +197,40 @@ public class CarViewPanel extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(223, 74, 70));
         jPanel1.setForeground(new java.awt.Color(242, 235, 235));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(242, 235, 235));
-        jLabel1.setText("Car Name");
+        jScrollPane3.setBorder(null);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(242, 235, 235));
-        jLabel2.setText("Car ID");
+        jPanel6.setBackground(new java.awt.Color(223, 74, 70));
+        jPanel6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel6.setForeground(new java.awt.Color(242, 235, 235));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(242, 235, 235));
-        jLabel3.setText("Car Model");
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 357, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 318, Short.MAX_VALUE)
+        );
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(242, 235, 235));
-        jLabel4.setText("Car Manufacturer");
-
-        jLabel5.setForeground(new java.awt.Color(242, 235, 235));
-        jLabel5.setText("N/A");
-
-        jLabel6.setForeground(new java.awt.Color(242, 235, 235));
-        jLabel6.setText("N/A");
-
-        jLabel7.setForeground(new java.awt.Color(242, 235, 235));
-        jLabel7.setText("N/A");
-
-        jLabel8.setForeground(new java.awt.Color(242, 235, 235));
-        jLabel8.setText("N/A");
+        jScrollPane3.setViewportView(jPanel6);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel7))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel4))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Basic Info", jPanel1);
@@ -197,11 +245,11 @@ public class CarViewPanel extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 363, Short.MAX_VALUE)
+            .addGap(0, 357, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 185, Short.MAX_VALUE)
+            .addGap(0, 318, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(jPanel3);
@@ -210,7 +258,7 @@ public class CarViewPanel extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,7 +369,6 @@ public class CarViewPanel extends javax.swing.JFrame {
                             .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
@@ -335,63 +382,23 @@ public class CarViewPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CarViewPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CarViewPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CarViewPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CarViewPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CarViewPanel().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }

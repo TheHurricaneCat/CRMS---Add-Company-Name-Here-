@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 public class CarPanel extends javax.swing.JPanel {
     private JPanel parent;
     private Car car;
+    private int id;
     /**
      * Creates new form carPanel
      */
@@ -115,9 +116,8 @@ public class CarPanel extends javax.swing.JPanel {
 
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        parent.remove(this);
-        parent.revalidate();
-        parent.repaint();
+        CarViewPanel viewPanel = new CarViewPanel(car);
+        viewPanel.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -1,5 +1,6 @@
 package com.group5.Car;
 
+import com.group5.Application.CarPanel;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -13,8 +14,32 @@ import com.group5.Car.Parts.BodyFactory;
 import com.group5.Car.Parts.DrivetrainFactory;
 import com.group5.Car.Parts.EngineFactory;
 import com.group5.Car.Parts.TransmissionFactory;
+import java.util.ArrayList;
+import javax.swing.JPanel;
 
 abstract public class CarDBHandler {
+    
+    static public void preLoad(JPanel jPanel1) throws FileNotFoundException, IOException {
+        Scanner reader = new Scanner(new File("CarDB.csv"));
+        reader.useDelimiter("[\n]");
+        
+        ArrayList<Car> carList = new ArrayList<>();
+        
+        while (reader.hasNext()) {
+            String[] info = reader.next().split(",");
+            carList.add(getCar(Integer.parseInt(info[0])));
+        }
+        
+        //preload the data
+        for (Object car : carList) {
+            CarPanel subPanel = new CarPanel(jPanel1, (Car) car);
+            jPanel1.add(subPanel);
+            jPanel1.revalidate();
+            jPanel1.repaint();
+        }
+        //clean up preloaded temp data
+        //carList.clear();
+    }
     
     static public void addCar (Car car) throws IOException {
 
