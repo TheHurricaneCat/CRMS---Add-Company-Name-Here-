@@ -243,6 +243,11 @@ public class EmployeePanel extends javax.swing.JFrame {
         AddCarButton.setForeground(new java.awt.Color(242, 235, 235));
         AddCarButton.setText("ADD CAR");
         AddCarButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        AddCarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddCarButtonActionPerformed(evt);
+            }
+        });
 
         ViewCarButton.setBackground(new java.awt.Color(184, 38, 34));
         ViewCarButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -390,6 +395,12 @@ public class EmployeePanel extends javax.swing.JFrame {
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
         this.CarViewerPanel.setLayout(new GridLayout(0, getDynamicGridColumn()));
     }//GEN-LAST:event_formComponentResized
+
+    private void AddCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCarButtonActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_AddCarButtonActionPerformed
 
     /**
      * @param args the command line arguments
