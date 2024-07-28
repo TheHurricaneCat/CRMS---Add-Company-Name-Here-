@@ -4,9 +4,12 @@
  */
 package com.group5.Application;
 
+import com.group5.Car.Car;
+import com.group5.Car.CarDBHandler;
 import com.group5.Login.LoginPanel;
 import com.group5.Login.UserDBHandler;
 import com.group5.User.Customer;
+import java.awt.GridLayout;
 import java.io.IOException;
 
 /**
@@ -23,7 +26,7 @@ public class CustomerPanel extends javax.swing.JFrame {
      */
     
     //sa login panel mag run not here
-    public CustomerPanel(Customer customer) {
+    public CustomerPanel(Customer customer) throws IOException {
         this.customer = customer;
         this.handler = UserDBHandler.getInstance();
         initComponents();
@@ -31,12 +34,23 @@ public class CustomerPanel extends javax.swing.JFrame {
         jLabel6.setText(handler.getActiveUser(customer.getUsername()).getUsername());
         getContentPane().setBackground(new java.awt.Color(29, 34, 67)); 
         
+        setupScrollPane();
+        
         try {
             handler.updateUser(customer); // Update the user's details in the file
         } catch (IOException e) {
             e.printStackTrace();
         }
+        CarDBHandler.preLoad(jPanel1);
+    }
+    
+    private void setupScrollPane() {
+        // Set layout for jPanel1
+        jPanel1.setLayout(new GridLayout(0, 3, 10, 10)); // 3 columns, 10 pixels gap
 
+        // Initialize JScrollPane
+        jScrollPane1.setViewportView(jPanel1);
+        
     }
     
     

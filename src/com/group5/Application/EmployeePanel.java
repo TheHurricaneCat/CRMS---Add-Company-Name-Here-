@@ -43,16 +43,18 @@ public class EmployeePanel extends javax.swing.JFrame {
     
     
     //sa login panel mag run not here
-    public EmployeePanel(Employee employee) {
+    public EmployeePanel(Employee employee) throws IOException {
         this.employee = employee;
         this.handler = UserDBHandler.getInstance();
         initComponents();
         setupScrollPane();
         jLabel4.setText(handler.getActiveUser(employee.getUsername()).getUsername());
-        getContentPane().setBackground(new java.awt.Color(29, 34, 67)); 
+        getContentPane().setBackground(new java.awt.Color(29, 34, 67));
+        
+       CarDBHandler.preLoad(jPanel1);
     };
     
-    public static EmployeePanel getInstance(Employee employee) {
+    public static EmployeePanel getInstance(Employee employee) throws IOException {
         if (instance == null) {
             instance = new EmployeePanel(employee);
         }
