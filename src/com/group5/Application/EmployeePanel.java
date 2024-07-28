@@ -260,6 +260,11 @@ public class EmployeePanel extends javax.swing.JFrame {
         EditCarButton.setForeground(new java.awt.Color(242, 235, 235));
         EditCarButton.setText("EDIT CAR");
         EditCarButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        EditCarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditCarButtonActionPerformed(evt);
+            }
+        });
 
         GenerateReportButton.setBackground(new java.awt.Color(184, 38, 34));
         GenerateReportButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -282,6 +287,11 @@ public class EmployeePanel extends javax.swing.JFrame {
         DeleteCarButton.setForeground(new java.awt.Color(242, 235, 235));
         DeleteCarButton.setText("DELETE CAR");
         DeleteCarButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        DeleteCarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteCarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -401,6 +411,23 @@ public class EmployeePanel extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_AddCarButtonActionPerformed
+
+    private void EditCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCarButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EditCarButtonActionPerformed
+
+    private void DeleteCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteCarButtonActionPerformed
+        
+        String getInput = JOptionPane.showInputDialog(this, "Enter ID of Car to Delete:");
+        int carIDInput = Integer.parseInt(getInput);
+        try {
+            CarDBHandler.deleteCar(carIDInput);
+        } catch (Exception e) {
+        
+        }
+        
+        JOptionPane.showMessageDialog(null, "Car Deleted Successfuly");
+    }//GEN-LAST:event_DeleteCarButtonActionPerformed
 
     /**
      * @param args the command line arguments
