@@ -6,6 +6,8 @@ package com.group5.User;
 
 import com.group5.Application.CustomerPanel;
 import com.group5.Car.Car;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -21,7 +23,13 @@ public class Customer extends User{
     
     @Override
     public void openGUI() {
-        CustomerPanel cPanel = new CustomerPanel(this);
-        cPanel.setVisible(true);
+        CustomerPanel cPanel;
+        try {
+            cPanel = new CustomerPanel(this);
+            cPanel.setVisible(true);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }

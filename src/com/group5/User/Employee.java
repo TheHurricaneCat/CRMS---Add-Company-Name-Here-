@@ -4,6 +4,8 @@
  */
 package com.group5.User;
 
+import java.io.IOException;
+
 import com.group5.Application.CustomerPanel;
 import com.group5.Application.EmployeePanel;
 
@@ -19,7 +21,13 @@ public class Employee extends User{
    
     @Override
     public void openGUI() {
-        EmployeePanel ePanel = EmployeePanel.getInstance(this);
-        ePanel.setVisible(true);
+        EmployeePanel ePanel;
+        try {
+            ePanel = EmployeePanel.getInstance(this);
+            ePanel.setVisible(true);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
