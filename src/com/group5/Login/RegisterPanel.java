@@ -104,6 +104,11 @@ public class RegisterPanel extends javax.swing.JFrame {
                 jPasswordField1FocusLost(evt);
             }
         });
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(242, 235, 235));
@@ -223,7 +228,7 @@ public class RegisterPanel extends javax.swing.JFrame {
                 // todo: create a button or form for employees only?
                 String[] detectAdmin = jTextField1.getText().split("-");
                 int authority;
-                if (detectAdmin[1].toLowerCase().equals("admin")) {
+                if (detectAdmin[0].toLowerCase().equals("admin")) {
                     authority = 0;
                 } else {
                     authority = 1;
@@ -287,6 +292,10 @@ public class RegisterPanel extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     /**
      * @param args the command line arguments
