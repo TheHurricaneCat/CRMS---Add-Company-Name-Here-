@@ -190,7 +190,7 @@ public class LoginPanel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-        jTextField1.setForeground(new Color(0, 0, 0));
+        jTextField1.setForeground(Color.white);
         if (jTextField1.getText().equals("Username")) {
             jTextField1.setText("");
         }
@@ -198,7 +198,7 @@ public class LoginPanel extends javax.swing.JFrame {
 
     private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
         if (jTextField1.getText().isEmpty()) {
-            jTextField1.setForeground(Color.gray);
+            jTextField1.setForeground(new Color(246, 129, 117));
             jTextField1.setText("Username");
         }
         
@@ -226,7 +226,7 @@ public class LoginPanel extends javax.swing.JFrame {
     private void jPasswordField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusLost
         char[] password = jPasswordField1.getPassword();
         if (password.length == 0) {
-            jPasswordField1.setForeground(Color.gray);
+            jPasswordField1.setForeground(new Color(246, 129, 117));
             jPasswordField1.setText("Password");
             jPasswordField1.setEchoChar((char) 0);
         }

@@ -46,7 +46,7 @@ public class CustomerPanel extends javax.swing.JFrame {
     
     private void setupScrollPane() {
         // Set layout for jPanel1
-        jPanel1.setLayout(new GridLayout(0, 3, 10, 10)); // 3 columns, 10 pixels gap
+        jPanel1.setLayout(new GridLayout(0, 3, 0, 0)); // 3 columns, 10 pixels gap
 
         // Initialize JScrollPane
         jScrollPane1.setViewportView(jPanel1);
