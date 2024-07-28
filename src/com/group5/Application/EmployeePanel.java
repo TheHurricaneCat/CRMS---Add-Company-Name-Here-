@@ -141,7 +141,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         if (carName != null && !carName.trim().isEmpty()) {
             try {
                 // Fetch the car details using the car name
-                Car car = CarDBHandler.getCar(carName.trim());
+                Car car = CarDBHandler.getCar(Integer.parseInt(carName.trim()));
 
                 if (car != null) {
                     // Create the subpanel with the fetched car details
