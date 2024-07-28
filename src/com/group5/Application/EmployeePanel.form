@@ -32,7 +32,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <EmptySpace pref="10" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel5" min="-2" pref="270" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="620" max="-2" attributes="0"/>
@@ -73,19 +73,14 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="22" max="32767" attributes="0"/>
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" min="-2" pref="158" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel2" pref="0" max="32767" attributes="0"/>
+                              <Component id="jLabel1" pref="158" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -100,32 +95,30 @@
               <Component id="ViewCarButton" alignment="1" max="32767" attributes="0"/>
               <Component id="AddCarButton" alignment="1" max="32767" attributes="0"/>
               <Component id="EditCarButton" alignment="1" max="32767" attributes="0"/>
-              <Component id="GenerateReportButton" alignment="1" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jButton1" min="-2" pref="122" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="jButton1" min="-2" pref="122" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Component id="GenerateReportButton" alignment="1" max="32767" attributes="0"/>
+              <Component id="DeleteCarButton" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="64" max="32767" attributes="0"/>
                   <Component id="jLabel6" min="-2" pref="107" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="ViewCarButton" min="-2" pref="40" max="-2" attributes="0"/>
@@ -133,11 +126,13 @@
                   <Component id="AddCarButton" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="EditCarButton" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                  <Component id="DeleteCarButton" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="GenerateReportButton" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" pref="32" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -298,6 +293,28 @@
               <Image iconType="3" name="/Misc/!!!!revisedcrms (250 x 250 px) (2).png"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="DeleteCarButton">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="22" green="26" red="b8" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="eb" green="eb" red="f2" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="DELETE CAR"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                <EmptyBorder/>
+              </Border>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteCarButtonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
