@@ -4,28 +4,25 @@ import com.group5.Car.Part;
 
 public class Engine extends Part {
     
-    private String pistonConfiguration;
-    private double maxSpeed;
-    private double maxRPM;
-    private double zeroToHundredKMH;
     private double engineDisplacement;
-    private int power;
+    private int horsepower;
     private int torque;
     private String fuelType;
     private double cityFuelEconomy;
     private double highwayFuelEconomy;
+    private String pistonConfiguration;
 
 
     @Override
     public String[] getSpecs() {
         return new String[] {
-            pistonConfiguration,
             Double.toString(engineDisplacement),
-            Integer.toString(power),
+            Integer.toString(horsepower),
             Integer.toString(torque),
             fuelType,
             Double.toString(cityFuelEconomy),
-            Double.toString(highwayFuelEconomy)
+            Double.toString(highwayFuelEconomy),
+            pistonConfiguration
         };
     }
 
@@ -44,8 +41,8 @@ public class Engine extends Part {
         return this;
     }
 
-    public Engine setPower(int power) {
-        this.power = power;
+    public Engine setHorsepower(int horsepower) {
+        this.horsepower = horsepower;
         return this;
     }
 

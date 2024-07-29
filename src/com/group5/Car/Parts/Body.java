@@ -1,13 +1,11 @@
 package com.group5.Car.Parts;
 
 import com.group5.Car.Part;
-import java.awt.Color;
 
 public class Body extends Part{
     
-    private double bodyWeight;
-    private double bodyLength;
-    private double bodyWidth;
+    private double grossWeight;
+    private double curbWeight;
     private double cargoCapacity;
     private double towingCapacity;
     private int seatingCapacity;
@@ -20,9 +18,8 @@ public class Body extends Part{
     public String[] getSpecs() {
         return
             new String[] {
-                Double.toString(bodyWeight),
-                Double.toString(bodyLength),
-                Double.toString(bodyWidth),
+                Double.toString(grossWeight),
+                Double.toString(curbWeight),
                 Double.toString(cargoCapacity),
                 Double.toString(towingCapacity),
                 Integer.toString(seatingCapacity),
@@ -42,8 +39,13 @@ public class Body extends Part{
         return this;
     }
     
-    public Body setBodyWeight(double bodyWeight) {
-        this.bodyWeight = bodyWeight;
+    public Body setGrossWeight(double grossWeight) {
+        this.grossWeight = grossWeight;
+        return this;
+    }
+
+    public Body setCurbWeight(double curbWeight) {
+        this.curbWeight = curbWeight;
         return this;
     }
 

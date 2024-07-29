@@ -5,15 +5,16 @@ import com.group5.Car.Part;
 public class Drivetrain extends Part{
     
     private String wheelDriveType;
-    private String transmissionType;
-    private int gearCount;
+    private double finalDriveRatio;
+    private double differentialRatio;
+
 
     @Override
     public String[] getSpecs() {
         return new String[] {
             wheelDriveType,
-            transmissionType,
-            Integer.toString(gearCount)
+            Double.toString(finalDriveRatio),
+            Double.toString(differentialRatio)
         };
     }
 
@@ -31,15 +32,16 @@ public class Drivetrain extends Part{
         this.wheelDriveType = wheelDriveType;
         return this;
     }
+
+    public Drivetrain setFinalDriveRatio(double finalDriveRatio) {
+        this.finalDriveRatio = finalDriveRatio;
+        return this;
+    }
     
-    public Drivetrain setTransmissionType(String transmissionType) {
-        this.transmissionType = transmissionType;
+    public Drivetrain setDifferentialRatio(double differentialRatio) {
+        this.differentialRatio = differentialRatio;
         return this;
     }
 
-    public Drivetrain setGearCount(int gearCount) {
-        this.gearCount = gearCount;
-        return this;
-    }
     
 }

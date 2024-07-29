@@ -1,6 +1,6 @@
 DELETED,,,,,,,,,,,,,,,,,,,,,,,11.9,Milano Red,Sedan
-1,Car2,Honda,Japan,Civic,1995,1.6,125,106,Gasoline,28,36,Inline-4,Manual,5,FWD,4.25,4.25,1420,1036,11.1,0,5,11.9,Milano Red,Sedan
-DELETED
+1,REALLY REALLY LONG NAME OF CAR,Honda,Japan,Civic,1995,1.6,125,106,Gasoline,28,36,Inline-4,Manual,5,FWD,4.25,4.25,1420,1036,11.1,0,5,11.9,Milano Red,Sedan
+DELETED,,,,,,,,,,,,,,,,,,,,,,,,,
 DELETED,,,,,,,,,,,,,,,,,,,,,,,,,
 4,Car4,Honda,Japan,Civic,1995,1.6,125,106,Gasoline,28,36,Inline-4,Manual,5,FWD,4.25,4.25,1420,1036,11.1,0,5,11.9,Milano Red,Sedan
 5,Car5,Honda,Japan,Civic,1995,1.6,125,106,Gasoline,28,36,Inline-4,Manual,5,FWD,4.25,4.25,1420,1036,11.1,0,5,11.9,Milano Red,Sedan
@@ -9,3 +9,6 @@ DELETED,,,,,,,,,,,,,,,,,,,,,,,,,
 8,Car7,Honda,Japan,Civic,1995,1.6,125,106,Gasoline,28,36,Inline-4,Manual,5,FWD,4.25,4.25,1420,1036,11.1,0,5,11.9,Milano Red,Sedan
 DELETED,,,,,,,,,,,,,,,,,,,,,,,,,
 10,Car8,Honda,Japan,Civic,1995,1.6,125,106,Gasoline,28,36,Inline-4,Manual,5,FWD,4.25,4.25,1420,1036,11.1,0,5,11.9,Milano Red,Sedan
+11,Car9,Honda,Japan,Civic,1995,1.6,125,106,Gasoline,28,36,Inline-4,Manual,5,FWD,4.25,4.25,1420,1036,11.1,0,5,,,
+12,Car10,Honda,Japan,Civic,1995,1.6,125,106,Gasoline,28,36,Inline-4,Manual,5,FWD,4.25,4.25,1420,1036,11.1,0,5,,,
+13,Car11,Honda,Japan,Civic,1995,1.6,125,106,Gasoline,28,36,Inline-4,Manual,5,FWD,4.25,4.25,1420,1036,11.1,0,5,,,

@@ -41,7 +41,6 @@ public class EmployeePanel extends javax.swing.JFrame {
     private Employee employee;
     private static EmployeePanel instance;
     private UserDBHandler handler;
-    AddCarForm addCar = new AddCarForm(this);
     
     
     /**
@@ -296,6 +295,11 @@ public class EmployeePanel extends javax.swing.JFrame {
         GenerateReportButton.setForeground(new java.awt.Color(242, 235, 235));
         GenerateReportButton.setText("GENERATE REPORT");
         GenerateReportButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        GenerateReportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenerateReportButtonActionPerformed(evt);
+            }
+        });
 
         jLabel3.setForeground(new java.awt.Color(242, 235, 235));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -433,7 +437,7 @@ public class EmployeePanel extends javax.swing.JFrame {
 
     private void AddCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCarButtonActionPerformed
         
-        addCar.setVisible(true);
+        
         
     }//GEN-LAST:event_AddCarButtonActionPerformed
 
@@ -453,6 +457,11 @@ public class EmployeePanel extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_DeleteCarButtonActionPerformed
+
+    private void GenerateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateReportButtonActionPerformed
+        SelectReportPanel srp = new SelectReportPanel();
+        srp.setVisible(true);
+    }//GEN-LAST:event_GenerateReportButtonActionPerformed
 
     /**
      * @param args the command line arguments

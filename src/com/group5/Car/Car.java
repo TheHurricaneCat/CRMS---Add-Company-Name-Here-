@@ -10,16 +10,14 @@ public class Car {
     private Model model;
     private ArrayList<Part> parts = new ArrayList<>();
     private RentStatus status;
-    private String licensePlate;
 
 
-    public Car (String name, int carID, Make make, Model model, ArrayList<Part> parts, String licensePlate) {
+    public Car (String name, int carID, Make make, Model model, ArrayList<Part> parts) {
         this.name = name;
         this.carID = carID;
         this.make = make;
         this.model = model;
         this.parts = parts;
-        this.licensePlate = licensePlate;
     }
 
     public String getName () {
@@ -44,10 +42,6 @@ public class Car {
 
     public RentStatus getStatus () {
         return status;
-    }
-    
-    public String getLicensePlate () {
-        return licensePlate;
     }
     
 }

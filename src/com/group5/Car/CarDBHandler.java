@@ -9,13 +9,143 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
+
+import com.group5.Car.Parts.BodyFactory;
+import com.group5.Car.Parts.DrivetrainFactory;
+import com.group5.Car.Parts.EngineFactory;
+import com.group5.Car.Parts.TransmissionFactory;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.Panel;
 import java.util.ArrayList;
+import java.util.Arrays;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 
 abstract public class CarDBHandler {
+    
+    static public void generateReport(DefaultTableModel tableModel) throws IOException {
+        Scanner reader = new Scanner(new File("CarDB.csv"));
+        reader.useDelimiter("[\n]");
+        
+        ArrayList<Car> carList = new ArrayList<>();
+        ArrayList<String> recordList = new ArrayList();
+        
+        while (reader.hasNext()) {
+            recordList.add(reader.next());
+        }
+        
+        for (String s : recordList) {
+            if (!s.contains("DELETED")) {
+                String id = s.split(",")[0];
+                carList.add(getCar(Integer.parseInt(id)));
+                //System.out.println(s);
+            }
+        }
+        
+        //load data to report window
+        for (Car car : carList) {
+            String[] attributes = {
+                Integer.toString(car.getCarID()),
+                car.getName(),
+                "15 days",
+                "P15.00/day",
+                "Available",
+            };
+            tableModel.addRow(attributes);
+        }
+    }
+    
+    static public String generateFilteredReport(DefaultTableModel tableModel, String filter) throws FileNotFoundException, IOException {
+        Scanner reader = new Scanner(new File("CarDB.csv"));
+        reader.useDelimiter("[\n]");
+        
+        ArrayList<Car> carList = new ArrayList<>();
+        ArrayList<String> recordList = new ArrayList();
+        
+        while (reader.hasNext()) {
+            recordList.add(reader.next());
+        }
+        
+        int attributeIndex = -1;
+        
+        for (String s : recordList) {
+            String lowerS = s.toLowerCase();
+            String lowerFilter = filter.toLowerCase();
+
+            if (!lowerS.contains("deleted") && lowerS.contains(lowerFilter)) {
+                String id = s.split(",")[0];
+
+                carList.add(getCar(Integer.parseInt(id)));
+
+                if (attributeIndex == -1) {
+                    String[] reS = s.split(",");
+                    for (int i = 0; i < reS.length; i++) {
+                        if (reS[i].toLowerCase().equals(lowerFilter)) {
+                            attributeIndex = i;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        
+        //load data to report window
+        for (Car car : carList) {
+            String[] attributes = {
+                Integer.toString(car.getCarID()),
+                car.getName(),
+                "15 days",
+                "P15.00/day",
+                "Available",
+            };
+            tableModel.addRow(attributes);
+        }
+        
+        String[] category = {
+            "ID",
+            "Car Name",
+            "Brand",
+            "Country",
+            "Model",
+            "Year",
+            "Engine Displacement",
+            "Horsepower", 
+            "Torque",
+            "Fuel Type",
+            "City Fuel Eco",
+            "Highway Fuel Eco",
+            "Piston Configuration",
+            "Transmission Type",
+            "Gear Count",
+            "Wheel Drive Type",
+            "Final Drive Ratio",
+            "Differential Ratio",
+            "Gross Weight",
+            "Curb Weight",
+            "Cargo Capacity",
+            "Towing Capacity",
+            "Seating Capacity",
+            "Fuel Capacity",
+            "Color",
+            "Body Type",
+        };
+        if (attributeIndex != -1)
+            return category[attributeIndex];
+        else 
+            return "Not found";
+    }
     
     static public void reload(JPanel jpanel1) throws IOException {
         Component[] components = jpanel1.getComponents();
@@ -205,7 +335,50 @@ abstract public class CarDBHandler {
 
     static private Car parseData (String[] info) {
 
-        return null;
+        CarBuilder carbuilder = new CarBuilder();
+        
+        Make make = new Make(info[2],info[3]);
+
+        carbuilder
+            .setCarID(Integer.parseInt(info[0]))
+            .setName(info[1])
+            .setMake(make)
+            .setModel(new Model(info[4], make, Integer.parseInt(info[5])))
+            .addPart(new EngineFactory().create()
+                .setType("Engine")
+                .setEngineDisplacement(1.6)
+                .setHorsepower(125)
+                .setTorque(106)
+                .setFuelType("Gasoline")
+                .setCityFuelEconomy(28)
+                .setHighwayFuelEconomy(36)
+                .setPistonConfiguration("Inline-4")
+            )
+            .addPart(new TransmissionFactory().create()
+                .setType("Transmission")
+                .setTransmissionType("Manual")
+                .setGearCount(5)
+            )
+            .addPart(new DrivetrainFactory().create()
+                .setType("Drivetrain")
+                .setWheelDriveType("FWD")
+                .setFinalDriveRatio(4.25)
+                .setDifferentialRatio(4.25)
+            )
+            .addPart(new BodyFactory().create()
+                .setType("Body")
+                .setGrossWeight(1420)
+                .setCurbWeight(1036)
+                .setCargoCapacity(11.1)
+                .setTowingCapacity(0)
+                .setSeatingCapacity(5)
+                .setColor("Milano Red")
+                .setFuelCapacity(11.9)
+                .setBodyType("Sedan")
+            )
+        ;
+
+        return carbuilder.build();
     }
     
 
