@@ -20,8 +20,121 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 abstract public class CarDBHandler {
+    
+    static public void generateReport(DefaultTableModel tableModel) throws IOException {
+        Scanner reader = new Scanner(new File("CarDB.csv"));
+        reader.useDelimiter("[\n]");
+        
+        ArrayList<Car> carList = new ArrayList<>();
+        ArrayList<String> recordList = new ArrayList();
+        
+        while (reader.hasNext()) {
+            recordList.add(reader.next());
+        }
+        
+        for (String s : recordList) {
+            if (!s.contains("DELETED")) {
+                String id = s.split(",")[0];
+                carList.add(getCar(Integer.parseInt(id)));
+                //System.out.println(s);
+            }
+        }
+        
+        //load data to report window
+        for (Car car : carList) {
+            String[] attributes = {
+                Integer.toString(car.getCarID()),
+                car.getName(),
+                "15 days",
+                "P15.00/day",
+                "Available",
+            };
+            tableModel.addRow(attributes);
+        }
+    }
+    
+    static public String generateFilteredReport(DefaultTableModel tableModel, String filter) throws FileNotFoundException, IOException {
+        Scanner reader = new Scanner(new File("CarDB.csv"));
+        reader.useDelimiter("[\n]");
+        
+        ArrayList<Car> carList = new ArrayList<>();
+        ArrayList<String> recordList = new ArrayList();
+        
+        while (reader.hasNext()) {
+            recordList.add(reader.next());
+        }
+        
+        int attributeIndex = -1;
+        
+        for (String s : recordList) {
+            String lowerS = s.toLowerCase();
+            String lowerFilter = filter.toLowerCase();
+
+            if (!lowerS.contains("deleted") && lowerS.contains(lowerFilter)) {
+                String id = s.split(",")[0];
+
+                carList.add(getCar(Integer.parseInt(id)));
+
+                if (attributeIndex == -1) {
+                    String[] reS = s.split(",");
+                    for (int i = 0; i < reS.length; i++) {
+                        if (reS[i].toLowerCase().equals(lowerFilter)) {
+                            attributeIndex = i;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        
+        //load data to report window
+        for (Car car : carList) {
+            String[] attributes = {
+                Integer.toString(car.getCarID()),
+                car.getName(),
+                "15 days",
+                "P15.00/day",
+                "Available",
+            };
+            tableModel.addRow(attributes);
+        }
+        
+        String[] category = {
+            "ID",
+            "Car Name",
+            "Brand",
+            "Country",
+            "Model",
+            "Year",
+            "Engine Displacement",
+            "Horsepower", 
+            "Torque",
+            "Fuel Type",
+            "City Fuel Eco",
+            "Highway Fuel Eco",
+            "Piston Configuration",
+            "Transmission Type",
+            "Gear Count",
+            "Wheel Drive Type",
+            "Final Drive Ratio",
+            "Differential Ratio",
+            "Gross Weight",
+            "Curb Weight",
+            "Cargo Capacity",
+            "Towing Capacity",
+            "Seating Capacity",
+            "Fuel Capacity",
+            "Color",
+            "Body Type",
+        };
+        if (attributeIndex != -1)
+            return category[attributeIndex];
+        else 
+            return "Not found";
+    }
     
     static public void reload(JPanel panel) throws IOException {
         Component[] components = panel.getComponents();
