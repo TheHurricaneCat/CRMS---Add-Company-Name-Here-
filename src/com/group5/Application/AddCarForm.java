@@ -33,6 +33,7 @@ public class AddCarForm extends javax.swing.JFrame {
     public AddCarForm(EmployeePanel parent) {
         initComponents();
         this.parent = parent;
+        getContentPane().setBackground(new java.awt.Color(29, 34, 67));
     }
 
     /**
@@ -144,31 +145,34 @@ public class AddCarForm extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(242, 235, 235));
-        jLabel2.setText("Add Car");
+        jLabel2.setText("ADD CAR");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(242, 235, 235));
-        jLabel7.setText("Input car information to add to database records...");
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(184, 38, 34));
+        jLabel7.setText("Input car information to add to database records");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(318, 318, 318)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(270, 270, 270)
+                        .addComponent(jLabel7)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addGap(24, 24, 24))
         );
 
         PNLBasicInfo.setBackground(new java.awt.Color(54, 63, 125));
@@ -178,30 +182,45 @@ public class AddCarForm extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(242, 235, 235));
         jLabel1.setText("Name:");
 
+        TFMakeCountry.setBackground(new java.awt.Color(109, 118, 173));
+        TFMakeCountry.setForeground(new java.awt.Color(242, 235, 235));
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(242, 235, 235));
         jLabel3.setText("Brand:");
+
+        TFModelName.setBackground(new java.awt.Color(109, 118, 173));
+        TFModelName.setForeground(new java.awt.Color(242, 235, 235));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(242, 235, 235));
         jLabel4.setText("Country:");
 
+        TFName.setBackground(new java.awt.Color(109, 118, 173));
+        TFName.setForeground(new java.awt.Color(242, 235, 235));
+
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(242, 235, 235));
         jLabel5.setText("Year:");
 
+        TFModelYear.setBackground(new java.awt.Color(109, 118, 173));
+        TFModelYear.setForeground(new java.awt.Color(242, 235, 235));
+
         jSeparator1.setForeground(new java.awt.Color(242, 235, 235));
+
+        TFMakeName.setBackground(new java.awt.Color(109, 118, 173));
+        TFMakeName.setForeground(new java.awt.Color(242, 235, 235));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(242, 235, 235));
         jLabel6.setText("Model:");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(242, 235, 235));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Basic Info");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(242, 235, 235));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Car Body Info");
@@ -210,6 +229,9 @@ public class AddCarForm extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(242, 235, 235));
         jLabel10.setText("Weight(kg):");
 
+        TFBodyWeight.setBackground(new java.awt.Color(109, 118, 173));
+        TFBodyWeight.setForeground(new java.awt.Color(242, 235, 235));
+
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(242, 235, 235));
         jLabel11.setText("Length(m):");
@@ -217,6 +239,12 @@ public class AddCarForm extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(242, 235, 235));
         jLabel12.setText("Width(m):");
+
+        TFBodyWidth.setBackground(new java.awt.Color(109, 118, 173));
+        TFBodyWidth.setForeground(new java.awt.Color(242, 235, 235));
+
+        TFBodyLength.setBackground(new java.awt.Color(109, 118, 173));
+        TFBodyLength.setForeground(new java.awt.Color(242, 235, 235));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(242, 235, 235));
@@ -230,9 +258,22 @@ public class AddCarForm extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(242, 235, 235));
         jLabel15.setText("Towing Capacity(kg):");
 
+        TFBodyCargoCapacity.setBackground(new java.awt.Color(109, 118, 173));
+        TFBodyCargoCapacity.setForeground(new java.awt.Color(242, 235, 235));
+
+        TFBodyFuelCapacity.setEditable(false);
+        TFBodyFuelCapacity.setBackground(new java.awt.Color(109, 118, 173));
+        TFBodyFuelCapacity.setForeground(new java.awt.Color(242, 235, 235));
+
+        TFBodyTowingCapacity.setBackground(new java.awt.Color(109, 118, 173));
+        TFBodyTowingCapacity.setForeground(new java.awt.Color(242, 235, 235));
+
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(242, 235, 235));
         jLabel16.setText("Fuel Capacity(li/kwh):");
+
+        TFBodySeatingCapacity.setBackground(new java.awt.Color(109, 118, 173));
+        TFBodySeatingCapacity.setForeground(new java.awt.Color(242, 235, 235));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(242, 235, 235));
@@ -242,9 +283,15 @@ public class AddCarForm extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(242, 235, 235));
         jLabel18.setText("Body Type");
 
+        TFBodyColor.setBackground(new java.awt.Color(109, 118, 173));
+        TFBodyColor.setForeground(new java.awt.Color(242, 235, 235));
+
+        TFBodyType.setBackground(new java.awt.Color(109, 118, 173));
+        TFBodyType.setForeground(new java.awt.Color(242, 235, 235));
+
         jSeparator4.setForeground(new java.awt.Color(242, 235, 235));
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(242, 235, 235));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("Car Drivetrain Info");
@@ -261,9 +308,22 @@ public class AddCarForm extends javax.swing.JFrame {
         jLabel22.setForeground(new java.awt.Color(242, 235, 235));
         jLabel22.setText("Gear Count:");
 
+        TFDrivetrainWheelDriveType.setBackground(new java.awt.Color(109, 118, 173));
+        TFDrivetrainWheelDriveType.setForeground(new java.awt.Color(242, 235, 235));
+
+        TFDrivetrainTransmissionType.setBackground(new java.awt.Color(109, 118, 173));
+        TFDrivetrainTransmissionType.setForeground(new java.awt.Color(242, 235, 235));
+
+        TFDrivetrainGearCount.setBackground(new java.awt.Color(109, 118, 173));
+        TFDrivetrainGearCount.setForeground(new java.awt.Color(242, 235, 235));
+
         jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(242, 235, 235));
         jLabel29.setText("Plate#:");
+
+        TFPlate.setEditable(false);
+        TFPlate.setBackground(new java.awt.Color(109, 118, 173));
+        TFPlate.setForeground(new java.awt.Color(242, 235, 235));
 
         javax.swing.GroupLayout PNLBasicInfoLayout = new javax.swing.GroupLayout(PNLBasicInfo);
         PNLBasicInfo.setLayout(PNLBasicInfoLayout);
@@ -423,10 +483,10 @@ public class AddCarForm extends javax.swing.JFrame {
         PNLEngineInfo.setBackground(new java.awt.Color(54, 63, 125));
         PNLEngineInfo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
 
-        jLabel28.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(242, 235, 235));
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel28.setText("Car Engine Info:");
+        jLabel28.setText("Car Engine Info");
 
         jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(242, 235, 235));
@@ -467,6 +527,36 @@ public class AddCarForm extends javax.swing.JFrame {
         jLabel40.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel40.setForeground(new java.awt.Color(242, 235, 235));
         jLabel40.setText("Piston Configuration:");
+
+        TFEnginePistonConfiguration.setBackground(new java.awt.Color(109, 118, 173));
+        TFEnginePistonConfiguration.setForeground(new java.awt.Color(242, 235, 235));
+
+        TFEngineMaxSpeed.setBackground(new java.awt.Color(109, 118, 173));
+        TFEngineMaxSpeed.setForeground(new java.awt.Color(242, 235, 235));
+
+        TFEngineMaxRPM.setBackground(new java.awt.Color(109, 118, 173));
+        TFEngineMaxRPM.setForeground(new java.awt.Color(242, 235, 235));
+
+        TFEngineZeroToHundredKMH.setBackground(new java.awt.Color(109, 118, 173));
+        TFEngineZeroToHundredKMH.setForeground(new java.awt.Color(242, 235, 235));
+
+        TFEngineDisplacement.setBackground(new java.awt.Color(109, 118, 173));
+        TFEngineDisplacement.setForeground(new java.awt.Color(242, 235, 235));
+
+        TFEnginePower.setBackground(new java.awt.Color(109, 118, 173));
+        TFEnginePower.setForeground(new java.awt.Color(242, 235, 235));
+
+        TFEngineTorque.setBackground(new java.awt.Color(109, 118, 173));
+        TFEngineTorque.setForeground(new java.awt.Color(242, 235, 235));
+
+        TFEngineFuelType.setBackground(new java.awt.Color(109, 118, 173));
+        TFEngineFuelType.setForeground(new java.awt.Color(242, 235, 235));
+
+        TFEngineCityFuelEconomy.setBackground(new java.awt.Color(109, 118, 173));
+        TFEngineCityFuelEconomy.setForeground(new java.awt.Color(242, 235, 235));
+
+        TFEngineHighwayFuelEconomy.setBackground(new java.awt.Color(109, 118, 173));
+        TFEngineHighwayFuelEconomy.setForeground(new java.awt.Color(242, 235, 235));
 
         javax.swing.GroupLayout PNLEngineInfoLayout = new javax.swing.GroupLayout(PNLEngineInfo);
         PNLEngineInfo.setLayout(PNLEngineInfoLayout);
@@ -553,18 +643,20 @@ public class AddCarForm extends javax.swing.JFrame {
                 .addGap(10, 10, 10))
         );
 
-        BTTClear.setBackground(new java.awt.Color(223, 74, 70));
+        BTTClear.setBackground(new java.awt.Color(148, 28, 0));
         BTTClear.setFont(new java.awt.Font("Brandon Text", 1, 24)); // NOI18N
-        BTTClear.setText("Clear");
+        BTTClear.setForeground(new java.awt.Color(242, 235, 235));
+        BTTClear.setText("CLEAR");
         BTTClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTTClearActionPerformed(evt);
             }
         });
 
-        BTTSave.setBackground(new java.awt.Color(223, 74, 70));
+        BTTSave.setBackground(new java.awt.Color(148, 28, 0));
         BTTSave.setFont(new java.awt.Font("Brandon Text", 1, 24)); // NOI18N
-        BTTSave.setText("Save");
+        BTTSave.setForeground(new java.awt.Color(242, 235, 235));
+        BTTSave.setText("SAVE");
         BTTSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTTSaveActionPerformed(evt);
@@ -576,6 +668,9 @@ public class AddCarForm extends javax.swing.JFrame {
         jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(242, 235, 235));
         jLabel41.setText("Rent Cost/Day(Php):");
+
+        TFPriceRentCostPerDay.setBackground(new java.awt.Color(109, 118, 173));
+        TFPriceRentCostPerDay.setForeground(new java.awt.Color(242, 235, 235));
 
         javax.swing.GroupLayout PNLPriceLayout = new javax.swing.GroupLayout(PNLPrice);
         PNLPrice.setLayout(PNLPriceLayout);
@@ -604,21 +699,21 @@ public class AddCarForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(0, 0, 0)
                 .addComponent(PNLBasicInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(PNLEngineInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BTTClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BTTSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PNLPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(PNLEngineInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -645,7 +740,7 @@ public class AddCarForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BTTClearActionPerformed
 
-    private void BTTSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTTSaveActionPerformed
+    private void BTTSaveActionPerformed(java.awt.event.ActionEvent evt) {                                        
         
         Make make = new Make(this.TFMakeName.getText(), this.TFMakeCountry.getText());
         
