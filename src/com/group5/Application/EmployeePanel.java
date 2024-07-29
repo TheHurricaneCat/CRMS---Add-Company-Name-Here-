@@ -426,7 +426,6 @@ public class EmployeePanel extends javax.swing.JFrame {
         
         }
         
-        JOptionPane.showMessageDialog(null, "Car Deleted Successfuly");
     }//GEN-LAST:event_DeleteCarButtonActionPerformed
 
     /**
