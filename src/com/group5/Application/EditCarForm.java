@@ -87,6 +87,8 @@ public class EditCarForm extends javax.swing.JFrame {
         this.TFEngineCityFuelEconomy.setText(info[31]);
         this.TFEngineHighwayFuelEconomy.setText(info[32]);
 
+        this.TFPriceRentCostPerDay.setText(Double.toString(car.getStatus().getPrice().getRentPricePerDay()));;
+
     }
 
     /**
@@ -782,7 +784,7 @@ public class EditCarForm extends javax.swing.JFrame {
 
     
     private void BTTClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTTClearActionPerformed
-        this.TFName.setText(info[1]);
+        /*this.TFName.setText(info[1]);
         this.TFMakeName.setText(info[2]);
         this.TFMakeCountry.setText(info[3]);
         this.TFModelName.setText(info[4]);
@@ -809,7 +811,7 @@ public class EditCarForm extends javax.swing.JFrame {
         this.TFEngineTorque.setText(info[29]);
         this.TFEngineFuelType.setText(info[30]);
         this.TFEngineCityFuelEconomy.setText(info[31]);
-        this.TFEngineHighwayFuelEconomy.setText(info[32]);
+        this.TFEngineHighwayFuelEconomy.setText(info[32]);*/
     }//GEN-LAST:event_BTTClearActionPerformed
 
     private void BTTSaveActionPerformed(java.awt.event.ActionEvent evt) {                                        
@@ -853,7 +855,7 @@ public class EditCarForm extends javax.swing.JFrame {
         ;
 
         try {
-            CarDBHandler.addCar(carbuilder.build());
+            CarDBHandler.editCar(editingCar.getCarID(), carbuilder.build());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -129,7 +129,7 @@ public class CarPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void initializeCarDetails(){
-        this.LBLCarName.setText(car.getName());
+        this.LBLCarName.setText("ID:" + car.getCarID() + " " + car.getName());
         this.PNLAvailableColor.setBackground((car.getStatus().isRented())? Color.RED : Color.GREEN);
     }
 

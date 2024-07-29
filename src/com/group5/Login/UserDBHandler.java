@@ -28,11 +28,10 @@ public class UserDBHandler {
     // maps (hash maps) are basically arrays but each element has 2 value slots
     static private /*final*/ Map<String, User> activeUsers = new HashMap<>();
     
-    private UserDBHandler() {}
         private static final UserDBHandler activeInstance = new UserDBHandler();
     
     public static UserDBHandler getInstance() {
-        return activeInstance;
+        return activeInstance;  
     }
         
     public void createDb() {

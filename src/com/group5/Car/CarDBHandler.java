@@ -6,6 +6,7 @@ import com.group5.Car.Parts.DrivetrainFactory;
 import com.group5.Car.Parts.EngineFactory;
 import com.group5.Login.UserDBHandler;
 import com.group5.User.Customer;
+import com.group5.User.User;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -338,7 +339,7 @@ abstract public class CarDBHandler {
             Customer owner = (Customer) UserDBHandler.getActiveUser(info[8]);
             Price price = new Price(Double.parseDouble(info[9]));
             int rentDurationDays = Integer.parseInt(info[10]);
-            status = new RentStatus(owner, price, rentDurationDays);
+            status = new RentStatus((Customer)owner, price, rentDurationDays);
         }
 
         
