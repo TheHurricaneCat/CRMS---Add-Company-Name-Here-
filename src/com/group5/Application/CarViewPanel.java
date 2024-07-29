@@ -98,6 +98,7 @@ public class CarViewPanel extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        popupMenu1 = new java.awt.PopupMenu();
         BTNRentCar = new javax.swing.JButton();
         CarIMG = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -121,6 +122,8 @@ public class CarViewPanel extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(184, 38, 34));
         jLabel7.setText("Input car information to add to database records");
+
+        popupMenu1.setLabel("popupMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -227,7 +230,8 @@ public class CarViewPanel extends javax.swing.JFrame {
 
     private void BTNRentCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNRentCarActionPerformed
         
-        
+        RentCarForm rcf = new RentCarForm(car);
+        rcf.setVisible(true);
         
     }//GEN-LAST:event_BTNRentCarActionPerformed
 
@@ -243,5 +247,6 @@ public class CarViewPanel extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private java.awt.PopupMenu popupMenu1;
     // End of variables declaration//GEN-END:variables
 }

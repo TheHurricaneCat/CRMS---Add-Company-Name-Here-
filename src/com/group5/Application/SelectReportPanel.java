@@ -43,7 +43,6 @@ public class SelectReportPanel extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(223, 74, 70));
 
         jPanel1.setBackground(new java.awt.Color(223, 74, 70));

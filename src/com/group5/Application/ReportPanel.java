@@ -105,8 +105,6 @@ public class ReportPanel extends javax.swing.JFrame {
 
         jToggleButton1.setText("jToggleButton1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel3.setBackground(new java.awt.Color(255, 102, 102));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
@@ -176,24 +174,22 @@ public class ReportPanel extends javax.swing.JFrame {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        tableModel = new DefaultTableModel(
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Car ID", "Car Name", "Rent Duration", "Rent Pricing", "Status", " "
+                "Car ID", "Car Name", "Rent Duration", "Rent Pricing", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
-        };
-
-        jTable2.setModel(tableModel);
+        });
         jScrollPane3.setViewportView(jTable2);
         if (jTable2.getColumnModel().getColumnCount() > 0) {
             jTable2.getColumnModel().getColumn(0).setPreferredWidth(300);
@@ -201,7 +197,6 @@ public class ReportPanel extends javax.swing.JFrame {
             jTable2.getColumnModel().getColumn(2).setPreferredWidth(600);
             jTable2.getColumnModel().getColumn(3).setPreferredWidth(600);
             jTable2.getColumnModel().getColumn(4).setPreferredWidth(500);
-            jTable2.getColumnModel().getColumn(5).setPreferredWidth(30);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

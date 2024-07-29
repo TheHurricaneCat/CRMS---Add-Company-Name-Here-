@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author norielloslos
+ * @author gabrielloslos
  */
 public class EditCarForm extends javax.swing.JFrame {
     

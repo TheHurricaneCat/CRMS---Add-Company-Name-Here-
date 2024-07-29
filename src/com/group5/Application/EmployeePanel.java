@@ -367,7 +367,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         CarViewerScrollPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         CarViewerScrollPanel.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        CarViewerPanel.setBackground(new java.awt.Color(44, 52, 103));
+        CarViewerPanel.setBackground(new java.awt.Color(54, 63, 125));
 
         javax.swing.GroupLayout CarViewerPanelLayout = new javax.swing.GroupLayout(CarViewerPanel);
         CarViewerPanel.setLayout(CarViewerPanelLayout);

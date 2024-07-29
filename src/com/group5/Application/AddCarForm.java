@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author norielloslos
+ * @author gabrielloslos
  */
 public class AddCarForm extends javax.swing.JFrame {
     
