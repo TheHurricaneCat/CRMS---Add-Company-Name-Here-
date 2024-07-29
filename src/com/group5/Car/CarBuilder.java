@@ -51,7 +51,7 @@ public class CarBuilder {
     
    
     public Car build () {
-        return new Car(name, carID, make, model, part, licensePlate);
+        return new Car(name, carID, make, model, part, status, licensePlate);
     }
 
 }

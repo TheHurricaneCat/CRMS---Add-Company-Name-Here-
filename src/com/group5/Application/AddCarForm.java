@@ -4,7 +4,18 @@
  */
 package com.group5.Application;
 
+import com.group5.Car.CarBuilder;
+import com.group5.Car.CarDBHandler;
+import com.group5.Car.Make;
+import com.group5.Car.Model;
+import com.group5.Car.Parts.BodyFactory;
+import com.group5.Car.Parts.DrivetrainFactory;
+import com.group5.Car.Parts.EngineFactory;
+import com.group5.Car.Price;
+import com.group5.Car.RentStatus;
 import java.awt.Component;
+import java.io.IOException;
+
 import javax.swing.JTextField;
 
 /**
@@ -106,6 +117,9 @@ public class AddCarForm extends javax.swing.JFrame {
         TFEngineHighwayFuelEconomy = new javax.swing.JTextField();
         BTTClear = new javax.swing.JButton();
         BTTSave = new javax.swing.JButton();
+        PNLPrice = new javax.swing.JPanel();
+        jLabel41 = new javax.swing.JLabel();
+        TFPriceRentCostPerDay = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -551,6 +565,38 @@ public class AddCarForm extends javax.swing.JFrame {
         BTTSave.setBackground(new java.awt.Color(223, 74, 70));
         BTTSave.setFont(new java.awt.Font("Brandon Text", 1, 24)); // NOI18N
         BTTSave.setText("Save");
+        BTTSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTTSaveActionPerformed(evt);
+            }
+        });
+
+        PNLPrice.setBackground(new java.awt.Color(54, 63, 125));
+
+        jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel41.setForeground(new java.awt.Color(242, 235, 235));
+        jLabel41.setText("Rent Cost/Day(Php):");
+
+        javax.swing.GroupLayout PNLPriceLayout = new javax.swing.GroupLayout(PNLPrice);
+        PNLPrice.setLayout(PNLPriceLayout);
+        PNLPriceLayout.setHorizontalGroup(
+            PNLPriceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PNLPriceLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TFPriceRentCostPerDay)
+                .addContainerGap())
+        );
+        PNLPriceLayout.setVerticalGroup(
+            PNLPriceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PNLPriceLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(PNLPriceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TFPriceRentCostPerDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -564,7 +610,8 @@ public class AddCarForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(PNLEngineInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BTTClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BTTSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BTTSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PNLPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -575,9 +622,11 @@ public class AddCarForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(PNLEngineInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PNLPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BTTSave, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BTTClear, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(PNLBasicInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -588,19 +637,61 @@ public class AddCarForm extends javax.swing.JFrame {
 
     
     private void BTTClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTTClearActionPerformed
-        for (Component comp : this.PNLBasicInfo.getComponents()) {
-            if (comp instanceof JTextField) {
-                JTextField tf = (JTextField) comp;
-                tf.setText("\n");
-            }
-        }
-        for (Component comp : this.PNLEngineInfo.getComponents()) {
+        for (Component comp : this.getComponents()) {
             if (comp instanceof JTextField) {
                 JTextField tf = (JTextField) comp;
                 tf.setText("\n");
             }
         }
     }//GEN-LAST:event_BTTClearActionPerformed
+
+    private void BTTSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTTSaveActionPerformed
+        
+        Make make = new Make(this.TFMakeName.getText(), this.TFMakeCountry.getText());
+        
+        CarBuilder carbuilder = new CarBuilder();
+        carbuilder
+            .setName(this.TFName.getText())
+            .setMake(make)
+            .setModel(new Model(this.TFModelName.getText(), make, Integer.parseInt(this.TFModelYear.getText())))
+            .setPlate(this.TFPlate.getText())
+            .setStatus(new RentStatus(new Price(Double.parseDouble(this.TFPriceRentCostPerDay.getText()))))
+            .addPart(new BodyFactory().create()
+                .setBodyWeight(Double.parseDouble(this.TFBodyWeight.getText()))
+                .setBodyLength(Double.parseDouble(this.TFBodyLength.getText()))
+                    .setBodyWidth(Double.parseDouble(this.TFBodyWidth.getText()))
+                    .setCargoCapacity(Double.parseDouble(this.TFBodyCargoCapacity.getText()))
+                    .setTowingCapacity(Double.parseDouble(this.TFBodyTowingCapacity.getText()))
+                    .setSeatingCapacity(Integer.parseInt(this.TFBodySeatingCapacity.getText()))
+                    .setFuelCapacity(Double.parseDouble(this.TFBodyFuelCapacity.getText()))
+                    .setColor(this.TFBodyColor.getText())
+                    .setBodyType(this.TFBodyType.getText())
+            )
+            .addPart(new DrivetrainFactory().create()
+                .setWheelDriveType(this.TFDrivetrainWheelDriveType.getText())
+                    .setTransmissionType(this.TFDrivetrainTransmissionType.getText())
+                    .setGearCount(Integer.parseInt(this.TFDrivetrainGearCount.getText()))
+            ).addPart(new EngineFactory().create()
+                    .setPistonConfiguration(this.TFEnginePistonConfiguration.getText())
+                    .setMaxSpeed(Double.parseDouble(this.TFEngineMaxSpeed.getText()))
+                    .setMaxRPM(Double.parseDouble(this.TFEngineMaxRPM.getText()))
+                    .setZeroToHundredKMH(Double.parseDouble(this.TFEngineZeroToHundredKMH.getText()))
+                    .setEngineDisplacement(Double.parseDouble(this.TFEngineDisplacement.getText()))
+                    .setPower(Integer.parseInt(this.TFEnginePower.getText()))
+                    .setTorque(Integer.parseInt(this.TFEngineTorque.getText()))
+                    .setFuelType(this.TFEngineFuelType.getText())
+                    .setCityFuelEconomy(Double.parseDouble(this.TFEngineCityFuelEconomy.getText()))
+                    .setHighwayFuelEconomy(Double.parseDouble(this.TFEngineHighwayFuelEconomy.getText()))
+            )
+        ;
+
+        try {
+            CarDBHandler.addCar(carbuilder.build());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+                
+    }
 
     /**
      * @param args the command line arguments
@@ -635,6 +726,7 @@ public class AddCarForm extends javax.swing.JFrame {
     private javax.swing.JButton BTTSave;
     private javax.swing.JPanel PNLBasicInfo;
     private javax.swing.JPanel PNLEngineInfo;
+    private javax.swing.JPanel PNLPrice;
     private javax.swing.JTextField TFBodyCargoCapacity;
     private javax.swing.JTextField TFBodyColor;
     private javax.swing.JTextField TFBodyFuelCapacity;
@@ -663,6 +755,7 @@ public class AddCarForm extends javax.swing.JFrame {
     private javax.swing.JTextField TFModelYear;
     private javax.swing.JTextField TFName;
     private javax.swing.JTextField TFPlate;
+    private javax.swing.JTextField TFPriceRentCostPerDay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -692,6 +785,7 @@ public class AddCarForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

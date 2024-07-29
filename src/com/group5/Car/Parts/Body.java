@@ -47,6 +47,16 @@ public class Body extends Part{
         return this;
     }
 
+    public Body setBodyLength(double bodyLength) {
+        this.bodyLength = bodyLength;
+        return this;
+    }
+
+    public Body setBodyWidth(double bodyWidth) {
+        this.bodyWidth = bodyWidth;
+        return this;
+    }
+
     public Body setCargoCapacity(double cargoCapacity) {
         this.cargoCapacity = cargoCapacity;
         return this;

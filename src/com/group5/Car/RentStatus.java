@@ -9,12 +9,33 @@ public class RentStatus {
     private Boolean rented;
     private Customer owner;
     private Price price;
+    private int rentDurationDays;
     
-    public void rentTo(Customer owner, Price price){
+
+    public RentStatus (RentStatus status) {
+        this.rented = status.isRented();
+        this.owner = status.getOwner();
+        this.price = status.getPrice();
+        this.rentDurationDays = status.getRentDurationDays();
+    }
+
+
+    public RentStatus (Price price) {
+        freeUp();
+        setPrice(price);
+    }
+    
+    public RentStatus (Price price, int rentDurationDays) {
+        freeUp();
+        setPrice(price);
+        this.rentDurationDays = rentDurationDays;
+    }
+    
+    public void rentTo(Customer owner, int rentDurationDays){
         if (!rented && owner == null) {
             this.rented = true;
             this.owner = owner;
-            this.price = price;
+            this.rentDurationDays = rentDurationDays;
         } else {
             JOptionPane.showMessageDialog(null, "Car is unavailable for rent...");
         }
@@ -28,6 +49,7 @@ public class RentStatus {
         this.rented = false;
         this.owner = null;
         this.price = null;
+        this.rentDurationDays = 0;
     }
 
 
@@ -41,6 +63,10 @@ public class RentStatus {
 
     public Price getPrice () {
         return price;
+    }
+
+    public int getRentDurationDays () {
+        return rentDurationDays;
     }
     
 }

@@ -20,6 +20,9 @@ public class Engine extends Part {
     public String[] getSpecs() {
         return new String[] {
             pistonConfiguration,
+            Double.toString(maxSpeed),
+            Double.toString(maxRPM),
+            Double.toString(zeroToHundredKMH),
             Double.toString(engineDisplacement),
             Integer.toString(power),
             Integer.toString(torque),
@@ -29,6 +32,7 @@ public class Engine extends Part {
         };
     }
 
+
     public Engine setType (String type) {
         this.type = type;
         return this;
@@ -36,6 +40,26 @@ public class Engine extends Part {
 
     public Engine setMaterial (String material) {
         this.material = material;
+        return this;
+    }
+
+    public Engine setMaxSpeed(double maxSpeed) {
+        this.maxSpeed = maxSpeed;
+        return this;
+    }
+
+    public Engine setMaxRPM(double maxRPM) {
+        this.maxRPM = maxRPM;
+        return this;
+    }
+
+    public Engine setZeroToHundredKMH(double zeroToHundredKMH) {
+        this.zeroToHundredKMH = zeroToHundredKMH;
+        return this;
+    }
+
+    public Engine setPistonConfiguration(String pistonConfiguration) {
+        this.pistonConfiguration = pistonConfiguration;
         return this;
     }
     
@@ -69,9 +93,6 @@ public class Engine extends Part {
         return this;
     }
 
-    public Engine setPistonConfiguration(String pistonConfiguration) {
-        this.pistonConfiguration = pistonConfiguration;
-        return this;
-    }
+    
 
 }

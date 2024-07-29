@@ -3,20 +3,17 @@ package com.group5.Car;
 public class Price {
     
     private double rentPricePerDay;
-    int rentDuration;
-
-    public Price (double rentPricePerDay, int rentDuration) {
+    
+    public Price (double rentPricePerDay) {
         this.rentPricePerDay = rentPricePerDay;
-        this.rentDuration = rentDuration;
-        calculateTotalPrice();
     }
 
-    public double calculateTotalPrice () {
-        return rentPricePerDay * rentDuration;
-    }
-
-    public double calculatePartialPrice (int days) {
+    public double calculatePrice (int days) {
         return rentPricePerDay * days;
+    }
+
+    public double getRentPricePerDay () {
+        return rentPricePerDay;
     }
 
 }

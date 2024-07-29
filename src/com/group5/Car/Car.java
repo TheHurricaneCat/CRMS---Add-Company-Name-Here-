@@ -13,12 +13,13 @@ public class Car {
     private String licensePlate;
 
 
-    public Car (String name, int carID, Make make, Model model, ArrayList<Part> parts, String licensePlate) {
+    public Car (String name, int carID, Make make, Model model, ArrayList<Part> parts, RentStatus status, String licensePlate) {
         this.name = name;
         this.carID = carID;
         this.make = make;
         this.model = model;
         this.parts = parts;
+        this.status = status;
         this.licensePlate = licensePlate;
     }
 

@@ -1,6 +1,10 @@
 package com.group5.Car;
 
 import com.group5.Application.CarPanel;
+import com.group5.Car.Parts.BodyFactory;
+import com.group5.Car.Parts.DrivetrainFactory;
+import com.group5.Car.Parts.EngineFactory;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -41,7 +45,7 @@ abstract public class CarDBHandler {
         
         for (String s : recordList) {
             
-            if (!s.contains("DELETED")) {
+            if (!s.equalsIgnoreCase("DELETED")) {
                 String id = s.split(",")[0];
                 carList.add(getCar(Integer.parseInt(id)));
                 //System.out.println(s);
@@ -51,6 +55,7 @@ abstract public class CarDBHandler {
         
         //preload the data
         for (Car car : carList) {
+            if (car == null) continue;
             // when adding new car wrap carPanel with another panel
             JPanel panel = new JPanel();
             panel.setBackground(new Color(0, 0, 0, 0));
@@ -76,7 +81,12 @@ abstract public class CarDBHandler {
             + "," + car.getMake().getName()
             + "," + car.getMake().getCountry()
             + "," + car.getModel().getName()
-            + "," + car.getModel().getModelYear();
+            + "," + car.getModel().getModelYear()
+            + "," + car.getLicensePlate()
+            + "," + Boolean.toString(car.getStatus().isRented())
+            + "," + ((car.getStatus().getOwner() != null)? car.getStatus().getOwner().getUsername() : "Unowned")
+            + "," + ((car.getStatus().getPrice() != null)? car.getStatus().getPrice().getRentPricePerDay() : 0)
+            + "," + car.getStatus().getRentDurationDays()
         ;
 
         for (Part part : car.getParts()) {
@@ -205,6 +215,46 @@ abstract public class CarDBHandler {
 
     static private Car parseData (String[] info) {
 
+        /*
+
+        Make make = new Make(, );
+        
+        CarBuilder carbuilder = new CarBuilder();
+        carbuilder
+            .setName()
+            .setMake(make)
+            .setModel(new Model(, make, Integer.parseInt()))
+            .setPlate()
+            .setStatus(new RentStatus(new Price(Double.parseDouble())))
+            .addPart(new BodyFactory().create()
+                .setBodyWeight(Double.parseDouble())
+                .setBodyLength(Double.parseDouble())
+                    .setBodyWidth(Double.parseDouble())
+                    .setCargoCapacity(Double.parseDouble())
+                    .setTowingCapacity(Double.parseDouble())
+                    .setSeatingCapacity(Integer.parseInt())
+                    .setFuelCapacity(Double.parseDouble())
+                    .setColor()
+                    .setBodyType()
+            )
+            .addPart(new DrivetrainFactory().create()
+                .setWheelDriveType()
+                    .setTransmissionType()
+                    .setGearCount(Integer.parseInt())
+            ).addPart(new EngineFactory().create()
+                    .setPistonConfiguration()
+                    .setMaxSpeed(Double.parseDouble())
+                    .setMaxRPM(Double.parseDouble())
+                    .setZeroToHundredKMH(Double.parseDouble())
+                    .setEngineDisplacement(Double.parseDouble())
+                    .setPower(Integer.parseInt())
+                    .setTorque(Integer.parseInt())
+                    .setFuelType()
+                    .setCityFuelEconomy(Double.parseDouble())
+                    .setHighwayFuelEconomy(Double.parseDouble())
+            )
+        ;
+        */
         return null;
     }
     
