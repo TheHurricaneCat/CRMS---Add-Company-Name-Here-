@@ -422,6 +422,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         int carIDInput = Integer.parseInt(getInput);
         try {
             CarDBHandler.deleteCar(carIDInput);
+            CarDBHandler.reload(CarViewerPanel);
         } catch (Exception e) {
         
         }

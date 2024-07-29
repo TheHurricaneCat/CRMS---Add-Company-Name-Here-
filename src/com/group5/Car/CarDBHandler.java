@@ -15,12 +15,22 @@ import com.group5.Car.Parts.DrivetrainFactory;
 import com.group5.Car.Parts.EngineFactory;
 import com.group5.Car.Parts.TransmissionFactory;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Panel;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
 abstract public class CarDBHandler {
+    
+    static public void reload(JPanel jpanel1) throws IOException {
+        Component[] components = jpanel1.getComponents();
+        //remove all components
+        for (Component c : components) {
+            jpanel1.remove(c);
+        }
+        preLoad(jpanel1);
+    }
     
     static public void preLoad(JPanel jPanel1) throws FileNotFoundException, IOException, NumberFormatException {
         
@@ -37,9 +47,10 @@ abstract public class CarDBHandler {
         
         for (String s : recordList) {
             
-            if (!"DELETED".equalsIgnoreCase(s)) {
+            if (!s.contains("DELETED")) {
                 String id = s.split(",")[0];
                 carList.add(getCar(Integer.parseInt(id)));
+                //System.out.println(s);
             }
 
         }
