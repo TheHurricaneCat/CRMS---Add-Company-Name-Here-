@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
 public class UserDBHandler {
     private File db = new File("src/com/group5/Login/db.txt");
     // maps (hash maps) are basically arrays but each element has 2 value slots
-    private /*final*/ Map<String, User> activeUsers = new HashMap<>();
+    static private /*final*/ Map<String, User> activeUsers = new HashMap<>();
     
     private UserDBHandler() {}
         private static final UserDBHandler activeInstance = new UserDBHandler();
@@ -71,7 +71,7 @@ public class UserDBHandler {
         }
     }
     
-    public User getActiveUser(String username) {
+    static public User getActiveUser(String username) {
         return activeUsers.get(username);
     }
     

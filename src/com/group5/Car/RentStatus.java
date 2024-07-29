@@ -24,10 +24,10 @@ public class RentStatus {
         freeUp();
         setPrice(price);
     }
-    
-    public RentStatus (Price price, int rentDurationDays) {
-        freeUp();
-        setPrice(price);
+
+    public RentStatus (Customer owner, Price price, int rentDurationDays) {
+        this.owner = owner;
+        this.price = price;
         this.rentDurationDays = rentDurationDays;
     }
     

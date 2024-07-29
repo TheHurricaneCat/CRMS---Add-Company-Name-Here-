@@ -4,6 +4,8 @@ import com.group5.Application.CarPanel;
 import com.group5.Car.Parts.BodyFactory;
 import com.group5.Car.Parts.DrivetrainFactory;
 import com.group5.Car.Parts.EngineFactory;
+import com.group5.Login.UserDBHandler;
+import com.group5.User.Customer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -214,48 +216,57 @@ abstract public class CarDBHandler {
 
 
     static private Car parseData (String[] info) {
+        
+        
+        Make make = new Make(info[2], info[3]);
+        RentStatus status;
+        if (info[7].equalsIgnoreCase("false")) {
+            status = new RentStatus(new Price(Double.parseDouble(info[9])));
+        } else {
+            Customer owner = (Customer) UserDBHandler.getActiveUser(info[8]);
+            Price price = new Price(Double.parseDouble(info[9]));
+            int rentDurationDays = Integer.parseInt(info[10]);
+            status = new RentStatus(owner, price, rentDurationDays);
+        }
 
-        /*
-
-        Make make = new Make(, );
         
         CarBuilder carbuilder = new CarBuilder();
         carbuilder
-            .setName()
+            .setCarID(Integer.parseInt(info[0]))
+            .setName(info[1])
             .setMake(make)
-            .setModel(new Model(, make, Integer.parseInt()))
-            .setPlate()
-            .setStatus(new RentStatus(new Price(Double.parseDouble())))
+            .setModel(new Model(info[4], make, Integer.parseInt(info[5])))
+            .setPlate(info[6])
+            .setStatus(new RentStatus(status))
             .addPart(new BodyFactory().create()
-                .setBodyWeight(Double.parseDouble())
-                .setBodyLength(Double.parseDouble())
-                    .setBodyWidth(Double.parseDouble())
-                    .setCargoCapacity(Double.parseDouble())
-                    .setTowingCapacity(Double.parseDouble())
-                    .setSeatingCapacity(Integer.parseInt())
-                    .setFuelCapacity(Double.parseDouble())
-                    .setColor()
-                    .setBodyType()
-            )
-            .addPart(new DrivetrainFactory().create()
-                .setWheelDriveType()
-                    .setTransmissionType()
-                    .setGearCount(Integer.parseInt())
+                .setBodyWeight(Double.parseDouble(info[11]))
+                .setBodyLength(Double.parseDouble(info[12]))
+                .setBodyWidth(Double.parseDouble(info[13]))
+                .setCargoCapacity(Double.parseDouble(info[14]))
+                .setTowingCapacity(Double.parseDouble(info[15]))
+                .setSeatingCapacity(Integer.parseInt(info[16]))
+                .setFuelCapacity(Double.parseDouble(info[17]))
+                .setColor(info[18])
+                .setBodyType(info[19])
+            ).addPart(new DrivetrainFactory().create()
+                .setWheelDriveType(info[20])
+                .setTransmissionType(info[21])
+                .setGearCount(Integer.parseInt(info[22]))
             ).addPart(new EngineFactory().create()
-                    .setPistonConfiguration()
-                    .setMaxSpeed(Double.parseDouble())
-                    .setMaxRPM(Double.parseDouble())
-                    .setZeroToHundredKMH(Double.parseDouble())
-                    .setEngineDisplacement(Double.parseDouble())
-                    .setPower(Integer.parseInt())
-                    .setTorque(Integer.parseInt())
-                    .setFuelType()
-                    .setCityFuelEconomy(Double.parseDouble())
-                    .setHighwayFuelEconomy(Double.parseDouble())
+                .setPistonConfiguration(info[23])
+                .setMaxSpeed(Double.parseDouble(info[24]))
+                .setMaxRPM(Double.parseDouble(info[25]))
+                .setZeroToHundredKMH(Double.parseDouble(info[26]))
+                .setEngineDisplacement(Double.parseDouble(info[27]))
+                .setPower(Integer.parseInt(info[28]))
+                .setTorque(Integer.parseInt(info[29]))
+                .setFuelType(info[30])
+                .setCityFuelEconomy(Double.parseDouble(info[31]))
+                .setHighwayFuelEconomy(Double.parseDouble(info[32]))
             )
         ;
-        */
-        return null;
+         
+        return carbuilder.build();
     }
     
 
