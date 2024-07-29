@@ -31,6 +31,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 
 /**
@@ -42,6 +43,7 @@ public class EmployeePanel extends javax.swing.JFrame {
     private static EmployeePanel instance;
     private UserDBHandler handler;
     AddCarForm addCar = new AddCarForm(this);
+    EditCarForm editCar;
     
     
     /**
@@ -424,11 +426,25 @@ public class EmployeePanel extends javax.swing.JFrame {
     private void AddCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCarButtonActionPerformed
         
         addCar.setVisible(true);
+
         
     }//GEN-LAST:event_AddCarButtonActionPerformed
 
     private void EditCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCarButtonActionPerformed
-        // TODO add your handling code here:
+        
+        int carID = -1;
+        try {
+            carID = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter ID of Car to edit."));
+        } catch (Exception e) {
+        }
+        
+        try {
+            editCar = new EditCarForm(CarDBHandler.getCar(carID));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        editCar.setVisible(true);
+
     }//GEN-LAST:event_EditCarButtonActionPerformed
 
     private void DeleteCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteCarButtonActionPerformed

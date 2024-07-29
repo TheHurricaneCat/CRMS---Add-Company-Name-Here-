@@ -4,10 +4,12 @@
  */
 package com.group5.Application;
 
+import com.group5.Car.Car;
 import com.group5.Car.CarBuilder;
 import com.group5.Car.CarDBHandler;
 import com.group5.Car.Make;
 import com.group5.Car.Model;
+import com.group5.Car.Part;
 import com.group5.Car.Parts.BodyFactory;
 import com.group5.Car.Parts.DrivetrainFactory;
 import com.group5.Car.Parts.EngineFactory;
@@ -22,19 +24,69 @@ import javax.swing.JTextField;
  *
  * @author norielloslos
  */
-public class AddCarForm extends javax.swing.JFrame {
-    
-    
-    EmployeePanel parent;
+public class EditCarForm extends javax.swing.JFrame {
     
     /**
      * Creates new form AddCarForm
      */
-    public AddCarForm(EmployeePanel parent) {
+    Car editingCar;
+    String[] info;
+
+    public EditCarForm(Car car) {
+        editingCar = car;
         initComponents();
-        this.parent = parent;
         getContentPane().setBackground(new java.awt.Color(29, 34, 67));
         
+        String carInfo;
+        carInfo =
+            car.getCarID()
+            + "," + car.getName()
+            + "," + car.getMake().getName()
+            + "," + car.getMake().getCountry()
+            + "," + car.getModel().getName()
+            + "," + car.getModel().getModelYear()
+            + "," + car.getLicensePlate()
+            + "," + Boolean.toString(car.getStatus().isRented())
+            + "," + ((car.getStatus().getOwner() != null)? car.getStatus().getOwner().getUsername() : "Unowned")
+            + "," + ((car.getStatus().getPrice() != null)? car.getStatus().getPrice().getRentPricePerDay() : 0)
+            + "," + car.getStatus().getRentDurationDays()
+        ;
+        for (Part part : car.getParts()) {
+            for (String spec : part.getSpecs()) {
+                carInfo += "," + spec;
+            }
+        }
+        info = carInfo.split(",");
+        
+        this.TFName.setText(info[1]);
+        this.TFMakeName.setText(info[2]);
+        this.TFMakeCountry.setText(info[3]);
+        this.TFModelName.setText(info[4]);
+        this.TFModelYear.setText(info[5]);
+        this.TFPlate.setText(info[6]);
+        this.TFBodyWeight.setText(info[11]);
+        this.TFBodyLength.setText(info[12]);
+        this.TFBodyWidth.setText(info[13]);
+        this.TFBodyCargoCapacity.setText(info[14]);
+        this.TFBodyTowingCapacity.setText(info[14]);
+        this.TFBodySeatingCapacity.setText(info[16]);
+        this.TFBodyFuelCapacity.setText(info[17]);
+        this.TFBodyColor.setText(info[18]);
+        this.TFBodyType.setText(info[19]);
+        this.TFDrivetrainWheelDriveType.setText(info[20]);
+        this.TFDrivetrainTransmissionType.setText(info[21]);
+        this.TFDrivetrainGearCount.setText(info[22]);
+        this.TFEnginePistonConfiguration.setText(info[23]);
+        this.TFEngineMaxSpeed.setText(info[24]);
+        this.TFEngineMaxRPM.setText(info[25]);
+        this.TFEngineZeroToHundredKMH.setText(info[26]);
+        this.TFEngineDisplacement.setText(info[27]);
+        this.TFEnginePower.setText(info[28]);
+        this.TFEngineTorque.setText(info[29]);
+        this.TFEngineFuelType.setText(info[30]);
+        this.TFEngineCityFuelEconomy.setText(info[31]);
+        this.TFEngineHighwayFuelEconomy.setText(info[32]);
+
     }
 
     /**
@@ -146,24 +198,23 @@ public class AddCarForm extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(242, 235, 235));
-        jLabel2.setText("ADD CAR");
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("EDIT CAR");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(184, 38, 34));
-        jLabel7.setText("Input car information to add to database records");
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Edit car records in the database");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(318, 318, 318)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(jLabel7)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -647,7 +698,7 @@ public class AddCarForm extends javax.swing.JFrame {
         BTTClear.setBackground(new java.awt.Color(148, 28, 0));
         BTTClear.setFont(new java.awt.Font("Brandon Text", 1, 24)); // NOI18N
         BTTClear.setForeground(new java.awt.Color(242, 235, 235));
-        BTTClear.setText("CLEAR");
+        BTTClear.setText("RESET");
         BTTClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTTClearActionPerformed(evt);
@@ -700,15 +751,13 @@ public class AddCarForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addComponent(PNLBasicInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(PNLEngineInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BTTClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BTTSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PNLPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, 0))
+                    .addComponent(PNLPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -733,12 +782,34 @@ public class AddCarForm extends javax.swing.JFrame {
 
     
     private void BTTClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTTClearActionPerformed
-        for (Component comp : this.getComponents()) {
-            if (comp instanceof JTextField) {
-                JTextField tf = (JTextField) comp;
-                tf.setText("\n");
-            }
-        }
+        this.TFName.setText(info[1]);
+        this.TFMakeName.setText(info[2]);
+        this.TFMakeCountry.setText(info[3]);
+        this.TFModelName.setText(info[4]);
+        this.TFModelYear.setText(info[5]);
+        this.TFPlate.setText(info[6]);
+        this.TFBodyWeight.setText(info[11]);
+        this.TFBodyLength.setText(info[12]);
+        this.TFBodyWidth.setText(info[13]);
+        this.TFBodyCargoCapacity.setText(info[14]);
+        this.TFBodyTowingCapacity.setText(info[14]);
+        this.TFBodySeatingCapacity.setText(info[16]);
+        this.TFBodyFuelCapacity.setText(info[17]);
+        this.TFBodyColor.setText(info[18]);
+        this.TFBodyType.setText(info[19]);
+        this.TFDrivetrainWheelDriveType.setText(info[20]);
+        this.TFDrivetrainTransmissionType.setText(info[21]);
+        this.TFDrivetrainGearCount.setText(info[22]);
+        this.TFEnginePistonConfiguration.setText(info[23]);
+        this.TFEngineMaxSpeed.setText(info[24]);
+        this.TFEngineMaxRPM.setText(info[25]);
+        this.TFEngineZeroToHundredKMH.setText(info[26]);
+        this.TFEngineDisplacement.setText(info[27]);
+        this.TFEnginePower.setText(info[28]);
+        this.TFEngineTorque.setText(info[29]);
+        this.TFEngineFuelType.setText(info[30]);
+        this.TFEngineCityFuelEconomy.setText(info[31]);
+        this.TFEngineHighwayFuelEconomy.setText(info[32]);
     }//GEN-LAST:event_BTTClearActionPerformed
 
     private void BTTSaveActionPerformed(java.awt.event.ActionEvent evt) {                                        
@@ -806,14 +877,15 @@ public class AddCarForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddCarForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditCarForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddCarForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditCarForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddCarForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditCarForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddCarForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditCarForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
     }
 
