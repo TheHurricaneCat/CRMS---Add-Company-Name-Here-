@@ -43,7 +43,7 @@ public class CarPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         LBLCarName = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BTNViewCarDetails = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         PNLAvailableColor = new javax.swing.JPanel();
 
@@ -68,10 +68,15 @@ public class CarPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Misc/!car.png"))); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(109, 118, 173));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(242, 235, 235));
-        jButton1.setText("View Car");
+        BTNViewCarDetails.setBackground(new java.awt.Color(109, 118, 173));
+        BTNViewCarDetails.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BTNViewCarDetails.setForeground(new java.awt.Color(242, 235, 235));
+        BTNViewCarDetails.setText("View Car");
+        BTNViewCarDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNViewCarDetailsActionPerformed(evt);
+            }
+        });
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -106,7 +111,7 @@ public class CarPanel extends javax.swing.JPanel {
                                 .addComponent(PNLAvailableColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(BTNViewCarDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
                 .addContainerGap())
@@ -123,10 +128,17 @@ public class CarPanel extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(PNLAvailableColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BTNViewCarDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BTNViewCarDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNViewCarDetailsActionPerformed
+        
+        CarViewPanel cvp = new CarViewPanel(car);
+        cvp.setVisible(true);
+        
+    }//GEN-LAST:event_BTNViewCarDetailsActionPerformed
 
     private void initializeCarDetails(){
         this.LBLCarName.setText("ID:" + car.getCarID() + " " + car.getName());
@@ -136,9 +148,9 @@ public class CarPanel extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BTNViewCarDetails;
     private javax.swing.JLabel LBLCarName;
     private javax.swing.JPanel PNLAvailableColor;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

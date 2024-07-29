@@ -199,7 +199,7 @@ abstract public class CarDBHandler {
             + "," + car.getModel().getModelYear()
             + "," + car.getLicensePlate()
             + "," + Boolean.toString(car.getStatus().isRented())
-            + "," + ((car.getStatus().getOwner() != null)? car.getStatus().getOwner().getUsername() : "Unowned")
+            + "," + ((car.getStatus().getOwner() != null)? car.getStatus().getOwner().getUsername() : "No Renter")
             + "," + ((car.getStatus().getPrice() != null)? car.getStatus().getPrice().getRentPricePerDay() : 0)
             + "," + car.getStatus().getRentDurationDays()
         ;
