@@ -594,6 +594,12 @@ public class AddCarForm extends javax.swing.JFrame {
                 tf.setText("\n");
             }
         }
+        for (Component comp : this.PNLEngineInfo.getComponents()) {
+            if (comp instanceof JTextField) {
+                JTextField tf = (JTextField) comp;
+                tf.setText("\n");
+            }
+        }
     }//GEN-LAST:event_BTTClearActionPerformed
 
     /**
