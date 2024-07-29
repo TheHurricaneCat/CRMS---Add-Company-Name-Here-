@@ -9,6 +9,8 @@ public class CarBuilder {
     private Make make;
     private Model model;
     private ArrayList<Part> part = new ArrayList<>();
+    private RentStatus status;
+    private String licensePlate;
 
 
     public CarBuilder setName (String name) {
@@ -36,9 +38,20 @@ public class CarBuilder {
         return this;
     }
 
+    public CarBuilder setStatus (RentStatus status) {
+        this.status = status;
+        return this;
+    }
+    
+    public CarBuilder setPlate (String licensePlate) {
+        this.licensePlate = licensePlate;
+        return this;
+    }
+
+    
    
     public Car build () {
-        return new Car(name, carID, make, model, part);
+        return new Car(name, carID, make, model, part, licensePlate);
     }
 
 }

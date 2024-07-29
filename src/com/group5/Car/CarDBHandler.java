@@ -9,14 +9,8 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
-
-import com.group5.Car.Parts.BodyFactory;
-import com.group5.Car.Parts.DrivetrainFactory;
-import com.group5.Car.Parts.EngineFactory;
-import com.group5.Car.Parts.TransmissionFactory;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Panel;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -200,50 +194,7 @@ abstract public class CarDBHandler {
 
     static private Car parseData (String[] info) {
 
-        CarBuilder carbuilder = new CarBuilder();
-        
-        Make make = new Make(info[2],info[3]);
-
-        carbuilder
-            .setCarID(Integer.parseInt(info[0]))
-            .setName(info[1])
-            .setMake(make)
-            .setModel(new Model(info[4], make, Integer.parseInt(info[5])))
-            .addPart(new EngineFactory().create()
-                .setType("Engine")
-                .setEngineDisplacement(1.6)
-                .setHorsepower(125)
-                .setTorque(106)
-                .setFuelType("Gasoline")
-                .setCityFuelEconomy(28)
-                .setHighwayFuelEconomy(36)
-                .setPistonConfiguration("Inline-4")
-            )
-            .addPart(new TransmissionFactory().create()
-                .setType("Transmission")
-                .setTransmissionType("Manual")
-                .setGearCount(5)
-            )
-            .addPart(new DrivetrainFactory().create()
-                .setType("Drivetrain")
-                .setWheelDriveType("FWD")
-                .setFinalDriveRatio(4.25)
-                .setDifferentialRatio(4.25)
-            )
-            .addPart(new BodyFactory().create()
-                .setType("Body")
-                .setGrossWeight(1420)
-                .setCurbWeight(1036)
-                .setCargoCapacity(11.1)
-                .setTowingCapacity(0)
-                .setSeatingCapacity(5)
-                .setColor("Milano Red")
-                .setFuelCapacity(11.9)
-                .setBodyType("Sedan")
-            )
-        ;
-
-        return carbuilder.build();
+        return null;
     }
     
 
