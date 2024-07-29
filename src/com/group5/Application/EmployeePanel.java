@@ -291,6 +291,11 @@ public class EmployeePanel extends javax.swing.JFrame {
         GenerateReportButton.setForeground(new java.awt.Color(242, 235, 235));
         GenerateReportButton.setText("GENERATE REPORT");
         GenerateReportButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        GenerateReportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenerateReportButtonActionPerformed(evt);
+            }
+        });
 
         jLabel3.setForeground(new java.awt.Color(242, 235, 235));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -460,33 +465,16 @@ public class EmployeePanel extends javax.swing.JFrame {
         
     }//GEN-LAST:event_DeleteCarButtonActionPerformed
 
+    private void GenerateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateReportButtonActionPerformed
+        SelectReportPanel srp = new SelectReportPanel();
+        srp.setVisible(true);
+    }//GEN-LAST:event_GenerateReportButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EmployeePanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EmployeePanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EmployeePanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EmployeePanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+        
 
     }
 
