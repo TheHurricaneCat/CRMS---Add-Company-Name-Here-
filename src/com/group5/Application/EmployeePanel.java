@@ -16,13 +16,18 @@ import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -53,8 +58,27 @@ public class EmployeePanel extends javax.swing.JFrame {
         jLabel4.setText(handler.getActiveUser(employee.getUsername()).getUsername());
         getContentPane().setBackground(new java.awt.Color(29, 34, 67));
         
+        addPropertyChangeListener("visible", new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if ((boolean) evt.getNewValue()) {
+                    System.out.println("Working");
+                    try {
+                        CarDBHandler.reload(CarViewerPanel);
+                    } catch (IOException ex) {
+                        Logger.getLogger(EmployeePanel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }   
+            }
+        });
+        
+        
        CarDBHandler.preLoad(CarViewerPanel);
     };
+    
+    public void propertyChange(PropertyChangeEvent evt) {
+        
+    }
     
     public static EmployeePanel getInstance(Employee employee) throws IOException {
         if (instance == null) {
@@ -423,6 +447,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         int carIDInput = Integer.parseInt(getInput);
         try {
             CarDBHandler.deleteCar(carIDInput);
+            CarDBHandler.reload(CarViewerPanel);
         } catch (Exception e) {
         
         }
