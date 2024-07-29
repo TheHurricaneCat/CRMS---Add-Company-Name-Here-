@@ -89,7 +89,7 @@ public class EmployeePanel extends javax.swing.JFrame {
     
     private void setupScrollPane() {
         // Set layout for jPanel1
-        CarViewerPanel.setLayout(new GridLayout(0, getDynamicGridColumn())); // Dynamic GridLayout
+        CarViewerPanel.setLayout(new GridLayout(0, getDynamicGridColumn(), 10, 10)); // Dynamic GridLayout
 
         // Initialize JScrollPane
         CarViewerScrollPanel.setViewportView(CarViewerPanel);
@@ -362,7 +362,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         CarViewerScrollPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         CarViewerScrollPanel.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        CarViewerPanel.setBackground(new java.awt.Color(54, 63, 125));
+        CarViewerPanel.setBackground(new java.awt.Color(44, 52, 103));
 
         javax.swing.GroupLayout CarViewerPanelLayout = new javax.swing.GroupLayout(CarViewerPanel);
         CarViewerPanel.setLayout(CarViewerPanelLayout);

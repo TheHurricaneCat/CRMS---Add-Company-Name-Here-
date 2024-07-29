@@ -23,16 +23,15 @@ import javax.swing.JPanel;
 
 abstract public class CarDBHandler {
     
-    static public void reload(JPanel jpanel1) throws IOException {
-        Component[] components = jpanel1.getComponents();
-        //remove all components
+    static public void reload(JPanel panel) throws IOException {
+        Component[] components = panel.getComponents();
         for (Component c : components) {
-            jpanel1.remove(c);
+            panel.remove(c);
         }
-        preLoad(jpanel1);
+        preLoad(panel);
     }
     
-    static public void preLoad(JPanel jPanel1) throws FileNotFoundException, IOException, NumberFormatException {
+    static public void preLoad(JPanel containerPanel) throws FileNotFoundException, IOException, NumberFormatException {
         
         Scanner reader = new Scanner(new File("CarDB.csv"));
         reader.useDelimiter("[\n]");
@@ -61,12 +60,12 @@ abstract public class CarDBHandler {
             // when adding new car wrap carPanel with another panel
             JPanel panel = new JPanel();
             panel.setBackground(new Color(0, 0, 0, 0));
-            CarPanel subPanel = new CarPanel(jPanel1, car);
+            CarPanel subPanel = new CarPanel(panel, car);
             subPanel.setPreferredSize(new Dimension(177, 186));
             panel.add(subPanel);
-            jPanel1.add(panel);
-            jPanel1.revalidate();
-            jPanel1.repaint();
+            containerPanel.add(panel);
+            containerPanel.revalidate();
+            containerPanel.repaint();
         }
         //clean up preloaded temp data
         //carList.clear();
