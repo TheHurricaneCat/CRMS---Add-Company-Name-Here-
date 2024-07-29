@@ -220,7 +220,6 @@ public class EmployeePanel extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         LogOutButton = new javax.swing.JButton();
         AddCarButton = new javax.swing.JButton();
-        ViewCarButton = new javax.swing.JButton();
         EditCarButton = new javax.swing.JButton();
         GenerateReportButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -274,12 +273,6 @@ public class EmployeePanel extends javax.swing.JFrame {
             }
         });
 
-        ViewCarButton.setBackground(new java.awt.Color(184, 38, 34));
-        ViewCarButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        ViewCarButton.setForeground(new java.awt.Color(242, 235, 235));
-        ViewCarButton.setText("VIEW CAR");
-        ViewCarButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
         EditCarButton.setBackground(new java.awt.Color(184, 38, 34));
         EditCarButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         EditCarButton.setForeground(new java.awt.Color(242, 235, 235));
@@ -322,7 +315,6 @@ public class EmployeePanel extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ViewCarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(AddCarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(EditCarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -352,9 +344,7 @@ public class EmployeePanel extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ViewCarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(AddCarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(EditCarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -362,7 +352,7 @@ public class EmployeePanel extends javax.swing.JFrame {
                 .addComponent(DeleteCarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(GenerateReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -389,7 +379,7 @@ public class EmployeePanel extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(242, 235, 235));
-        jLabel5.setText("VIEW CAR");
+        jLabel5.setText("CAR VIEW");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -492,7 +482,6 @@ public class EmployeePanel extends javax.swing.JFrame {
     private javax.swing.JButton EditCarButton;
     private javax.swing.JButton GenerateReportButton;
     private javax.swing.JButton LogOutButton;
-    private javax.swing.JButton ViewCarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
