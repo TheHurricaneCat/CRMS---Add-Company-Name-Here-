@@ -63,7 +63,6 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="PNLBasicInfo" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -72,7 +71,6 @@
                   <Component id="BTTSave" alignment="0" max="32767" attributes="0"/>
                   <Component id="PNLPrice" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -780,7 +778,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="TFPlate">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ad" green="76" red="6d" type="rgb"/>
             </Property>
@@ -1212,6 +1209,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="TFPriceRentCostPerDay">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ad" green="76" red="6d" type="rgb"/>
             </Property>

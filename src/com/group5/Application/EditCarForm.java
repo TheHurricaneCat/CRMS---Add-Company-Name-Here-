@@ -33,8 +33,9 @@ public class EditCarForm extends javax.swing.JFrame {
     String[] info;
 
     public EditCarForm(Car car) {
-        editingCar = car;
+
         initComponents();
+        editingCar = car;
         getContentPane().setBackground(new java.awt.Color(29, 34, 67));
         
         String carInfo;
@@ -86,9 +87,7 @@ public class EditCarForm extends javax.swing.JFrame {
         this.TFEngineFuelType.setText(info[30]);
         this.TFEngineCityFuelEconomy.setText(info[31]);
         this.TFEngineHighwayFuelEconomy.setText(info[32]);
-
-        this.TFPriceRentCostPerDay.setText(Double.toString(car.getStatus().getPrice().getRentPricePerDay()));;
-
+        this.TFPriceRentCostPerDay.setText(Double.toString(car.getStatus().getPrice().getRentPricePerDay()));
     }
 
     /**
@@ -375,7 +374,6 @@ public class EditCarForm extends javax.swing.JFrame {
         jLabel29.setForeground(new java.awt.Color(242, 235, 235));
         jLabel29.setText("Plate#:");
 
-        TFPlate.setEditable(false);
         TFPlate.setBackground(new java.awt.Color(109, 118, 173));
         TFPlate.setForeground(new java.awt.Color(242, 235, 235));
 
@@ -784,7 +782,7 @@ public class EditCarForm extends javax.swing.JFrame {
 
     
     private void BTTClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTTClearActionPerformed
-        /*this.TFName.setText(info[1]);
+        this.TFName.setText(info[1]);
         this.TFMakeName.setText(info[2]);
         this.TFMakeCountry.setText(info[3]);
         this.TFModelName.setText(info[4]);
@@ -811,7 +809,7 @@ public class EditCarForm extends javax.swing.JFrame {
         this.TFEngineTorque.setText(info[29]);
         this.TFEngineFuelType.setText(info[30]);
         this.TFEngineCityFuelEconomy.setText(info[31]);
-        this.TFEngineHighwayFuelEconomy.setText(info[32]);*/
+        this.TFEngineHighwayFuelEconomy.setText(info[32]);
     }//GEN-LAST:event_BTTClearActionPerformed
 
     private void BTTSaveActionPerformed(java.awt.event.ActionEvent evt) {                                        
@@ -835,8 +833,7 @@ public class EditCarForm extends javax.swing.JFrame {
                     .setFuelCapacity(Double.parseDouble(this.TFBodyFuelCapacity.getText()))
                     .setColor(this.TFBodyColor.getText())
                     .setBodyType(this.TFBodyType.getText())
-            )
-            .addPart(new DrivetrainFactory().create()
+            ).addPart(new DrivetrainFactory().create()
                 .setWheelDriveType(this.TFDrivetrainWheelDriveType.getText())
                     .setTransmissionType(this.TFDrivetrainTransmissionType.getText())
                     .setGearCount(Integer.parseInt(this.TFDrivetrainGearCount.getText()))

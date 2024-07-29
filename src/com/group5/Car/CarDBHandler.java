@@ -257,7 +257,13 @@ abstract public class CarDBHandler {
                 + "," + car.getMake().getName()
                 + "," + car.getMake().getCountry()
                 + "," + car.getModel().getName()
-                + "," + car.getModel().getModelYear();
+                + "," + car.getModel().getModelYear()
+                + "," + car.getLicensePlate()
+                + "," + Boolean.toString(car.getStatus().isRented())
+                + "," + ((car.getStatus().getOwner() != null)? car.getStatus().getOwner().getUsername() : "Unowned")
+                + "," + ((car.getStatus().getPrice() != null)? car.getStatus().getPrice().getRentPricePerDay() : 0)
+                + "," + car.getStatus().getRentDurationDays()
+            ;
             for (Part part : car.getParts()) {
                 for (String spec : part.getSpecs()) {
                     carInfo += "," + spec;

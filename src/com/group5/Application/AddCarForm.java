@@ -322,7 +322,6 @@ public class AddCarForm extends javax.swing.JFrame {
         jLabel29.setForeground(new java.awt.Color(242, 235, 235));
         jLabel29.setText("Plate#:");
 
-        TFPlate.setEditable(false);
         TFPlate.setBackground(new java.awt.Color(109, 118, 173));
         TFPlate.setForeground(new java.awt.Color(242, 235, 235));
 
@@ -670,6 +669,7 @@ public class AddCarForm extends javax.swing.JFrame {
         jLabel41.setForeground(new java.awt.Color(242, 235, 235));
         jLabel41.setText("Rent Cost/Day(Php):");
 
+        TFPriceRentCostPerDay.setEditable(false);
         TFPriceRentCostPerDay.setBackground(new java.awt.Color(109, 118, 173));
         TFPriceRentCostPerDay.setForeground(new java.awt.Color(242, 235, 235));
 
@@ -700,15 +700,13 @@ public class AddCarForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addComponent(PNLBasicInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(PNLEngineInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BTTClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BTTSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PNLPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, 0))
+                    .addComponent(PNLPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

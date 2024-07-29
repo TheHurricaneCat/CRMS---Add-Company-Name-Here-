@@ -430,22 +430,22 @@ public class EmployeePanel extends javax.swing.JFrame {
         
         AddCarForm addCar = new AddCarForm(this);
         addCar.setVisible(true);
+        try {
+            CarDBHandler.reload(CarViewerPanel);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         
     }//GEN-LAST:event_AddCarButtonActionPerformed
 
     private void EditCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCarButtonActionPerformed
         
-        int carID = -1;
+        int id = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter ID of Car to edit."));
         try {
-            carID = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter ID of Car to edit."));
-        } catch (Exception e) {
-        }
-        
-        EditCarForm editCar;
-        try {
-            editCar = new EditCarForm(CarDBHandler.getCar(carID));
+            EditCarForm editCar = new EditCarForm(CarDBHandler.getCar(id));
             editCar.setVisible(true);
+            CarDBHandler.reload(CarViewerPanel);
         } catch (IOException e) {
             e.printStackTrace();
         }
