@@ -36,6 +36,7 @@ public class EmployeePanel extends javax.swing.JFrame {
     private Employee employee;
     private static EmployeePanel instance;
     private UserDBHandler handler;
+    AddCarForm addCar = new AddCarForm(this);
     
     
     /**
@@ -408,7 +409,7 @@ public class EmployeePanel extends javax.swing.JFrame {
 
     private void AddCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCarButtonActionPerformed
         
-        
+        addCar.setVisible(true);
         
     }//GEN-LAST:event_AddCarButtonActionPerformed
 
