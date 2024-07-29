@@ -217,37 +217,25 @@ public class RegisterPanel extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
-    private void SignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpButtonActionPerformed
+    private void SignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         String firstPass = new String(jPasswordField1.getPassword());
         String confirmPass = new String(jPasswordField2.getPassword());
-<<<<<<< HEAD
+        
         if ((!confirmPass.contains(":") && !jTextField1.getText().contains(":"))) {
             if (firstPass.equals(confirmPass)) {
                 UserDBHandler handler = UserDBHandler.getInstance();
                 if (handler.userExists(jTextField1.getText())) {
                     JOptionPane.showMessageDialog(null, "User already exists... Try a different name.", "CRMS Registration", JOptionPane.WARNING_MESSAGE);
-=======
-        if (firstPass.equals(confirmPass)) {
-            UserDBHandler handler = UserDBHandler.getInstance();
-            if (handler.userExists(jTextField1.getText())) {
-                JOptionPane.showMessageDialog(null, "User already exists... Try a different name.", "CRMS Registration", JOptionPane.WARNING_MESSAGE);
-            } else {
-                // todo: create a button or form for employees only?
-                String[] detectAdmin = jTextField1.getText().split("-");
-                int authority;
-                if (detectAdmin[0].toLowerCase().equals("admin")) {
-                    authority = 0;
->>>>>>> c952fe238633d68dcc7bd0261bdd5b9794aac9f3
                 } else {
                     // todo: create a button or form for employees only?
-                    String[] detectAdmin = jTextField1.getText().split("-");
                     int authority;
-                    if (detectAdmin[1].toLowerCase().equals("admin")) {
+                    if (jTextField1.getText().toLowerCase().contains("-admin")) {
                         authority = 0;
                     } else {
                         authority = 1;
                     }
-                    User user = UserFactory.createUser("1", jTextField1.getText(), new String(jPasswordField1.getPassword()));
+                    
+                    User user = UserFactory.createUser(Integer.toString(authority), jTextField1.getText(), new String(jPasswordField1.getPassword()));
                     try {
                         handler.recordUser(user);
                     } catch (IOException ex) {
@@ -257,19 +245,14 @@ public class RegisterPanel extends javax.swing.JFrame {
                     LoginPanel lPanel = new LoginPanel();
                     lPanel.setVisible(true);
                     dispose();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Passwords does not match... Please try again.", "CRMS Registration", JOptionPane.WARNING_MESSAGE);
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Passwords does not match... Please try again.", "CRMS Registration", JOptionPane.WARNING_MESSAGE);
-            }
         } else {
             JOptionPane.showMessageDialog(null, "Password/Username must not contain ':'... Please try again ", "CRMS Registration", JOptionPane.WARNING_MESSAGE);
         }
-<<<<<<< HEAD
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-=======
-    }//GEN-LAST:event_SignUpButtonActionPerformed
->>>>>>> c952fe238633d68dcc7bd0261bdd5b9794aac9f3
+    }
 
     private void jPasswordField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusGained
         String hint = "Password";
