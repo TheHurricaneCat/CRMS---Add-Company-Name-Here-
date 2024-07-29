@@ -1,4 +1,3 @@
-CUSTOMER:12345:1
 admin:0:0
 
 Josefe:1234567890:0
@@ -6,3 +5,11 @@ Ralf:2021136736:1
 TestUser:12345:0
 Gab:54321:0
 ERIKA:10:1
+HelloWorld:123:1
+
+JohnDoe1:123:1
+JohnDoe2:123:1
+JohnDoe3:123:1
+JohnDoe4:123:1
+JohnDoe5:123:1
+

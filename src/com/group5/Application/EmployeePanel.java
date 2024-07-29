@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -51,7 +52,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         jLabel4.setText(handler.getActiveUser(employee.getUsername()).getUsername());
         getContentPane().setBackground(new java.awt.Color(29, 34, 67));
         
-       CarDBHandler.preLoad(jPanel1);
+       CarDBHandler.preLoad(CarViewerPanel);
     };
     
     public static EmployeePanel getInstance(Employee employee) throws IOException {
@@ -63,10 +64,10 @@ public class EmployeePanel extends javax.swing.JFrame {
     
     private void setupScrollPane() {
         // Set layout for jPanel1
-        jPanel1.setLayout(new GridLayout(0, 3, 0, 0)); // 3 columns, 10 pixels gap
+        CarViewerPanel.setLayout(new GridLayout(0, getDynamicGridColumn())); // Dynamic GridLayout
 
         // Initialize JScrollPane
-        jScrollPane1.setViewportView(jPanel1);
+        CarViewerScrollPanel.setViewportView(CarViewerPanel);
         
     }
     
@@ -82,7 +83,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         layout.setAutoCreateContainerGaps(true);
 
         // Create components to be added to the subPanel
-        JLabel label = new JLabel("Car Panel " + (jPanel1.getComponentCount() + 1));
+        JLabel label = new JLabel("Car Panel " + (CarViewerPanel.getComponentCount() + 1));
         JButton button = new JButton("Action");
 
         // Define the layout for the subPanel
@@ -147,14 +148,14 @@ public class EmployeePanel extends javax.swing.JFrame {
 
                 if (car != null) {
                     // Create the subpanel with the fetched car details
-                    CarPanel subPanel = new CarPanel(jPanel1, car);
+                    CarPanel subPanel = new CarPanel(CarViewerPanel, car);
 
                     // Add the subpanel to the main panel
-                    jPanel1.add(subPanel);
+                    CarViewerPanel.add(subPanel);
 
                     // Refresh the UI to reflect changes
-                    jPanel1.revalidate();
-                    jPanel1.repaint();
+                    CarViewerPanel.revalidate();
+                    CarViewerPanel.repaint();
                 } else {
                     // Show an error message if the car is not found
                     JOptionPane.showMessageDialog(this, "Car not found.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -167,6 +168,16 @@ public class EmployeePanel extends javax.swing.JFrame {
             // Show an error message if the input is invalid
             JOptionPane.showMessageDialog(this, "Please enter a valid car name.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    
+    // For dynamic resizing
+    private int getDynamicGridColumn () {
+        
+        int w = this.getSize().width;
+        int panelW = 180;
+        
+        return (w / panelW) - 2;
     }
 
     /**
@@ -182,21 +193,27 @@ public class EmployeePanel extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        LogOutButton = new javax.swing.JButton();
+        AddCarButton = new javax.swing.JButton();
+        ViewCarButton = new javax.swing.JButton();
+        EditCarButton = new javax.swing.JButton();
+        GenerateReportButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
+        DeleteCarButton = new javax.swing.JButton();
+        CarViewerScrollPanel = new javax.swing.JScrollPane();
+        CarViewerPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(223, 74, 70));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -207,149 +224,143 @@ public class EmployeePanel extends javax.swing.JFrame {
         jLabel1.setText("CRMS");
 
         jLabel2.setForeground(new java.awt.Color(184, 38, 34));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("POWERED BY SIGMA CORP");
 
-        jButton1.setBackground(new java.awt.Color(148, 28, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(242, 235, 235));
-        jButton1.setText("Log out");
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        LogOutButton.setBackground(new java.awt.Color(148, 28, 0));
+        LogOutButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        LogOutButton.setForeground(new java.awt.Color(242, 235, 235));
+        LogOutButton.setText("Log out");
+        LogOutButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        LogOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                LogOutButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(184, 38, 34));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(242, 235, 235));
-        jButton2.setText("ADD CAR");
-        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        AddCarButton.setBackground(new java.awt.Color(184, 38, 34));
+        AddCarButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        AddCarButton.setForeground(new java.awt.Color(242, 235, 235));
+        AddCarButton.setText("ADD CAR");
+        AddCarButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        AddCarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                AddCarButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(184, 38, 34));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(242, 235, 235));
-        jButton3.setText("VIEW CAR");
-        jButton3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        ViewCarButton.setBackground(new java.awt.Color(184, 38, 34));
+        ViewCarButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        ViewCarButton.setForeground(new java.awt.Color(242, 235, 235));
+        ViewCarButton.setText("VIEW CAR");
+        ViewCarButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        EditCarButton.setBackground(new java.awt.Color(184, 38, 34));
+        EditCarButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        EditCarButton.setForeground(new java.awt.Color(242, 235, 235));
+        EditCarButton.setText("EDIT CAR");
+        EditCarButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        EditCarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                EditCarButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(184, 38, 34));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(242, 235, 235));
-        jButton4.setText("EDIT CAR");
-        jButton4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jButton5.setBackground(new java.awt.Color(184, 38, 34));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(242, 235, 235));
-        jButton5.setText("GENERATE REPORT");
-        jButton5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
+        GenerateReportButton.setBackground(new java.awt.Color(184, 38, 34));
+        GenerateReportButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        GenerateReportButton.setForeground(new java.awt.Color(242, 235, 235));
+        GenerateReportButton.setText("GENERATE REPORT");
+        GenerateReportButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jLabel3.setForeground(new java.awt.Color(242, 235, 235));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("[Employee View]");
 
         jLabel4.setForeground(new java.awt.Color(242, 235, 235));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("ADMIN");
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Misc/!!!!revisedcrms (250 x 250 px) (2).png"))); // NOI18N
+
+        DeleteCarButton.setBackground(new java.awt.Color(184, 38, 34));
+        DeleteCarButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        DeleteCarButton.setForeground(new java.awt.Color(242, 235, 235));
+        DeleteCarButton.setText("DELETE CAR");
+        DeleteCarButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        DeleteCarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteCarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ViewCarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(AddCarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(EditCarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(92, 92, 92))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52))))
+                .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(GenerateReportButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(DeleteCarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(12, 12, 12))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ViewCarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(AddCarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(EditCarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(DeleteCarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addComponent(GenerateReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        jPanel1.setBackground(new java.awt.Color(54, 63, 125));
+        CarViewerScrollPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        CarViewerScrollPanel.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        CarViewerPanel.setBackground(new java.awt.Color(54, 63, 125));
+
+        javax.swing.GroupLayout CarViewerPanelLayout = new javax.swing.GroupLayout(CarViewerPanel);
+        CarViewerPanel.setLayout(CarViewerPanelLayout);
+        CarViewerPanelLayout.setHorizontalGroup(
+            CarViewerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 692, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        CarViewerPanelLayout.setVerticalGroup(
+            CarViewerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 545, Short.MAX_VALUE)
         );
 
-        jScrollPane1.setViewportView(jPanel1);
+        CarViewerScrollPanel.setViewportView(CarViewerPanel);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(242, 235, 235));
@@ -361,27 +372,27 @@ public class EmployeePanel extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                    .addComponent(CarViewerScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(113, Short.MAX_VALUE)
+                .addGap(100, 100, 100)
                 .addComponent(jLabel5)
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(18, 18, 18)
+                .addComponent(CarViewerScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
         handler.logoutUser(employee.getUsername()); // Logout the user from the handler
         dispose(); // Close the current CustomerPanel
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -389,23 +400,33 @@ public class EmployeePanel extends javax.swing.JFrame {
                 new LoginPanel().setVisible(true); // Open a new LoginPanel
             }
         });
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_LogOutButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        addSubpanel();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
+        this.CarViewerPanel.setLayout(new GridLayout(0, getDynamicGridColumn()));
+    }//GEN-LAST:event_formComponentResized
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void AddCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCarButtonActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_AddCarButtonActionPerformed
+
+    private void EditCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCarButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_EditCarButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void DeleteCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteCarButtonActionPerformed
+        
+        String getInput = JOptionPane.showInputDialog(this, "Enter ID of Car to Delete:");
+        int carIDInput = Integer.parseInt(getInput);
+        try {
+            CarDBHandler.deleteCar(carIDInput);
+        } catch (Exception e) {
+        
+        }
+        
+    }//GEN-LAST:event_DeleteCarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -438,11 +459,14 @@ public class EmployeePanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton AddCarButton;
+    private javax.swing.JPanel CarViewerPanel;
+    private javax.swing.JScrollPane CarViewerScrollPanel;
+    private javax.swing.JButton DeleteCarButton;
+    private javax.swing.JButton EditCarButton;
+    private javax.swing.JButton GenerateReportButton;
+    private javax.swing.JButton LogOutButton;
+    private javax.swing.JButton ViewCarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -450,8 +474,6 @@ public class EmployeePanel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

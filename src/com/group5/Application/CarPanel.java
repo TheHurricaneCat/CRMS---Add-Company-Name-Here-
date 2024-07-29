@@ -60,6 +60,7 @@ public class CarPanel extends javax.swing.JPanel {
         );
 
         setBackground(new java.awt.Color(75, 84, 139));
+        setPreferredSize(new java.awt.Dimension(180, 188));
 
         jLabel2.setForeground(new java.awt.Color(242, 235, 235));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

@@ -40,7 +40,7 @@ public class RegisterPanel extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jRadioButton1 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        SignUpButton = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jPasswordField2 = new javax.swing.JPasswordField();
@@ -83,14 +83,14 @@ public class RegisterPanel extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(148, 28, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(242, 235, 235));
-        jButton1.setText("SIGN UP");
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        SignUpButton.setBackground(new java.awt.Color(148, 28, 0));
+        SignUpButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        SignUpButton.setForeground(new java.awt.Color(242, 235, 235));
+        SignUpButton.setText("SIGN UP");
+        SignUpButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        SignUpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SignUpButtonActionPerformed(evt);
             }
         });
 
@@ -102,6 +102,11 @@ public class RegisterPanel extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jPasswordField1FocusLost(evt);
+            }
+        });
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
             }
         });
 
@@ -150,7 +155,7 @@ public class RegisterPanel extends javax.swing.JFrame {
                     .addComponent(jRadioButton1)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(SignUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel6)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(98, Short.MAX_VALUE))
@@ -179,7 +184,7 @@ public class RegisterPanel extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SignUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(90, 90, 90))
         );
 
@@ -212,14 +217,27 @@ public class RegisterPanel extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpButtonActionPerformed
         String firstPass = new String(jPasswordField1.getPassword());
         String confirmPass = new String(jPasswordField2.getPassword());
+<<<<<<< HEAD
         if ((!confirmPass.contains(":") && !jTextField1.getText().contains(":"))) {
             if (firstPass.equals(confirmPass)) {
                 UserDBHandler handler = UserDBHandler.getInstance();
                 if (handler.userExists(jTextField1.getText())) {
                     JOptionPane.showMessageDialog(null, "User already exists... Try a different name.", "CRMS Registration", JOptionPane.WARNING_MESSAGE);
+=======
+        if (firstPass.equals(confirmPass)) {
+            UserDBHandler handler = UserDBHandler.getInstance();
+            if (handler.userExists(jTextField1.getText())) {
+                JOptionPane.showMessageDialog(null, "User already exists... Try a different name.", "CRMS Registration", JOptionPane.WARNING_MESSAGE);
+            } else {
+                // todo: create a button or form for employees only?
+                String[] detectAdmin = jTextField1.getText().split("-");
+                int authority;
+                if (detectAdmin[0].toLowerCase().equals("admin")) {
+                    authority = 0;
+>>>>>>> c952fe238633d68dcc7bd0261bdd5b9794aac9f3
                 } else {
                     // todo: create a button or form for employees only?
                     String[] detectAdmin = jTextField1.getText().split("-");
@@ -246,8 +264,12 @@ public class RegisterPanel extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Password/Username must not contain ':'... Please try again ", "CRMS Registration", JOptionPane.WARNING_MESSAGE);
         }
+<<<<<<< HEAD
         
     }//GEN-LAST:event_jButton1ActionPerformed
+=======
+    }//GEN-LAST:event_SignUpButtonActionPerformed
+>>>>>>> c952fe238633d68dcc7bd0261bdd5b9794aac9f3
 
     private void jPasswordField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusGained
         String hint = "Password";
@@ -293,6 +315,10 @@ public class RegisterPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -330,7 +356,7 @@ public class RegisterPanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton SignUpButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

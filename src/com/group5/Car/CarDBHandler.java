@@ -22,23 +22,34 @@ import javax.swing.JPanel;
 
 abstract public class CarDBHandler {
     
-    static public void preLoad(JPanel jPanel1) throws FileNotFoundException, IOException {
+    static public void preLoad(JPanel jPanel1) throws FileNotFoundException, IOException, NumberFormatException {
+        
         Scanner reader = new Scanner(new File("CarDB.csv"));
         reader.useDelimiter("[\n]");
         
+        
         ArrayList<Car> carList = new ArrayList<>();
+        ArrayList<String> recordList = new ArrayList();
         
         while (reader.hasNext()) {
-            String[] info = reader.next().split(",");
-            carList.add(getCar(Integer.parseInt(info[0])));
+            recordList.add(reader.next());
+        }
+        
+        for (String s : recordList) {
+            
+            if (!"DELETED".equalsIgnoreCase(s)) {
+                String id = s.split(",")[0];
+                carList.add(getCar(Integer.parseInt(id)));
+            }
+
         }
         
         //preload the data
-        for (Object car : carList) {
+        for (Car car : carList) {
             // when adding new car wrap carPanel with another panel
             JPanel panel = new JPanel();
             panel.setBackground(new Color(0, 0, 0, 0));
-            CarPanel subPanel = new CarPanel(jPanel1, (Car) car);
+            CarPanel subPanel = new CarPanel(jPanel1, car);
             subPanel.setPreferredSize(new Dimension(177, 186));
             panel.add(subPanel);
             jPanel1.add(panel);
@@ -83,6 +94,7 @@ abstract public class CarDBHandler {
 
         while (reader.hasNext()) {
             String[] info = reader.next().split(",");
+            if (info[0].equalsIgnoreCase("DELETED")) continue;
             if (Integer.parseInt(info[0]) == id) {
                 reader.close();
                 return parseData(info);
@@ -145,6 +157,7 @@ abstract public class CarDBHandler {
     static public void deleteCar (int id) throws FileNotFoundException {
 
         String newRecord = "";
+        Boolean foundCar = false;
 
         Scanner reader = new Scanner(new File("CarDB.csv"));
         reader.useDelimiter("[\n]");
@@ -155,8 +168,12 @@ abstract public class CarDBHandler {
             try { 
                 carID = Integer.parseInt(line.split(",")[0]);
             } catch (Exception e) {}
-            newRecord += (id != carID)? line : "DELETED";
-            newRecord += "\n";
+            if (id != carID) {
+                newRecord += line + "\n";
+            } else {
+                newRecord += "DELETED\n";
+                foundCar = true;
+            }
         }
         reader.close();
 
@@ -169,6 +186,12 @@ abstract public class CarDBHandler {
             fw.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        
+        if (foundCar) {
+            JOptionPane.showMessageDialog(null, "Car Deleted Successfuly!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Car is not in records...");
         }
 
     }
