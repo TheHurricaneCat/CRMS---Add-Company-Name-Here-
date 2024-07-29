@@ -2,9 +2,7 @@ package com.group5.Car;
 
 public class Price {
     
-    double totalPrice;
-    double partialPrice;
-    double rentPricePerDay;
+    private double rentPricePerDay;
     int rentDuration;
 
     public Price (double rentPricePerDay, int rentDuration) {
@@ -13,12 +11,12 @@ public class Price {
         calculateTotalPrice();
     }
 
-    public void calculateTotalPrice () {
-        totalPrice = rentPricePerDay * rentDuration;
+    public double calculateTotalPrice () {
+        return rentPricePerDay * rentDuration;
     }
 
-    public void calculatePartialPrice (int days) {
-        partialPrice = rentPricePerDay * days;
+    public double calculatePartialPrice (int days) {
+        return rentPricePerDay * days;
     }
 
 }

@@ -9,7 +9,7 @@ public class CarBuilder {
     private Make make;
     private Model model;
     private ArrayList<Part> part = new ArrayList<>();
-    private Price price;
+
 
     public CarBuilder setName (String name) {
         this.name = name;
@@ -36,18 +36,9 @@ public class CarBuilder {
         return this;
     }
 
-    public CarBuilder setPrice (Price price) {
-        this.price = price;
-        return this;
-    }
-
-    public CarBuilder setPrice (double rentPricePerDay, int rentDuration) {
-        this.price = new Price(rentPricePerDay, rentDuration);
-        return this;
-    }
-
+   
     public Car build () {
-        return new Car(name, carID, make, model, part, price);
+        return new Car(name, carID, make, model, part);
     }
 
 }
