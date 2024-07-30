@@ -5,13 +5,17 @@
 package com.group5.Application;
 
 import com.group5.Car.Car;
+import com.group5.Car.CarDBHandler;
 import com.group5.Login.UserDBHandler;
 import com.group5.User.User;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -271,6 +275,11 @@ public class RentCarForm extends javax.swing.JFrame {
     private void BTNConfirmRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNConfirmRentActionPerformed
 
         car.getStatus().rentTo(UserDBHandler.getActiveUser(user.getUsername()), dayDuration);
+        try {
+            CarDBHandler.editCar(car.getCarID(), car);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(RentCarForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_BTNConfirmRentActionPerformed
 
