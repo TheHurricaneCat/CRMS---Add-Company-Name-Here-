@@ -21,11 +21,13 @@ public class RentCarForm extends javax.swing.JFrame {
     
     private long dayDuration = 0;
     private double rentPricePerDay = 0;
+    private Car car;
     /**
      * Creates new form RentCarForm
      */
     public RentCarForm(Car car) {
         rentPricePerDay = car.getStatus().getPrice().getRentPricePerDay();
+        this.car = car;
         initComponents();
         int day = LocalDate.now().getDayOfMonth()-1;
         int month = LocalDate.now().getMonthValue()-1;
@@ -264,7 +266,7 @@ public class RentCarForm extends javax.swing.JFrame {
 
     private void BTNConfirmRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNConfirmRentActionPerformed
 
-        
+        //car.getStatus().rentTo();
 
     }//GEN-LAST:event_BTNConfirmRentActionPerformed
 
