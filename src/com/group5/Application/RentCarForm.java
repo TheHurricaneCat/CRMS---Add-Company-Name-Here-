@@ -5,6 +5,7 @@
 package com.group5.Application;
 
 import com.group5.Car.Car;
+import com.group5.Login.UserDBHandler;
 import com.group5.User.User;
 import java.time.LocalDate;
 import java.time.Month;
@@ -20,10 +21,11 @@ import javax.swing.JOptionPane;
 public class RentCarForm extends javax.swing.JFrame {
     
     
-    private long dayDuration = 0;
+    private int dayDuration = 0;
     private double rentPricePerDay = 0;
     private User user;
     private Car car;
+    //private UserDBHandler udhb = UserDBHandler.getInstance();
     /**
      * Creates new form RentCarForm
      */
@@ -261,14 +263,14 @@ public class RentCarForm extends javax.swing.JFrame {
     private void BTNCalculateTotalPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNCalculateTotalPriceActionPerformed
         LocalDate begin = LocalDate.of(Integer.parseInt(this.CBBeginYear.getSelectedItem().toString()), this.CBBeginMonth.getSelectedIndex()+1, this.CBBeginDay.getSelectedIndex()+1);
         LocalDate end = LocalDate.of(Integer.parseInt(this.CBEndYear.getSelectedItem().toString()), this.CBEndMonth.getSelectedIndex()+1, this.CBEndDay.getSelectedIndex()+1);;
-        dayDuration = ChronoUnit.DAYS.between(begin, end);
+        dayDuration = (int) ChronoUnit.DAYS.between(begin, end);
         double totalPrice = dayDuration * rentPricePerDay;
         this.TFTotalPrice.setText(Double.toString(totalPrice));
     }//GEN-LAST:event_BTNCalculateTotalPriceActionPerformed
 
     private void BTNConfirmRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNConfirmRentActionPerformed
 
-        
+        car.getStatus().rentTo(UserDBHandler.getActiveUser(user.getUsername()), dayDuration);
 
     }//GEN-LAST:event_BTNConfirmRentActionPerformed
 

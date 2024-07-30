@@ -3,11 +3,12 @@ package com.group5.Car;
 import javax.swing.JOptionPane;
 
 import com.group5.User.Customer;
+import com.group5.User.User;
 
 public class RentStatus {
     
     private Boolean rented;
-    private Customer owner;
+    private User owner;
     private Price price;
     private int rentDurationDays;
     
@@ -25,16 +26,16 @@ public class RentStatus {
         setPrice(price);
     }
 
-    public RentStatus (Customer owner, Price price, int rentDurationDays) {
+    public RentStatus (User owner, Price price, int rentDurationDays) {
         this.owner = owner;
         this.price = price;
         this.rentDurationDays = rentDurationDays;
     }
     
-    public void rentTo(Customer owner, int rentDurationDays){
-        if (!rented && owner == null) {
+    public void rentTo(User user, int rentDurationDays){
+        if (!rented && user == null) {
             this.rented = true;
-            this.owner = owner;
+            this.owner = user;
             this.rentDurationDays = rentDurationDays;
         } else {
             JOptionPane.showMessageDialog(null, "Car is unavailable for rent...");
@@ -57,7 +58,7 @@ public class RentStatus {
         return rented;
     }
 
-    public Customer getOwner () {
+    public User getOwner () {
         return owner;
     }
 
