@@ -25,6 +25,13 @@ public class User implements IUser {
         this.carIDs = new ArrayList<Integer>();
     }
 
+    public List<Integer> getCarIDs() {
+        return carIDs;
+    }
+    
+    
+    
+    
     public String getUsername() {
         return username;
     }

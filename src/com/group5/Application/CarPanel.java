@@ -5,6 +5,8 @@
 package com.group5.Application;
 
 import com.group5.Car.Car;
+import com.group5.User.Customer;
+import com.group5.User.User;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -19,11 +21,13 @@ import javax.swing.JPanel;
 public class CarPanel extends javax.swing.JPanel {
     private JPanel parent;
     private Car car;
+    private User user;
     private int id;
     /**
      * Creates new form carPanel
      */
-    public CarPanel(JPanel parent, Car car) {
+    public CarPanel(User user, JPanel parent, Car car) {
+        this.user = user;
         this.parent = parent;
         this.car = car;
         initComponents();
@@ -135,7 +139,7 @@ public class CarPanel extends javax.swing.JPanel {
 
     private void BTNViewCarDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNViewCarDetailsActionPerformed
         
-        CarViewPanel cvp = new CarViewPanel(car);
+        CarViewPanel cvp = new CarViewPanel(user, car);
         cvp.setVisible(true);
         
     }//GEN-LAST:event_BTNViewCarDetailsActionPerformed
