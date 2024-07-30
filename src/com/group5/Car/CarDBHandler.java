@@ -49,9 +49,9 @@ abstract public class CarDBHandler {
             String[] attributes = {
                 Integer.toString(car.getCarID()),
                 car.getName(),
-                "15 days",
-                "P15.00/day",
-                "Available",
+                Integer.toString(car.getStatus().getRentDurationDays()),
+                Double.toString(car.getStatus().getPrice().getRentPricePerDay()),
+                (!car.getStatus().isRented()) ? "Available" : "Not Available",
             };
             tableModel.addRow(attributes);
         }
@@ -96,9 +96,9 @@ abstract public class CarDBHandler {
             String[] attributes = {
                 Integer.toString(car.getCarID()),
                 car.getName(),
-                "15 days",
-                "P15.00/day",
-                "Available",
+                Integer.toString(car.getStatus().getRentDurationDays()),
+                Double.toString(car.getStatus().getPrice().getRentPricePerDay()),
+                (!car.getStatus().isRented()) ? "Available" : "Not Available",
             };
             tableModel.addRow(attributes);
         }
