@@ -134,17 +134,10 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="BTNReturn" min="-2" pref="81" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              </Group>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="146" max="32767" attributes="0"/>
-                      <Component id="BTNConfirmRent1" min="-2" pref="141" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="BTNConfirmRent" min="-2" pref="141" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -178,16 +171,8 @@
                       <Component id="BTNCalculateTotalPrice" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
                       <Component id="TFTotalPrice" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
-                  <Component id="BTNReturn" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="182" max="32767" attributes="0"/>
-                      <Component id="BTNConfirmRent1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace pref="31" max="32767" attributes="0"/>
+                  <Component id="BTNConfirmRent" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -430,24 +415,7 @@
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="BTNReturn">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="1c" red="94" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="eb" green="eb" red="f2" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="RETURN"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTNReturnActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="BTNConfirmRent1">
+        <Component class="javax.swing.JButton" name="BTNConfirmRent">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="1c" red="94" type="rgb"/>
@@ -461,7 +429,7 @@
             <Property name="text" type="java.lang.String" value="CONFIRM RENT"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTNConfirmRent1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTNConfirmRentActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -41,13 +41,6 @@ public class RentCarForm extends javax.swing.JFrame {
         this.CBEndDay.setSelectedIndex(day);
         this.CBEndMonth.setSelectedIndex(month);
         this.CBEndYear.setSelectedItem(Integer.toString(year));
-        BTNReturn.setVisible(false);
-        for(int carID : user.getCarIDs()){
-            if(carID == car.getCarID()){
-                BTNReturn.setVisible(true);
-            }
-            
-        }
     }
 
     /**
@@ -75,8 +68,7 @@ public class RentCarForm extends javax.swing.JFrame {
         BTNSetDuration = new javax.swing.JButton();
         BTNCalculateTotalPrice = new javax.swing.JButton();
         TFTotalPrice = new javax.swing.JTextField();
-        BTNReturn = new javax.swing.JButton();
-        BTNConfirmRent1 = new javax.swing.JButton();
+        BTNConfirmRent = new javax.swing.JButton();
 
         popupMenu1.setLabel("popupMenu1");
 
@@ -153,23 +145,13 @@ public class RentCarForm extends javax.swing.JFrame {
 
         TFTotalPrice.setText("...");
 
-        BTNReturn.setBackground(new java.awt.Color(148, 28, 0));
-        BTNReturn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        BTNReturn.setForeground(new java.awt.Color(242, 235, 235));
-        BTNReturn.setText("RETURN");
-        BTNReturn.addActionListener(new java.awt.event.ActionListener() {
+        BTNConfirmRent.setBackground(new java.awt.Color(148, 28, 0));
+        BTNConfirmRent.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BTNConfirmRent.setForeground(new java.awt.Color(242, 235, 235));
+        BTNConfirmRent.setText("CONFIRM RENT");
+        BTNConfirmRent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTNReturnActionPerformed(evt);
-            }
-        });
-
-        BTNConfirmRent1.setBackground(new java.awt.Color(148, 28, 0));
-        BTNConfirmRent1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        BTNConfirmRent1.setForeground(new java.awt.Color(242, 235, 235));
-        BTNConfirmRent1.setText("CONFIRM RENT");
-        BTNConfirmRent1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTNConfirmRent1ActionPerformed(evt);
+                BTNConfirmRentActionPerformed(evt);
             }
         });
 
@@ -205,15 +187,10 @@ public class RentCarForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BTNSetToday, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BTNReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(146, Short.MAX_VALUE)
-                    .addComponent(BTNConfirmRent1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(127, 127, 127)))
+                .addComponent(BTNConfirmRent, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,14 +217,8 @@ public class RentCarForm extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BTNCalculateTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TFTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(BTNReturn)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(182, Short.MAX_VALUE)
-                    .addComponent(BTNConfirmRent1)
-                    .addContainerGap()))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(BTNConfirmRent))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -340,8 +311,7 @@ public class RentCarForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTNCalculateTotalPrice;
-    private javax.swing.JButton BTNConfirmRent1;
-    private javax.swing.JButton BTNReturn;
+    private javax.swing.JButton BTNConfirmRent;
     private javax.swing.JButton BTNSetDuration;
     private javax.swing.JButton BTNSetToday;
     private javax.swing.JComboBox<String> CBBeginDay;
