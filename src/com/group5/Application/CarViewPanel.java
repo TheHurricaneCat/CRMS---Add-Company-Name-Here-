@@ -6,11 +6,15 @@ package com.group5.Application;
 
 import com.group5.Car.Car;
 import com.group5.Car.Part;
+import com.group5.Login.UserDBHandler;
 import com.group5.User.User;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -22,13 +26,12 @@ import javax.swing.SwingConstants;
 public class CarViewPanel extends javax.swing.JFrame {
     
     private Car car;
-    private User user;
     private String[] info;
-    
-    public CarViewPanel(User user, Car car) {
-        this.user = user;
+    private UserDBHandler handler = UserDBHandler.getInstance();
+    EmployeePanel container;
+    public CarViewPanel(EmployeePanel container, Car car) {
         this.car = car;
-        
+        this.container = container;
         initComponents();
         getContentPane().setBackground(new java.awt.Color(29, 34, 67)); 
         
@@ -86,6 +89,21 @@ public class CarViewPanel extends javax.swing.JFrame {
         
         this.TACarInfo.setText(carInfo);
         
+        
+        boolean condition = false;
+        for(int carID : UserDBHandler.getLoggedInUser().getCarIDs()){
+            if(carID == car.getCarID()){
+                condition = true;
+                break;
+            }
+        }
+        if(condition == true){
+            BTNRentCar.setText("RETURN CAR");
+            
+            
+        }else{
+            BTNRentCar.setText("RENT CAR");
+        }
     }
     
     
@@ -233,8 +251,28 @@ public class CarViewPanel extends javax.swing.JFrame {
 
     private void BTNRentCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNRentCarActionPerformed
         
-        RentCarForm rcf = new RentCarForm(user, car);
-        rcf.setVisible(true);
+        boolean condition = false;
+        for(int carID : UserDBHandler.getLoggedInUser().getCarIDs()){
+            if(carID == car.getCarID()){
+                condition = true;
+                break;
+            }
+        }
+        if(condition == true){
+            UserDBHandler.getLoggedInUser().removeCarID(car.getCarID());
+            try {
+                handler.updateUser(UserDBHandler.getLoggedInUser());
+            } catch (IOException ex) {
+                Logger.getLogger(CarViewPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+        }else{
+            RentCarForm rcf = new RentCarForm(car);
+            rcf.setVisible(true);
+        }
+        dispose();
+        
         
     }//GEN-LAST:event_BTNRentCarActionPerformed
 

@@ -29,6 +29,7 @@ public class UserDBHandler {
     static private /*final*/ Map<String, User> activeUsers = new HashMap<>();
     
         private static final UserDBHandler activeInstance = new UserDBHandler();
+        private static User loggedInUser;
     
     public static UserDBHandler getInstance() {
         return activeInstance;  
@@ -49,6 +50,7 @@ public class UserDBHandler {
     public void loginUser(String authority, String username, String password) {
         User user = UserFactory.createUser(authority, username, password);
         activeUsers.put(username, user);
+        loggedInUser = user;
         
         loadCarIDs(user); //load carID to users
         
@@ -68,10 +70,14 @@ public class UserDBHandler {
             //user.saveData(); implement later
             activeUsers.remove(user);
         }
+        loggedInUser = null;
     }
     
     static public User getActiveUser(String username) {
         return activeUsers.get(username);
+    }
+    static public User getLoggedInUser() {
+        return loggedInUser;
     }
     
     public void recordUser(User newUser) throws IOException {

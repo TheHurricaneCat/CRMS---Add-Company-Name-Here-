@@ -9,6 +9,7 @@ import com.group5.Car.CarDBHandler;
 import com.group5.Login.UserDBHandler;
 import com.group5.User.User;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
@@ -28,14 +29,12 @@ public class RentCarForm extends javax.swing.JFrame {
     private int dayDuration = 0;
     private double totalPrice;
     private double rentPricePerDay = 0;
-    private User user;
     private Car car;
-    //private UserDBHandler udhb = UserDBHandler.getInstance();
+    private UserDBHandler udhb = UserDBHandler.getInstance();
     /**
      * Creates new form RentCarForm
      */
-    public RentCarForm(User user, Car car) {
-        this.user = user;
+    public RentCarForm(Car car) {
         rentPricePerDay = car.getStatus().getPrice().getRentPricePerDay();
         this.car = car;
         initComponents();
@@ -281,12 +280,28 @@ public class RentCarForm extends javax.swing.JFrame {
             return;
         }
         
-        car.getStatus().rentTo(UserDBHandler.getActiveUser(user.getUsername()), dayDuration);
+        User user = UserDBHandler.getLoggedInUser();
+        car.getStatus().rentTo(user, dayDuration);
         try {
             CarDBHandler.editCar(car.getCarID(), car);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(RentCarForm.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        user.addCarID(car.getCarID());
+        try {
+            udhb.updateUser(user);
+        } catch (IOException ex) {
+            Logger.getLogger(RentCarForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            CarDBHandler.reload(EmployeePanel.getContainerPanel());
+        } catch (IOException ex) {
+            Logger.getLogger(EmployeePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        dispose();
 
     }//GEN-LAST:event_BTNConfirmRentActionPerformed
 

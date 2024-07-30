@@ -174,22 +174,24 @@ public class ReportPanel extends javax.swing.JFrame {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tableModel = new DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Car ID", "Car Name", "Rent Duration", "Rent Pricing", "Status"
+                "Car ID", "Car Name", "Rent Duration", "Rent Pricing", "Status", " "
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
-        });
+        };
+
+        jTable2.setModel(tableModel);
         jScrollPane3.setViewportView(jTable2);
         if (jTable2.getColumnModel().getColumnCount() > 0) {
             jTable2.getColumnModel().getColumn(0).setPreferredWidth(300);
@@ -197,6 +199,7 @@ public class ReportPanel extends javax.swing.JFrame {
             jTable2.getColumnModel().getColumn(2).setPreferredWidth(600);
             jTable2.getColumnModel().getColumn(3).setPreferredWidth(600);
             jTable2.getColumnModel().getColumn(4).setPreferredWidth(500);
+            jTable2.getColumnModel().getColumn(5).setPreferredWidth(30);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

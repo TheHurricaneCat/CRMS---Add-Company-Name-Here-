@@ -23,13 +23,15 @@ public class CarPanel extends javax.swing.JPanel {
     private Car car;
     private User user;
     private int id;
+    EmployeePanel container;
     /**
      * Creates new form carPanel
      */
-    public CarPanel(User user, JPanel parent, Car car) {
+    public CarPanel(JPanel panel, Car car) {
         this.user = user;
         this.parent = parent;
         this.car = car;
+        this.container = container;
         initComponents();
         //this.setBackground(new Color(0, 0, 0, 0));
         initializeCarDetails();
@@ -139,7 +141,7 @@ public class CarPanel extends javax.swing.JPanel {
 
     private void BTNViewCarDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNViewCarDetailsActionPerformed
         
-        CarViewPanel cvp = new CarViewPanel(user, car);
+        CarViewPanel cvp = new CarViewPanel(container, car);
         cvp.setVisible(true);
         
     }//GEN-LAST:event_BTNViewCarDetailsActionPerformed

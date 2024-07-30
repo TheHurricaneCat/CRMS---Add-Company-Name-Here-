@@ -64,7 +64,7 @@ public class EmployeePanel extends javax.swing.JFrame {
                 if ((boolean) evt.getNewValue()) {
                     System.out.println("Working");
                     try {
-                        CarDBHandler.reload(employee, CarViewerPanel);
+                        CarDBHandler.reload(CarViewerPanel);
                     } catch (IOException ex) {
                         Logger.getLogger(EmployeePanel.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -73,7 +73,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         });
         
         
-       CarDBHandler.preLoad(employee, CarViewerPanel);
+       CarDBHandler.preLoad(CarViewerPanel);
     };
     
     public void propertyChange(PropertyChangeEvent evt) {
@@ -159,42 +159,10 @@ public class EmployeePanel extends javax.swing.JFrame {
                 break;
         }
     }
-
     
-    private void addSubpanel() {
-        // Show input dialog to get the car name
-        String carName = JOptionPane.showInputDialog(this, "Enter the name of the car:", "Input Car Name", JOptionPane.PLAIN_MESSAGE);
-
-        // Check if the user provided input
-        if (carName != null && !carName.trim().isEmpty()) {
-            try {
-                // Fetch the car details using the car name
-                Car car = CarDBHandler.getCar(Integer.parseInt(carName.trim()));
-
-                if (car != null) {
-                    // Create the subpanel with the fetched car details
-                    CarPanel subPanel = new CarPanel(employee, CarViewerPanel, car);
-
-                    // Add the subpanel to the main panel
-                    CarViewerPanel.add(subPanel);
-
-                    // Refresh the UI to reflect changes
-                    CarViewerPanel.revalidate();
-                    CarViewerPanel.repaint();
-                } else {
-                    // Show an error message if the car is not found
-                    JOptionPane.showMessageDialog(this, "Car not found.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (IOException e) {
-                // Show an error message if there was an issue fetching the car details
-                JOptionPane.showMessageDialog(this, "Error fetching car details: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            // Show an error message if the input is invalid
-            JOptionPane.showMessageDialog(this, "Please enter a valid car name.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    static public JPanel getContainerPanel () {
+        return CarViewerPanel;
     }
-    
     
     // For dynamic resizing
     private int getDynamicGridColumn () {
@@ -430,11 +398,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         
         AddCarForm addCar = new AddCarForm(this);
         addCar.setVisible(true);
-        try {
-            CarDBHandler.reload(employee, CarViewerPanel);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        
 
         
     }//GEN-LAST:event_AddCarButtonActionPerformed
@@ -443,12 +407,12 @@ public class EmployeePanel extends javax.swing.JFrame {
         
         int id = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter ID of Car to edit."));
         try {
-            EditCarForm editCar = new EditCarForm(CarDBHandler.getCar(id));
+            EditCarForm editCar = new EditCarForm(CarDBHandler.getCar(id), this);
             editCar.setVisible(true);
-            CarDBHandler.reload(employee, CarViewerPanel);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
 
     }//GEN-LAST:event_EditCarButtonActionPerformed
 
@@ -458,10 +422,15 @@ public class EmployeePanel extends javax.swing.JFrame {
         int carIDInput = Integer.parseInt(getInput);
         try {
             CarDBHandler.deleteCar(carIDInput);
-            CarDBHandler.reload(employee, CarViewerPanel);
         } catch (Exception e) {
         
         }
+        try {
+            CarDBHandler.reload(CarViewerPanel);
+        } catch (IOException ex) {
+            Logger.getLogger(EmployeePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
     }//GEN-LAST:event_DeleteCarButtonActionPerformed
 
@@ -480,7 +449,7 @@ public class EmployeePanel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCarButton;
-    private javax.swing.JPanel CarViewerPanel;
+    public static javax.swing.JPanel CarViewerPanel;
     private javax.swing.JScrollPane CarViewerScrollPanel;
     private javax.swing.JButton DeleteCarButton;
     private javax.swing.JButton EditCarButton;

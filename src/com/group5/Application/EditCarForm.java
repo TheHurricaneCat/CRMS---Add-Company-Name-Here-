@@ -17,6 +17,8 @@ import com.group5.Car.Price;
 import com.group5.Car.RentStatus;
 import java.awt.Component;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JTextField;
 
@@ -31,9 +33,10 @@ public class EditCarForm extends javax.swing.JFrame {
      */
     Car editingCar;
     String[] info;
+    EmployeePanel container;
 
-    public EditCarForm(Car car) {
-
+    public EditCarForm(Car car, EmployeePanel container) {
+        this.container = container;
         initComponents();
         editingCar = car;
         getContentPane().setBackground(new java.awt.Color(29, 34, 67));
@@ -856,6 +859,14 @@ public class EditCarForm extends javax.swing.JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        try {
+            CarDBHandler.reload(EmployeePanel.getContainerPanel());
+        } catch (IOException ex) {
+            Logger.getLogger(EmployeePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        dispose();
                 
     }
 
