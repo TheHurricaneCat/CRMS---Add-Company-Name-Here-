@@ -137,15 +137,15 @@ abstract public class CarDBHandler {
             return "Not found";
     }
     
-    static public void reload(JPanel panel) throws IOException {
+    static public void reload(User user, JPanel panel) throws IOException {
         Component[] components = panel.getComponents();
         for (Component c : components) {
             panel.remove(c);
         }
-        preLoad(panel);
+        preLoad(user, panel);
     }
     
-    static public void preLoad(JPanel containerPanel) throws FileNotFoundException, IOException, NumberFormatException {
+    static public void preLoad(User user, JPanel containerPanel) throws FileNotFoundException, IOException, NumberFormatException {
         
         Scanner reader = new Scanner(new File("CarDB.csv"));
         reader.useDelimiter("[\n]");
@@ -174,7 +174,7 @@ abstract public class CarDBHandler {
             // when adding new car wrap carPanel with another panel
             JPanel panel = new JPanel();
             panel.setBackground(new Color(0, 0, 0, 0));
-            CarPanel subPanel = new CarPanel(panel, car);
+            CarPanel subPanel = new CarPanel(user, panel, car);
             subPanel.setPreferredSize(new Dimension(177, 186));
             panel.add(subPanel);
             containerPanel.add(panel);

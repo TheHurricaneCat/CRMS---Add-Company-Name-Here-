@@ -64,7 +64,7 @@ public class EmployeePanel extends javax.swing.JFrame {
                 if ((boolean) evt.getNewValue()) {
                     System.out.println("Working");
                     try {
-                        CarDBHandler.reload(CarViewerPanel);
+                        CarDBHandler.reload(employee, CarViewerPanel);
                     } catch (IOException ex) {
                         Logger.getLogger(EmployeePanel.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -73,7 +73,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         });
         
         
-       CarDBHandler.preLoad(CarViewerPanel);
+       CarDBHandler.preLoad(employee, CarViewerPanel);
     };
     
     public void propertyChange(PropertyChangeEvent evt) {
@@ -173,7 +173,7 @@ public class EmployeePanel extends javax.swing.JFrame {
 
                 if (car != null) {
                     // Create the subpanel with the fetched car details
-                    CarPanel subPanel = new CarPanel(CarViewerPanel, car);
+                    CarPanel subPanel = new CarPanel(employee, CarViewerPanel, car);
 
                     // Add the subpanel to the main panel
                     CarViewerPanel.add(subPanel);
@@ -431,7 +431,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         AddCarForm addCar = new AddCarForm(this);
         addCar.setVisible(true);
         try {
-            CarDBHandler.reload(CarViewerPanel);
+            CarDBHandler.reload(employee, CarViewerPanel);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -445,7 +445,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         try {
             EditCarForm editCar = new EditCarForm(CarDBHandler.getCar(id));
             editCar.setVisible(true);
-            CarDBHandler.reload(CarViewerPanel);
+            CarDBHandler.reload(employee, CarViewerPanel);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -458,7 +458,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         int carIDInput = Integer.parseInt(getInput);
         try {
             CarDBHandler.deleteCar(carIDInput);
-            CarDBHandler.reload(CarViewerPanel);
+            CarDBHandler.reload(employee, CarViewerPanel);
         } catch (Exception e) {
         
         }

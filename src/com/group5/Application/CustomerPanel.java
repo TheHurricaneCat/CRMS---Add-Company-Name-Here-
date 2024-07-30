@@ -41,7 +41,7 @@ public class CustomerPanel extends javax.swing.JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        CarDBHandler.preLoad(jPanel1);
+        CarDBHandler.preLoad(customer, jPanel1);
     }
     
     private void setupScrollPane() {

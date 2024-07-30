@@ -6,6 +6,7 @@ package com.group5.Application;
 
 import com.group5.Car.Car;
 import com.group5.Car.Part;
+import com.group5.User.User;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -21,9 +22,11 @@ import javax.swing.SwingConstants;
 public class CarViewPanel extends javax.swing.JFrame {
     
     private Car car;
+    private User user;
     private String[] info;
     
-    public CarViewPanel(Car car) {
+    public CarViewPanel(User user, Car car) {
+        this.user = user;
         this.car = car;
         
         initComponents();
@@ -230,7 +233,7 @@ public class CarViewPanel extends javax.swing.JFrame {
 
     private void BTNRentCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNRentCarActionPerformed
         
-        RentCarForm rcf = new RentCarForm(car);
+        RentCarForm rcf = new RentCarForm(user, car);
         rcf.setVisible(true);
         
     }//GEN-LAST:event_BTNRentCarActionPerformed
