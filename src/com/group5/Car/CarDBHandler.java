@@ -342,10 +342,10 @@ abstract public class CarDBHandler {
         if (info[7].equalsIgnoreCase("false")) {
             status = new RentStatus(new Price(Double.parseDouble(info[9])));
         } else {
-            Customer owner = (Customer) UserDBHandler.getActiveUser(info[8]);
+            User owner = UserDBHandler.getActiveUser(info[8]);
             Price price = new Price(Double.parseDouble(info[9]));
             int rentDurationDays = Integer.parseInt(info[10]);
-            status = new RentStatus((Customer)owner, price, rentDurationDays);
+            status = new RentStatus(owner, price, rentDurationDays);
         }
 
         

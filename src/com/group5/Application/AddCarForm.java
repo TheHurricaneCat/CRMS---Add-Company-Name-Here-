@@ -262,7 +262,6 @@ public class AddCarForm extends javax.swing.JFrame {
         TFBodyCargoCapacity.setBackground(new java.awt.Color(109, 118, 173));
         TFBodyCargoCapacity.setForeground(new java.awt.Color(242, 235, 235));
 
-        TFBodyFuelCapacity.setEditable(false);
         TFBodyFuelCapacity.setBackground(new java.awt.Color(109, 118, 173));
         TFBodyFuelCapacity.setForeground(new java.awt.Color(242, 235, 235));
 
@@ -669,7 +668,6 @@ public class AddCarForm extends javax.swing.JFrame {
         jLabel41.setForeground(new java.awt.Color(242, 235, 235));
         jLabel41.setText("Rent Cost/Day(Php):");
 
-        TFPriceRentCostPerDay.setEditable(false);
         TFPriceRentCostPerDay.setBackground(new java.awt.Color(109, 118, 173));
         TFPriceRentCostPerDay.setForeground(new java.awt.Color(242, 235, 235));
 

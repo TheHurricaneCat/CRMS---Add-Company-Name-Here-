@@ -26,6 +26,7 @@ public class RentCarForm extends javax.swing.JFrame {
     
     
     private int dayDuration = 0;
+    private double totalPrice;
     private double rentPricePerDay = 0;
     private User user;
     private Car car;
@@ -149,6 +150,7 @@ public class RentCarForm extends javax.swing.JFrame {
             }
         });
 
+        TFTotalPrice.setEditable(false);
         TFTotalPrice.setText("...");
 
         BTNConfirmRent.setBackground(new java.awt.Color(148, 28, 0));
@@ -191,12 +193,12 @@ public class RentCarForm extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BTNSetToday, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(BTNSetToday, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BTNConfirmRent, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BTNConfirmRent, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,12 +270,17 @@ public class RentCarForm extends javax.swing.JFrame {
         LocalDate begin = LocalDate.of(Integer.parseInt(this.CBBeginYear.getSelectedItem().toString()), this.CBBeginMonth.getSelectedIndex()+1, this.CBBeginDay.getSelectedIndex()+1);
         LocalDate end = LocalDate.of(Integer.parseInt(this.CBEndYear.getSelectedItem().toString()), this.CBEndMonth.getSelectedIndex()+1, this.CBEndDay.getSelectedIndex()+1);;
         dayDuration = (int) ChronoUnit.DAYS.between(begin, end);
-        double totalPrice = dayDuration * rentPricePerDay;
+        totalPrice = (dayDuration+1) * rentPricePerDay;
         this.TFTotalPrice.setText(Double.toString(totalPrice));
     }//GEN-LAST:event_BTNCalculateTotalPriceActionPerformed
 
     private void BTNConfirmRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNConfirmRentActionPerformed
-
+        
+        if (totalPrice < 0) {
+            JOptionPane.showMessageDialog(null, "Invalid date choice!!!");
+            return;
+        }
+        
         car.getStatus().rentTo(UserDBHandler.getActiveUser(user.getUsername()), dayDuration);
         try {
             CarDBHandler.editCar(car.getCarID(), car);

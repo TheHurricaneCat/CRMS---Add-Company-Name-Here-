@@ -412,6 +412,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="TFTotalPrice">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
         </Component>

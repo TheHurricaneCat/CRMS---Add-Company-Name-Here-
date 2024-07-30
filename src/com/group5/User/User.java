@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  *
  * @author Josefe Gillego
  */
-public class User implements IUser {
+public class User {
     private String username;
     private String password;
     private int authority; //0 - employee/admin, 1 - customer

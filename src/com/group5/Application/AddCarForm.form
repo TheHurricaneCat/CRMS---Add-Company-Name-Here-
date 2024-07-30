@@ -601,7 +601,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="TFBodyFuelCapacity">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ad" green="76" red="6d" type="rgb"/>
             </Property>
@@ -1209,7 +1208,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="TFPriceRentCostPerDay">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ad" green="76" red="6d" type="rgb"/>
             </Property>
